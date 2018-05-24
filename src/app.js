@@ -9,9 +9,9 @@ import {
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 
-import PoemsIndex from './components/poems/Index';
-import PoemsShow from './components/poems/Show';
-import PoemsNew from './components/poems/New';
+import UsersIndex from './components/users/Index';
+import UsersShow from './components/users/Show';
+import UsersEdit from './components/users/Edit';
 
 import AuthLogin from './components/auth/Login';
 import AuthRegister from './components/auth/Register';
@@ -37,9 +37,9 @@ class App extends React.Component {
           <section className='section'>
             <div className='container'>
               <Switch>
-                <SecureRoute exact path="/poems/new" component={PoemsNew} />
-                <Route exact path="/poems/:id" component={PoemsShow} />
-                <Route exact path="/poems" component={PoemsIndex} />
+                <SecureRoute exact path="/users/:id/edit" component={UsersEdit} />
+                <Route exact path="/users/:id" component={UsersShow} />
+                <Route exact path="/users" component={UsersIndex} />
                 <Route exact path="/login" component={AuthLogin} />
                 <Route exact path="/register" component={AuthRegister} />
                 <Route exact path="/" component={Home} />

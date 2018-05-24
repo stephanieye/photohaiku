@@ -1,18 +1,18 @@
 import React from 'react';
 
-const Form = ({ handleChange, handleSubmit, data, errors }) => {
+const Form = ({ handleChange, handleSubmit, poem, errors }) => {
   const formInvalid = Object.keys(errors).some(key => errors[key]);
   return (
     <form onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="image">Image</label>
-        <input id="image" name="image" className="input" placeholder="image"  onChange={handleChange}  value={data.image || ''}/>
+        <input id="image" name="image" className="input" placeholder="image"  onChange={handleChange}  value={poem.image || ''}/>
         {errors.name && <small>{errors.name}</small>}
       </div>
 
       <div className="field">
         <label htmlFor="haiku">Haiku</label>
-        <input id="haiku" name="haiku" className="input" placeholder="haiku"  onChange={handleChange} value={data.haiku || ''}/>
+        <input id="haiku" name="haiku" className="input" placeholder="haiku"  onChange={handleChange} value={poem.haiku || ''}/>
         {errors.name && <small>{errors.name}</small>}
       </div>
 

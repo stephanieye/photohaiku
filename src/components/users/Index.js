@@ -2,14 +2,14 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-class PoemsIndex extends React.Component {
+class UsersIndex extends React.Component {
   state = {
-    poems: []
+    users: []
   }
 
   componentDidMount() {
-    axios.get('/api/poems')
-      .then(res => this.setState({poems: res.data}));
+    axios.get('/api/users')
+      .then(res => this.setState({users: res.data}));
   }
 
 
@@ -18,19 +18,19 @@ class PoemsIndex extends React.Component {
     return (
       <section>
         <div className="columns is-multiline">
-          {this.state.poems.map(poem =>
-            <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
-              <Link to={`/poems/${poem._id}`}>
+          {this.state.users.map(user =>
+            <div className="column is-one-third-desktop is-half-tablet" key={user._id}>
+              <Link to={`/users/${user._id}`}>
                 <div className="card">
                   <div
                     className="card-image"
-                    style={{ backgroundImage: `url(${poem.image})` }}
+                    style={{ backgroundImage: `url(${user.image})` }}
                   ></div>
                   <div className="card-content">
                     <div className="media">
                       <div className="media-content">
-                        <p className="title is-4">{poem.haiku}</p>
-                        <p className="subtitle is-6">{poem.poet.username}</p>
+                        <p className="title is-4">{user.username}</p>
+                        <p className="subtitle is-6">{user.email}</p>
                       </div>
                     </div>
                   </div>
@@ -44,4 +44,4 @@ class PoemsIndex extends React.Component {
   }
 }
 
-export default PoemsIndex;
+export default UsersIndex;

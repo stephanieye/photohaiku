@@ -1,19 +1,18 @@
 const router = require('express').Router();
-const poems = require('../controllers/poem');
+const users = require('../controllers/auth');
 const auth = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
 
-router.route('/poems')
-  .get(poems.index)
-  .post(secureRoute, poems.create);
+router.route('/users')
+  .get(users.index);
 
-router.route('/poems/:id')
-  .get(poems.show)
-  .put(secureRoute, poems.update)
-  .delete(secureRoute, poems.delete);
+router.route('/users/:id')
+  .get(users.show)
+  .put(secureRoute, users.update)
+  .delete(secureRoute, users.delete);
 
-router.post('/poems/:id/comments', secureRoute, poems.commentCreate);
-router.delete('/poems/:id/comments/:commentId', secureRoute, poems.commentDelete);
+router.post('/users/:id/poems', secureRoute, users.poemCreate);
+router.delete('/users/:id/poems/:poemId', secureRoute, users.poemDelete);
 
 router.post('/register' , auth.register);
 router.post('/login' , auth.login);
