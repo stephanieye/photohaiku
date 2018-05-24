@@ -6,7 +6,8 @@ import Auth from '../../lib/Auth';
 
 class PoemsNew extends React.Component {
   state = {
-    errors: {}
+    errors: {},
+    poem: {}
   }
 
   handleChange = ({ target: { name, value } }) => {

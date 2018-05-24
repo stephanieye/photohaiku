@@ -64,12 +64,18 @@ class PoemsShow extends React.Component {
             <h2 className='subtitle is-2'>{poem.poet.username}</h2>
             <p>Rating: {'⭐️'.repeat(poem.avgRating)}</p>
 
-            <Link to={`/poems/${poem._id}/edit`} className="button">Edit</Link>
-            <button className="button is-danger" onClick= {this.handleDelete}>Delete</button>
-
-
+            <div>
+              {poem.nouns[0]}
+            </div>
           </div>
+
+
+          <Link to={`/poems/${poem._id}/edit`} className="button">Edit</Link>
+          <button className="button is-danger" onClick= {this.handleDelete}>Delete</button>
+
+
         </div>
+
         <div className= 'box'>
           <h1 className='title is-1'>Comments</h1>
           {poem.comments && <div>
