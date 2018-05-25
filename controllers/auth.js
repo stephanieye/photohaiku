@@ -36,7 +36,7 @@ function login(req, res, next) {
 function indexRoute(req, res, next){
   User
     .find()
-    .populate('poems poems.poet')
+    .populate('poems poems.poet poems.haiku')
     .exec()
     .then(user =>
       res.json(user))
@@ -47,7 +47,7 @@ function indexRoute(req, res, next){
 function showRoute(req, res, next){
   User
     .findById(req.params.id)
-    .populate('poems poems.poet')
+    .populate('poems poems.poet poems.haiku')
     .exec()
     .then(user => {
       if(!user) return res.sendStatus(404);
@@ -59,7 +59,7 @@ function showRoute(req, res, next){
 function updateRoute(req, res, next){
   User
     .findById(req.params.id)
-    .populate('poems poems.poet')
+    .populate('poems poems.poet poems.haiku')
     .exec()
     .then(user => {
       if(!user) return res.sendStatus(404);
@@ -73,7 +73,7 @@ function updateRoute(req, res, next){
 function deleteRoute(req, res, next){
   User
     .findById(req.params.id)
-    .populate('poems poems.poet')
+    .populate('poems poems.poet poems.haiku')
     .exec()
     .then(user => {
       if(!user) return res.sendStatus(404);
@@ -86,7 +86,7 @@ function deleteRoute(req, res, next){
 function poemCreateRoute(req, res, next) {
   req.body.poet = req.currentUser;
   User.findById(req.params.id)
-    .populate('poems poems.poet')
+    .populate('poems poems.poet poems.haiku')
     .exec()
     .then(user => {
       user.poems.push(req.body);
@@ -100,7 +100,7 @@ function poemCreateRoute(req, res, next) {
 function poemDeleteRoute(req, res, next) {
 
   User.findById(req.params.id)
-    .populate('poems poem.poet')
+    .populate('poems poem.poet poems.haiku')
     .exec()
     .then(user => {
       const poem = user.poems.id(req.params.poemId);
@@ -113,7 +113,7 @@ function poemDeleteRoute(req, res, next) {
 
 function haikuCreateRoute(req, res, next) {
   User.findById(req.params.id)
-    .populate('poems poem.poet')
+    .populate('poems poem.poet poems.haiku')
     .exec()
     .then(user => {
       const poem = user.poems.id(req.params.poemId);
