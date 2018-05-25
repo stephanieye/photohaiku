@@ -32,45 +32,63 @@ class UsersEdit extends React.Component {
       });
   }
 
+  handleDelete = () => {
+    axios.delete(`/api/users/${this.props.match.params.id}`, {
+      headers: {Authorization: `Bearer ${Auth.getToken()}`}
+    })
+      .then(this.handleLogout);
+  }
+
+  handleLogout = () => {
+    Auth.logout();
+    this.props.history.push('/');
+  }
+
 
   render() {
     const {user} = this.state;
 
     if(!user) return null;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="field">
-          <input
-            className="input"
-            name="username"
-            placeholder={user.username}
-            onChange={this.handleChange}/>
+      <section>
+        <form onSubmit={this.handleSubmit}>
+          <div className="field">
+            <input
+              className="input"
+              name="username"
+              placeholder={user.username}
+              onChange={this.handleChange}/>
+          </div>
+          <div className="field">
+            <input
+              className="input"
+              name="email"
+              placeholder={user.email}
+              onChange={this.handleChange}/>
+          </div>
+          <div className="field">
+            <input
+              type="password"
+              className="input"
+              name="password"
+              placeholder="Please provide a password"
+              onChange={this.handleChange}/>
+          </div>
+          <div className="field">
+            <input
+              type="password"
+              className="input"
+              name="passwordConfirmation"
+              placeholder="Please confirm your password"
+              onChange={this.handleChange}/>
+          </div>
+          <button className ="button is-primary">Submit</button>
+        </form>
+        <div className='dangerzone'>
+          <p className="title is-3">Warning! If you delete your account, all your photohaiku will be gone forever.</p>
+          <button className="button is-danger" onClick= {this.handleDelete}>Delete your account</button>
         </div>
-        <div className="field">
-          <input
-            className="input"
-            name="email"
-            placeholder={user.email}
-            onChange={this.handleChange}/>
-        </div>
-        <div className="field">
-          <input
-            type="password"
-            className="input"
-            name="password"
-            placeholder="Please provide a password"
-            onChange={this.handleChange}/>
-        </div>
-        <div className="field">
-          <input
-            type="password"
-            className="input"
-            name="passwordConfirmation"
-            placeholder="Please confirm your password"
-            onChange={this.handleChange}/>
-        </div>
-        <button className ="button is-primary">Submit</button>
-      </form>
+      </section>
     );
   }
 }

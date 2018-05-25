@@ -22,17 +22,12 @@ class UsersIndex extends React.Component {
             <div className="column is-one-third-desktop is-half-tablet" key={user._id}>
               <Link to={`/users/${user._id}`}>
                 <div className="card">
-                  <div
-                    className="card-image"
-                    style={{ backgroundImage: `url(${user.image})` }}
-                  ></div>
+                  {/* <div className="card-image"
+                    style={{ backgroundImage: `url(${user.poems[user.poems.length-1].image})` }}
+                  ></div>} */}
                   <div className="card-content">
-                    <div className="media">
-                      <div className="media-content">
-                        <p className="title is-4">{user.username}</p>
-                        <p className="subtitle is-6">{user.email}</p>
-                      </div>
-                    </div>
+                    <p className="title is-4">{user.username}</p>
+                    {/* <p className="subtitle is-6">Poet of {user.poems.length} photohaiku</p>} */}
                   </div>
                 </div>
               </Link>

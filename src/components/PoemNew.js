@@ -49,6 +49,14 @@ class PoemNew extends React.Component {
           this.setState({blank: 1});
         }
       })
+      .then(()=> {
+        console.log('noun1', this.state.noun1sarray);
+        console.log('noun2', this.state.noun2sarray);
+        console.log('noun3', this.state.noun3sarray);
+        console.log('adj1', this.state.adj1sarray);
+        console.log('adj2', this.state.adj2sarray);
+        console.log('adj3', this.state.adj3sarray);
+      })
       .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
@@ -69,9 +77,6 @@ class PoemNew extends React.Component {
           }
         }
         );
-        console.log('adj1', this.state.adj1sarray);
-        console.log('adj2', this.state.adj2sarray);
-        console.log('adj3', this.state.adj3sarray);
       });
   }
 
@@ -92,9 +97,6 @@ class PoemNew extends React.Component {
           }
         }
         );
-        console.log('noun1', this.state.noun1sarray);
-        console.log('noun2', this.state.noun2sarray);
-        console.log('noun3', this.state.noun3sarray);
       });
   };
 
@@ -110,7 +112,7 @@ class PoemNew extends React.Component {
       <section>
         <h1>Create a haiku</h1>
 
-        <div className='kudisplay'>
+        {ku && <div className='kudisplay'>
           <div className="card">
             <div className="card-image" style={{ backgroundImage: `url(${ku.image})` }}>
             </div>
@@ -120,14 +122,10 @@ class PoemNew extends React.Component {
                 <p className="subtitle is-6">{ku.nouns[0]}</p>
                 <p className="subtitle is-6">{ku.nouns[1]}</p>
                 <p className="subtitle is-6">{ku.nouns[2]}</p>
-                <button onClick={() => {
-                  this.magic(ku);
-                }}>magic</button>
-
               </div>
             </div>
           </div>
-        </div>
+        </div> }
 
 
 

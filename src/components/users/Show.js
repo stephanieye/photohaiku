@@ -26,17 +26,6 @@ class UsersShow extends React.Component {
       .then(res => this.setState({user: res.data}));
   }
 
-  handleDelete = () => {
-    axios.delete(`/api/users/${this.props.match.params.id}`, {
-      headers: {Authorization: `Bearer ${Auth.getToken()}`}
-    })
-      .then(this.handleLogout);
-  }
-
-  handleLogout = () => {
-    Auth.logout();
-    this.props.history.push('/');
-  }
 
   render() {
     const {user} = this.state;
@@ -44,16 +33,9 @@ class UsersShow extends React.Component {
 
     return (
       <section>
-        <div className="columns">
-          <div className="column">
-            <div className="largeimage" style={{ backgroundImage: `url(${user.image})` }} />
-          </div>
-          <div className='column'>
-            <h1 className='title is-1'>{user.username}</h1>
-            <h2 className='subtitle is-2'>{user.email}</h2>
-          </div>
-          <Link to={`/users/${user._id}/edit`} className="button">Edit</Link>
-          <button className="button is-danger" onClick= {this.handleDelete}>Delete</button>
+        <div className='box'>
+          <h1 className='title is-1'>{user.username}</h1>
+          { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) && <Link to={`/users/${user._id}/edit`} className="button">Edit</Link>}
         </div>
 
         <div className="columns is-multiline">
@@ -69,10 +51,12 @@ class UsersShow extends React.Component {
                 <div className="card-content">
                   <div className="media">
                     <div className="media-content">
-                      <p className="title is-4">{poem.haiku}</p>
-                      <p className="subtitle is-6">{poem.nouns[0]}</p>
-                      <p className="subtitle is-6">{poem.nouns[1]}</p>
-                      <p className="subtitle is-6">{poem.nouns[2]}</p>
+                      <p className="subtitle is-7">Created {poem.createdAtRelative}</p>
+                      <ul>
+                        <li>{poem.nouns[0]}</li>
+                        <li>{poem.nouns[1]}</li>
+                        <li>{poem.nouns[2]}</li>
+                      </ul>
                     </div>
                   </div>
                   { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) &&
@@ -84,14 +68,6 @@ class UsersShow extends React.Component {
             </div> )}
 
         </div>
-
-        {/* { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) &&
-        <Form
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          errors={this.state.errors}
-          poem={this.state.poem}
-        /> } */}
 
       </section>);
   }
