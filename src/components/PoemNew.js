@@ -42,60 +42,60 @@ class PoemNew extends React.Component {
       .then(res => {
         this.setState({user: res.data, poem: {} });
         const newku = this.state.user.poems[(this.state.user.poems.length)-1];
-        // this.makenounsarrays(newku);
+        this.makenounsarrays(newku);
         this.makeadjectivesarrays(newku);
         if (this.state.blank === 0) {
           document.getElementsByClassName('kudisplay')[0].style.display = 'block';
           this.setState({blank: 1});
         }
-      });
-      // .catch(err => this.setState({ errors: err.response.data.errors }));
+      })
+      .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
   makeadjectivesarrays = (newku) => {
     var string = newku.nouns[0];
     console.log(string);
-    // var stringplus = string.replace(/\s+/g, '+');
-    // axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=20`)
-    //   .then(res => {
-    //     this.setState({adjectivescollection: res.data});
-    //     this.state.adjectivescollection.forEach((adj) => {
-    //       if (adj.numSyllables === 1) {
-    //         this.state.adj1sarray.push(adj.word);
-    //       } else if (adj.numSyllables === 2) {
-    //         this.state.adj2sarray.push(adj.word);
-    //       } else if (adj.numSyllables === 3) {
-    //         this.state.adj3sarray.push(adj.word);
-    //       }
-    //     }
-    //     );
-    //     console.log('adj1', this.state.adj1sarray);
-    //     console.log('adj2', this.state.adj2sarray);
-    //     console.log('adj3', this.state.adj3sarray);
-    //   });
+    var stringplus = string.replace(/\s+/g, '+');
+    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=20`)
+      .then(res => {
+        this.setState({adjectivescollection: res.data});
+        this.state.adjectivescollection.forEach((adj) => {
+          if (adj.numSyllables === 1) {
+            this.state.adj1sarray.push(adj.word);
+          } else if (adj.numSyllables === 2) {
+            this.state.adj2sarray.push(adj.word);
+          } else if (adj.numSyllables === 3) {
+            this.state.adj3sarray.push(adj.word);
+          }
+        }
+        );
+        console.log('adj1', this.state.adj1sarray);
+        console.log('adj2', this.state.adj2sarray);
+        console.log('adj3', this.state.adj3sarray);
+      });
   }
 
   makenounsarrays = (newku) => {
     var string = newku.nouns[0];
-    // var stringplus = string.replace(/\s+/g, '+');
-    // console.log(stringplus);
-    // axios.get(`http://api.datamuse.com/words?ml=${stringplus}&md=ps&max=30`)
-    //   .then(res => {
-    //     this.setState({nounscollection: res.data});
-    //     this.state.nounscollection.forEach((noun) => {
-    //       if ((noun.numSyllables === 1) && (noun.tags.includes('n'))) {
-    //         this.state.noun1sarray.push(noun.word);
-    //       } else if ((noun.numSyllables === 2) && (noun.tags.includes('n'))) {
-    //         this.state.noun2sarray.push(noun.word);
-    //       } else if ((noun.numSyllables === 3) && (noun.tags.includes('n'))) {
-    //         this.state.noun3sarray.push(noun.word);
-    //       }
-    //     }
-    //     );
-    //     console.log('noun1', this.state.noun1sarray);
-    //     console.log('noun2', this.state.noun2sarray);
-    //     console.log('noun3', this.state.noun3sarray);
-    //   });
+    var stringplus = string.replace(/\s+/g, '+');
+    console.log(stringplus);
+    axios.get(`http://api.datamuse.com/words?ml=${stringplus}&md=ps&max=60`)
+      .then(res => {
+        this.setState({nounscollection: res.data});
+        this.state.nounscollection.forEach((noun) => {
+          if ((noun.numSyllables === 1) && (noun.tags.includes('n'))) {
+            this.state.noun1sarray.push(noun.word);
+          } else if ((noun.numSyllables === 2) && (noun.tags.includes('n'))) {
+            this.state.noun2sarray.push(noun.word);
+          } else if ((noun.numSyllables === 3) && (noun.tags.includes('n'))) {
+            this.state.noun3sarray.push(noun.word);
+          }
+        }
+        );
+        console.log('noun1', this.state.noun1sarray);
+        console.log('noun2', this.state.noun2sarray);
+        console.log('noun3', this.state.noun3sarray);
+      });
   };
 
 
