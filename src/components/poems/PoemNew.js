@@ -40,26 +40,6 @@ class PoemNew extends React.Component {
   }
 
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   this.one();
-  // }
-  //
-  // one = () => {
-  //   console.log('one');
-  //   this.two();
-  // }
-  //
-  // two = () => {
-  //   console.log('two');
-  //   this.three();
-  // }
-  //
-  // three = () => {
-  //   console.log('three');
-  // }
-
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -92,12 +72,12 @@ class PoemNew extends React.Component {
           this.state.noun3sarray.push(noun);
         }
       }
+      const a = this.state;
+      console.log('noun1', a.noun1sarray);
+      console.log('noun2', a.noun2sarray);
+      console.log('noun3', a.noun3sarray);
     });
-    const a = this.state;
-    console.log('noun1', a.noun1sarray);
-    console.log('noun2', a.noun2sarray);
-    console.log('noun3', a.noun3sarray);
-    this.makeadjectivesarrays0();
+    return this.makeadjectivesarrays0();
   }
 
 
@@ -106,7 +86,7 @@ class PoemNew extends React.Component {
     const newku = this.state.user.poems[(this.state.user.poems.length)-1];
     var string = newku.nouns[0];
     var stringplus = string.replace(/\s+/g, '+');
-    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=20`)
+    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=10`)
       .then(res => {
         this.setState({adjectivescollection: res.data});
         this.state.adjectivescollection.forEach((adj) => {
@@ -120,14 +100,14 @@ class PoemNew extends React.Component {
         }
         );
       });
-    this.makeadjectivesarrays1();
+    return this.makeadjectivesarrays1();
   }
 
   makeadjectivesarrays1 = () => {
     const newku = this.state.user.poems[(this.state.user.poems.length)-1];
     var string = newku.nouns[1];
     var stringplus = string.replace(/\s+/g, '+');
-    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=20`)
+    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=5`)
       .then(res => {
         this.setState({adjectivescollection: res.data});
         this.state.adjectivescollection.forEach((adj) => {
@@ -141,14 +121,13 @@ class PoemNew extends React.Component {
         }
         );
       });
-    this.makehaiku();
+    return this.makehaiku();
   }
 
 
 
   makehaiku = () => {
     const a = this.state;
-
     console.log('adj1', a.adj1sarray);
     console.log('adj2', a.adj2sarray);
     console.log('adj3', a.adj3sarray);
@@ -157,16 +136,30 @@ class PoemNew extends React.Component {
         ...prevState.haiku,
         line1: a.noun1sarray[0],
         line2: a.noun2sarray[0],
-        line3: a.adj1sarray[0]
+        line3: a.adj3sarray[0]
       }
     }));
     console.log('here is the haiku', this.state.haiku);
-    if (this.state.blank === 0) {
-      document.getElementsByClassName('kudisplay')[0].style.display = 'block';
-      document.getElementsByClassName('kuform')[0].style.display = 'none';
-      this.setState({blank: 1});
-    }
+    return this.handleHaikuSubmit();
   }
+
+
+  handleHaikuSubmit = () => {
+    const newku = this.state.user.poems[(this.state.user.poems.length)-1];
+    axios.post(`/api/users/${Auth.getPayload().sub}/poems/${newku._id}/haiku`, this.state.haiku, {
+      headers: {Authorization: `Bearer ${Auth.getToken()}`}
+    })
+      .then(res => {
+        this.setState({user: res.data, haiku: {} });
+        if (this.state.blank === 0) {
+          document.getElementsByClassName('kudisplay')[0].style.display = 'block';
+          document.getElementsByClassName('kuform')[0].style.display = 'none';
+          this.setState({blank: 1});
+        }
+      })
+      .catch(err => this.setState({ errors: err.response.data.errors }));
+  }
+
 
   reset = (ku) => {
     axios.delete(`/api/users/${Auth.getPayload().sub}/poems/${ku._id}`
@@ -195,8 +188,10 @@ class PoemNew extends React.Component {
             </div>
             <div className="card-content">
               <div className="content">
-                <p>Thank you for your photo! The photohaiku robot sees {ku.nouns[0]}, {ku.nouns[1]} and {ku.nouns[2]}.
-                </p>
+                <p>Thank you for your photo!</p>
+                {/* <p> {ku.haiku[0].line1} </p>
+                <p> {ku.haiku[0].line2} </p> */}
+                {/* <p> {ku.haiku[0].line3} </p>  */}
               </div>
             </div>
           </div>
