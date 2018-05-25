@@ -36,7 +36,8 @@ poemSchema.pre('save', function(next){
       console.log(labels[0].description);
       this.nouns = labels.map(label => label.description);
       next();
-    });
+    })
+    .catch(next);
 });
 
 poemSchema.set('toJSON', {

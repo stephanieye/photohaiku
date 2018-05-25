@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import Form from './users/Form';
-import Auth from '../lib/Auth';
+import Form from './Form';
+import HaikuForm from './HaikuForm';
+import Auth from '../../lib/Auth';
 
 
 class PoemNew extends React.Component {
@@ -10,6 +11,7 @@ class PoemNew extends React.Component {
     user: null,
     errors: {},
     poem: {},
+    haiku: {},
     blank: 0,
     nounscollection: [],
     adjectivescollection: [],
@@ -34,6 +36,11 @@ class PoemNew extends React.Component {
   handleChange = ({ target: { name, value } }) => {
     const poem = {...this.state.poem, [name]: value};
     this.setState({ poem, [name]: value });
+  }
+
+  handleHaikuChange = ({ target: { name, value } }) => {
+    const haiku = {...this.state.haiku, [name]: value};
+    this.setState({ haiku, [name]: value });
   }
 
 
@@ -61,6 +68,35 @@ class PoemNew extends React.Component {
         console.log('adj1', this.state.adj1sarray);
         console.log('adj2', this.state.adj2sarray);
         console.log('adj3', this.state.adj3sarray);
+      })
+      .catch(err => this.setState({ errors: err.response.data.errors }));
+  }
+
+  handleHaikuSubmit = (e) => {
+    e.preventDefault();
+    const newku = this.state.user.poems[(this.state.user.poems.length)-1];
+    axios.post(`/api/users/${Auth.getPayload().sub}/poems/${newku._id}/haiku`, this.state.haiku, {
+      headers: {Authorization: `Bearer ${Auth.getToken()}`}
+    })
+      .then(res => {
+        this.setState({user: res.data, haiku: {} });
+      //   const newku = this.state.user.poems[(this.state.user.poems.length)-1];
+      //   this.makenounsarrays(newku);
+      //   this.makeadjectivesarrays0(newku);
+      //   this.makeadjectivesarrays1(newku);
+      //   if (this.state.blank === 0) {
+      //     document.getElementsByClassName('kudisplay')[0].style.display = 'block';
+      //     document.getElementsByClassName('kuform')[0].style.display = 'none';
+      //     this.setState({blank: 1});
+      //   }
+      // })
+      // .then(()=> {
+      //   console.log('noun1', this.state.noun1sarray);
+      //   console.log('noun2', this.state.noun2sarray);
+      //   console.log('noun3', this.state.noun3sarray);
+      //   console.log('adj1', this.state.adj1sarray);
+      //   console.log('adj2', this.state.adj2sarray);
+      //   console.log('adj3', this.state.adj3sarray);
       })
       .catch(err => this.setState({ errors: err.response.data.errors }));
   }
@@ -106,7 +142,9 @@ class PoemNew extends React.Component {
 
   makenounsarrays = (newku) => {
     newku.nouns.forEach((noun) => {
-      if(noun.length <= 3 || ((noun.length === 4) && (noun.slice(-1) === 'e'))) {
+      if(noun.length <= 3 ||
+        ((noun.length === 4) && (noun.slice(-1) === ('e'))) ||
+        ((noun.length === 4) && (noun.slice(-1) === ('t')))) {
         this.state.noun1sarray.push(noun);
       } else {
         const noun1 = noun.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
@@ -157,11 +195,11 @@ class PoemNew extends React.Component {
           <button className='button is-primary'>Create my haiku</button>
           <button className='button is-danger' onClick={() => {
             this.reset(ku);
-          }}>I'd like to start over again</button>
+          }}>I would like to start over again</button>
         </div> }
 
 
-        {<div className='kuform'>
+        <div className='kuform'>
           <h2 className='title is-2'>First, submit a photo:</h2>
           <Form
             handleChange={this.handleChange}
@@ -169,7 +207,16 @@ class PoemNew extends React.Component {
             errors={this.state.errors}
             poem={this.state.poem}
           />
-        </div>}
+        </div>
+
+        <div className='hiddenform'>
+          <HaikuForm
+            handleHaikuChange={this.handleHaikuChange}
+            handleHaikuSubmit={this.handleHaikuSubmit}
+            errors={this.state.errors}
+            haiku={this.state.haiku}
+          />
+        </div>
 
       </section>
     );

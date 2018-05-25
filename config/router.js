@@ -19,7 +19,7 @@ router.route('/users/:id')
 router.post('/users/:id/poems', secureRoute, users.poemCreate);
 router.delete('/users/:id/poems/:poemId', secureRoute, users.poemDelete);
 
-router.post('/users/:id/poems/:poemId/haikus', secureRoute, users.haikuCreate);
+router.post('/users/:id/poems/:poemId/haiku', secureRoute, users.haikuCreate);
 
 // router.post('/users/:id/poems', users.poemCreate);
 // router.delete('/users/:id/poems/:poemId', users.poemDelete);

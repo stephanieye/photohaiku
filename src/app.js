@@ -8,7 +8,8 @@ import {
 
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import PoemNew from './components/PoemNew';
+
+import PoemNew from './components/poems/PoemNew';
 
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
