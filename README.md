@@ -8,7 +8,7 @@ Documentation:
 https://cloud.google.com/vision/
 
 Post request:
-https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDK5KkExcmeGhyKJ7fB5UIn7O-h4AWR44s
+https://vision.googleapis.com/v1/images:annotate?key=YOUR_API_KEY
 
 {
   "requests":[
@@ -16,7 +16,7 @@ https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDK5KkExcmeGhyKJ7fB5UI
       "image":{
         "source":{
           "imageUri":
-            "gs://photohaiku/london.jpg"
+            "image.jpg"
         }
       },
       "features":[

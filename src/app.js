@@ -8,6 +8,7 @@ import {
 
 import Home from './components/Home';
 import Navbar from './components/Navbar';
+import PoemNew from './components/PoemNew';
 
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
@@ -37,11 +38,13 @@ class App extends React.Component {
           <section className='section'>
             <div className='container'>
               <Switch>
+
                 <SecureRoute exact path="/users/:id/edit" component={UsersEdit} />
                 <Route exact path="/users/:id" component={UsersShow} />
                 <Route exact path="/users" component={UsersIndex} />
                 <Route exact path="/login" component={AuthLogin} />
                 <Route exact path="/register" component={AuthRegister} />
+                <Route exact path="/createpoem" component={PoemNew} />
                 <Route exact path="/" component={Home} />
                 {/* <Route component={NotFound} />  */}
               </Switch>

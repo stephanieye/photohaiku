@@ -55,6 +55,7 @@ poemSchema.pre('save', function(next){
     .labelDetection(this.image)
     .then(results => {
       const labels = results[0].labelAnnotations;
+      console.log(labels[0].description);
       this.nouns = labels.map(label => label.description);
       next();
     });

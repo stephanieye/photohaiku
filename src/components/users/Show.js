@@ -2,57 +2,27 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
-import Form from './Form';
+
 
 
 class UsersShow extends React.Component {
+
   state = {
     user: null,
     errors: {},
     poem: {}
   }
 
-  handleChange = ({ target: { name, value } }) => {
-    const poem = {...this.state.poem, [name]: value};
-    this.setState({ poem, [name]: value });
-  }
 
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const {id} = this.props.match.params;
-    axios.post(`/api/users/${id}/poems`, this.state.poem, {
-      headers: {Authorization: `Bearer ${Auth.getToken()}`}
-    })
-      .then(res => this.setState({user: res.data, poem: {} }))
-      .catch(err => this.setState({ errors: err.response.data.errors }));
+  componentDidMount() {
+    axios.get(`/api/users/${this.props.match.params.id}`)
+      .then(res => this.setState({user: res.data}));
   }
 
   handlePoemDelete = (poem) => {
     axios.delete(`/api/users/${this.props.match.params.id}/poems/${poem._id}`, {
       headers: {Authorization: `Bearer ${Auth.getToken()}`}
     })
-      .then(res => this.setState({user: res.data}));
-  }
-
-
-  // handleChange = ({ target: { name, value } }) => {
-  //   const errors = {...this.state.errors, [name]: ''};
-  //   this.setState({ errors, [name]: value });
-  // }
-  //
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios.post('/api/users', this.state, {
-  //     headers: {Authorization: `Bearer ${Auth.getToken()}`}
-  //   })
-  //     .then(() => this.props.history.push('/users'))
-  //     .catch(err => this.setState({ errors: err.response.data.errors }));
-  // }
-
-
-  componentDidMount() {
-    axios.get(`/api/users/${this.props.match.params.id}`)
       .then(res => this.setState({user: res.data}));
   }
 
@@ -68,12 +38,10 @@ class UsersShow extends React.Component {
     this.props.history.push('/');
   }
 
-
-
   render() {
     const {user} = this.state;
-
     if(!user) return null;
+
     return (
       <section>
         <div className="columns">
@@ -117,13 +85,13 @@ class UsersShow extends React.Component {
 
         </div>
 
-        { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) &&
+        {/* { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) &&
         <Form
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           errors={this.state.errors}
           poem={this.state.poem}
-        /> }
+        /> } */}
 
       </section>);
   }

@@ -10,12 +10,6 @@ const Form = ({ handleChange, handleSubmit, poem, errors }) => {
         {errors.name && <small>{errors.name}</small>}
       </div>
 
-      <div className="field">
-        <label htmlFor="haiku">Haiku</label>
-        <input id="haiku" name="haiku" className="input" placeholder="haiku"  onChange={handleChange} value={poem.haiku || ''}/>
-        {errors.name && <small>{errors.name}</small>}
-      </div>
-
       <button disabled={ formInvalid } className="button is-primary">Submit</button>
     </form>
   );
