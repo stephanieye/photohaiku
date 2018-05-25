@@ -21,6 +21,9 @@ class PoemNew extends React.Component {
     adj3sarray: []
   }
 
+
+
+
   componentDidMount() {
     axios.get(`/api/users/${Auth.getPayload().sub}`)
       .then(res => {
@@ -119,8 +122,15 @@ class PoemNew extends React.Component {
   }
 
 
-  reset = () => {
-    location.reload();
+  reset = (ku) => {
+    axios.delete(`/api/users/${Auth.getPayload().sub}/poems/${ku._id}`
+      , {
+        headers: {Authorization: `Bearer ${Auth.getToken()}`
+        }
+      }
+    )
+      .then(res => this.setState({user: res.data}))
+      .then(location.reload());
   }
 
 
@@ -131,7 +141,7 @@ class PoemNew extends React.Component {
 
     return (
       <section>
-        <h1>Create a haiku</h1>
+        <h1 className='title is-1'>Create a photohaiku</h1>
 
         {ku && <div className='kudisplay'>
           <div className="card">
@@ -139,25 +149,20 @@ class PoemNew extends React.Component {
             </div>
             <div className="card-content">
               <div className="content">
-                <p className="subtitle is-6">{ku.nouns[0]}</p>
-                <p className="subtitle is-6">{ku.nouns[1]}</p>
-                <p className="subtitle is-6">{ku.nouns[2]}</p>
-                <p className="subtitle is-6">{ku.nouns[3]}</p>
-                <p className="subtitle is-6">{ku.nouns[4]}</p>
-                <p className="subtitle is-6">{ku.nouns[5]}</p>
-                <p className="subtitle is-6">{ku.nouns[6]}</p>
-                <p className="subtitle is-6">{ku.nouns[7]}</p>
-                <p className="subtitle is-6">{ku.nouns[8]}</p>
-                <p className="subtitle is-6">{ku.nouns[9]}</p>
-                <p className="subtitle is-6">{ku.nouns[10]}</p>
+                <p>Thank you for your photo! The photohaiku robot sees {ku.nouns[0]}, {ku.nouns[1]} and {ku.nouns[2]}.
+                </p>
               </div>
             </div>
           </div>
-          <button onClick={this.reset}>Reset</button>
+          <button className='button is-primary'>Create my haiku</button>
+          <button className='button is-danger' onClick={() => {
+            this.reset(ku);
+          }}>I'd like to start over again</button>
         </div> }
 
 
         {<div className='kuform'>
+          <h2 className='title is-2'>First, submit a photo:</h2>
           <Form
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}

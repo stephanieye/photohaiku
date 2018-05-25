@@ -55,9 +55,9 @@ class UsersShow extends React.Component {
                     <div className="media-content">
                       <p className="subtitle is-7">Created {poem.createdAtRelative}</p>
                       <ul>
-                        <li>{poem.haiku[0].line1}</li>
+                        {/* <li>{poem.haiku[0].line1}</li>
                         <li>{poem.haiku[0].line2}</li>
-                        <li>{poem.haiku[0].line3}</li>
+                        <li>{poem.haiku[0].line3}</li> */}
                       </ul>
                     </div>
                   </div>
