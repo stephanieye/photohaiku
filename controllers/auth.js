@@ -104,15 +104,27 @@ function poemDeleteRoute(req, res, next) {
     .exec()
     .then(user => {
       const poem = user.poems.id(req.params.poemId);
-      if(!poem.poet.equals(req.currentUser._id)) {
-        return res.status(401).json({message: 'Unauthorised'});
-      }
       poem.remove();
       return user.save();
     })
     .then(user => res.json(user))
     .catch(next);
 }
+
+function haikuCreateRoute(req, res, next) {
+  User.findById(req.params.id)
+    .populate('poems poem.poet')
+    .exec()
+    .then(user => {
+      const poem = user.poems.id(req.params.poemId);
+      req.body.poem = poem;
+      poem.haiku.push(req.body);
+      return user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
 
 module.exports = {
   register,
@@ -122,5 +134,6 @@ module.exports = {
   update: updateRoute,
   delete: deleteRoute,
   poemCreate: poemCreateRoute,
-  poemDelete: poemDeleteRoute
+  poemDelete: poemDeleteRoute,
+  haikuCreate: haikuCreateRoute
 };

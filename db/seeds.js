@@ -16,19 +16,49 @@ User
     passwordConfirmation: 'a',
     poems: [{
       image: 'https://blogmedia.evbstatic.com/wp-content/uploads/bloguk/shutterstock_199419065-730x487.jpg',
-      haiku: 'this is a haikuuuuuuuuu'
+      haiku: [
+        {
+          line1: 'haiku line1',
+          line2: 'haiku line2',
+          line3: 'haiku line3'
+        }
+      ]
     },{
       image: 'https://i.ytimg.com/vi/dTp72sci8CA/maxresdefault.jpg',
-      haiku: 'this is a haikuuuuuuuuu1'
+      haiku: [
+        {
+          line1: 'haiku line1',
+          line2: 'haiku line2',
+          line3: 'haiku line3'
+        }
+      ]
     },{
       image: 'http://www.catster.com/wp-content/uploads/2017/08/A-fluffy-cat-looking-funny-surprised-or-concerned.jpg',
-      haiku: 'this is a haikuuuuuuuuu2'
+      haiku: [
+        {
+          line1: 'haiku line1',
+          line2: 'haiku line2',
+          line3: 'haiku line3'
+        }
+      ]
     },{
       image: 'https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg',
-      haiku: 'this is a haikuuuuuuuuu3'
+      haiku: [
+        {
+          line1: 'haiku line1',
+          line2: 'haiku line2',
+          line3: 'haiku line3'
+        }
+      ]
     },{
       image: 'http://www.afr.com/content/dam/images/g/w/z/1/s/c/image.related.afrArticleLead.620x350.gx8oag.png/1499767087682.jpg',
-      haiku: 'this is a haikuuuuuuuuu4'
+      haiku: [
+        {
+          line1: 'haiku line1',
+          line2: 'haiku line2',
+          line3: 'haiku line3'
+        }
+      ]
     }]
   }])
 

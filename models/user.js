@@ -7,35 +7,18 @@ const client = new vision.ImageAnnotatorClient(
 );
 
 
-const commentSchema = new mongoose.Schema({
-  content: { type: String, required: true },
-  rating: {type: Number, required: true, min: 1, max: 5 },
-  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' }
-}, {
-  timestamps: true
+const haikuSchema = new mongoose.Schema({
+  line1: { type: String },
+  line2: { type: String },
+  line3: { type: String }
 });
 
-commentSchema.virtual('createdAtRelative')
-  .get(function(){
-    return moment(this.createdAt).fromNow();
-  });
-
-
-commentSchema.set('toJSON', {
-  virtuals: true,
-  transform(doc, json) {
-    delete json.createdAt;
-    delete json.updatedAt;
-    return json;
-  }
-});
 
 const poemSchema = new mongoose.Schema({
   image: { type: String, required: 'This field is required!' },
-  haiku: { type: String },
   nouns: [{ type: String }],
   poet: { type: mongoose.Schema.ObjectId, ref: 'User' },
-  comments: [commentSchema]
+  haiku: [haikuSchema]
 }, {
   timestamps: true
 });
@@ -43,11 +26,6 @@ const poemSchema = new mongoose.Schema({
 poemSchema.virtual('createdAtRelative')
   .get(function(){
     return moment(this.createdAt).fromNow();
-  });
-
-poemSchema.virtual('avgRating')
-  .get(function(){
-    return this.comments.reduce((sum, comment) => sum + comment.rating, 0) / this.comments.length;
   });
 
 poemSchema.pre('save', function(next){

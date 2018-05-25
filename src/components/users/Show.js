@@ -20,12 +20,14 @@ class UsersShow extends React.Component {
   }
 
   handlePoemDelete = (poem) => {
-    axios.delete(`/api/users/${this.props.match.params.id}/poems/${poem._id}`, {
-      headers: {Authorization: `Bearer ${Auth.getToken()}`}
-    })
+    axios.delete(`/api/users/${this.props.match.params.id}/poems/${poem._id}`
+      , {
+        headers: {Authorization: `Bearer ${Auth.getToken()}`
+        }
+      }
+    )
       .then(res => this.setState({user: res.data}));
   }
-
 
   render() {
     const {user} = this.state;
@@ -53,12 +55,13 @@ class UsersShow extends React.Component {
                     <div className="media-content">
                       <p className="subtitle is-7">Created {poem.createdAtRelative}</p>
                       <ul>
-                        <li>{poem.nouns[0]}</li>
-                        <li>{poem.nouns[1]}</li>
-                        <li>{poem.nouns[2]}</li>
+                        <li>{poem.haiku[0].line1}</li>
+                        <li>{poem.haiku[0].line2}</li>
+                        <li>{poem.haiku[0].line3}</li>
                       </ul>
                     </div>
                   </div>
+
                   { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) &&
                   <button className="button is-danger" onClick= {() => {
                     this.handlePoemDelete(poem);
