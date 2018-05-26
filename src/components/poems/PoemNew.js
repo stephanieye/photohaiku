@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Form from './Form';
 import Auth from '../../lib/Auth';
+import Flash from '../../lib/Flash';
 
 
 class PoemNew extends React.Component {
@@ -15,7 +16,6 @@ class PoemNew extends React.Component {
       line2: '',
       line3: ''
     },
-    blank: 0,
     nounscollection: [],
     adjectivescollection: [],
     noun1sarray: [],
@@ -52,8 +52,11 @@ class PoemNew extends React.Component {
         this.makenounsarrays(poem);
         this.makeadjectivesarrays0(poem);
         this.makeadjectivesarrays1(poem);
+      })
+      .catch(()=> {
+        Flash.setMessage('danger', 'Sorry, the photohaiku robot does not like that photo. Please try again!');
+        this.props.history.replace('/createpoem');
       });
-    // .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
   makenounsarrays = (poem) => {
@@ -136,7 +139,7 @@ class PoemNew extends React.Component {
         line3: a.adj3sarray[0]
       }
     }));
-    console.log('here is the haiku', this.state.haiku);
+    // console.log('here is the haiku', this.state.haiku);
     this.handleHaikuSubmit();
   }
 
@@ -150,8 +153,11 @@ class PoemNew extends React.Component {
         this.setState({poem: res.data, haiku: {} });
       }
       )
-      .then(() => this.props.history.push(`/poems/${poem._id}`));
-    // .catch(err => this.setState({ errors: err.response.data.errors }));
+      .then(() => this.props.history.push(`/poems/${poem._id}`))
+      .catch(()=> {
+        Flash.setMessage('danger', 'Sorry, the photohaiku robot does not like that photo. Please try again!');
+        this.props.history.replace('/createpoem');
+      });
   }
 
 

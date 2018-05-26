@@ -19,10 +19,10 @@ class AuthRegister extends React.Component {
         Flash.setMessage('info', res.data.message);
       })
       .then(()=>
-        this.props.history.push('/poems'))
+        this.props.history.push('/createpoem'))
       .catch(()=> {
-        Flash.setMessage('danger', 'Invalid credentials...');
-        this.props.history.replace('/login');
+        Flash.setMessage('danger', 'Sorry, something went wrong with your registration. Please try again.');
+        this.props.history.replace('/register');
       });
   }
 
