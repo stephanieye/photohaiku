@@ -103,7 +103,7 @@ class PoemNew extends React.Component {
   makeadjectivesarrays1 = (poem) => {
     var string = poem.nouns[1];
     var stringplus = string.replace(/\s+/g, '+');
-    axios.get(`http://api.datamuse.com/words?rel_trg=${stringplus}&md=s&max=10`)
+    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=10`)
       .then(res => {
         this.setState({adjectivescollection: res.data});
         this.state.adjectivescollection.forEach((adj) => {
@@ -147,7 +147,8 @@ class PoemNew extends React.Component {
           ...prevState.haiku,
           line1: `you say ${n3[0]}`,
           line2: `i say ${a3[0]} ${n2[0]} -`,
-          line3: `isn't love the ${n1[0]}.`
+          line3: 'i am right, of course!',
+          attr: 'Ira Gershwin'
         }
       })
       );
@@ -156,7 +157,7 @@ class PoemNew extends React.Component {
         haiku: {
           ...prevState.haiku,
           line1: 'life: nothing more than',
-          line2: `${n3[0]}s on a ${n2[0]}...`,
+          line2: `${n3[0]}s on the ${n2[0]}...`,
           line3: `but so ${a3[0]}!`,
           attr: 'Nishiyama Soin'
         }
@@ -177,9 +178,9 @@ class PoemNew extends React.Component {
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
-          line1: `behold: a ${n2[0]}`,
-          line2: `that thinks it's a ${n3[0]}.`,
-          line3: `even ${n1[0]} can dream.`
+          line1: `behold: the ${n2[0]}`,
+          line2: `dreaming that it is the ${n1[0]}:`,
+          line3: `isn't that ${a2[0]}?`
         }
       })
       );
@@ -231,7 +232,7 @@ class PoemNew extends React.Component {
           ...prevState.haiku,
           line1: 'let us not speak of',
           line2: `the ${a2[0]} ${n2[0]}; instead`,
-          line3: `mind the ${n3[0]}.`
+          line3: `mind your ${n3[0]}.`
         }
       })
       );

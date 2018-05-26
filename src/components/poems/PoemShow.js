@@ -43,9 +43,10 @@ class PoemShow extends React.Component {
                 <p> {poem.haiku[0].line1} </p>
                 <p> {poem.haiku[0].line2} </p>
                 <p> {poem.haiku[0].line3} </p>
+                <p> {poem.haiku[0].attr} </p>
               </div>
             </div>
-            {(Auth.getPayload().sub === poem.poet._id) && <button className= 'button is-danger' onClick={this.handleDelete}>Delete this photohaiku</button>}
+            {(Auth.isAuthenticated() && (Auth.getPayload().sub === poem.poet._id)) && <button className= 'button is-danger' onClick={this.handleDelete}>Delete this photohaiku</button>}
           </div>
         </div>}
 
