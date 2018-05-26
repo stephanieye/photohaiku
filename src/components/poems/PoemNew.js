@@ -11,11 +11,6 @@ class PoemNew extends React.Component {
     user: null,
     errors: {},
     poem: {},
-    haiku: {
-      line1: '',
-      line2: '',
-      line3: ''
-    },
     nounscollection: [],
     adjectivescollection: [],
     noun1sarray: [],
@@ -23,7 +18,12 @@ class PoemNew extends React.Component {
     noun3sarray: [],
     adj1sarray: [],
     adj2sarray: [],
-    adj3sarray: []
+    adj3sarray: [],
+    haiku: {
+      line1: '',
+      line2: '',
+      line3: ''
+    }
   }
 
 
@@ -129,19 +129,48 @@ class PoemNew extends React.Component {
       });
   }
 
+
+
   makehaiku = () => {
     const a = this.state;
-    this.setState(prevState => ({
-      haiku: {
-        ...prevState.haiku,
-        line1: a.noun1sarray[0],
-        line2: a.noun2sarray[0],
-        line3: a.adj3sarray[0]
-      }
-    }));
+    const random = Math.floor(Math.random()*10);
+    if (random % 2 === 0) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `oh how i like the ${a.noun1sarray[0]}`,
+          line2: `it is so ${a.noun2sarray[0]} is it not`,
+          line3: `lovely ${a.adj1sarray[0]} lalala`
+        }
+      })
+      );
+    } else if (random % 2 !== 0) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `what is the ${a.noun1sarray[0]}`,
+          line2: `what is the ${a.noun2sarray[0]} is it not`,
+          line3: `lovely jubbly ${a.adj1sarray[0]} fafafa`
+        }
+      })
+      );
+    }
     // console.log('here is the haiku', this.state.haiku);
     this.handleHaikuSubmit();
   }
+  // makehaiku = () => {
+  //   const a = this.state;
+  //   this.setState(prevState => ({
+  //     haiku: {
+  //       ...prevState.haiku,
+  //       line1: a.noun1sarray[0],
+  //       line2: a.noun2sarray[0],
+  //       line3: a.adj3sarray[0]
+  //     }
+  //   }));
+  //   // console.log('here is the haiku', this.state.haiku);
+  //   this.handleHaikuSubmit();
+  // }
 
 
   handleHaikuSubmit = () => {
