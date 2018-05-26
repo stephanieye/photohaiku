@@ -35,7 +35,7 @@ class PoemShow extends React.Component {
       <section>
 
         {poem.haiku && <div className="card">
-          <div className="card-image" style={{ backgroundImage: `url(${poem.image})` }}>
+          <div className="card-image-show" style={{ backgroundImage: `url(${poem.image})` }}>
           </div>
           <div className="card-content">
             <div className="content">
