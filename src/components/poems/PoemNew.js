@@ -180,34 +180,12 @@ class PoemNew extends React.Component {
   render() {
     const {user} = this.state;
     if(!user) return null;
-    const poem = this.state.poem;
 
     return (
       <section>
-        <h1 className='title is-1'>Create a photohaiku</h1>
-
-        {/* {poem && <div className='poemdisplay'>
-          <div className="card">
-            <div className="card-image" style={{ backgroundImage: `url(${poem.image})` }}>
-            </div>
-            <div className="card-content">
-              <div className="content">
-                <p>Thank you for your photo!</p>
-                {/* <p> {poem.haiku[0].line1} </p>
-                <p> {poem.haiku[0].line2} </p>
-                <p> {poem.haiku[0].line3} </p> */}
-              {/* </div>
-            </div>
-          </div>
-          <button className='button is-primary'>Create my haiku</button>
-          <button className='button is-danger' onClick={() => {
-            this.reset(poem);
-          }}>I would like to start over again</button>
-        </div> } */}
-
+        <h1 className='title is-1'>Submit a photo</h1>
 
         <div className='poemform'>
-          <h2 className='title is-2'>First, submit a photo:</h2>
           <Form
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
