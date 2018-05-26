@@ -165,3 +165,17 @@ Response:
 
 4. Finally
 Take these words and stick them into a haiku template (from a randomised set of haiku templates, made by myself). Display image and haiku.
+
+
+
+1.
+In the twilight rain
+these brilliant-hued hibiscus -
+A lovely sunset
+Matsuo Basho
+
+2.
+The shallows-
+a crane’s thighs splashed
+in cool waves
+Matsuo Basho
