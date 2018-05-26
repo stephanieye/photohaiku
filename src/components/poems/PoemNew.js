@@ -48,15 +48,15 @@ class PoemNew extends React.Component {
     })
       .then(res => {
         this.setState({poem: res.data});
-        // const newku = this.state.user.poems[(this.state.user.poems.length)-1];
-        this.makenounsarrays();
+        const poem = this.state.poem;
+        this.makenounsarrays(poem);
+        this.makeadjectivesarrays0(poem);
+        this.makeadjectivesarrays1(poem);
       });
     // .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
-  makenounsarrays = () => {
-    const poem = this.state.poem;
-    console.log(poem);
+  makenounsarrays = (poem) => {
     poem.nouns.forEach((noun) => {
       if(noun.length <= 3 ||
         ((noun.length === 4) && (noun.slice(-1) === ('e'))) ||
@@ -77,14 +77,31 @@ class PoemNew extends React.Component {
       console.log('noun2', a.noun2sarray);
       console.log('noun3', a.noun3sarray);
     });
-    return this.makeadjectivesarrays0();
   }
 
 
 
-  makeadjectivesarrays0 = () => {
-    const poem = this.state.poem;
+  makeadjectivesarrays0 = (poem) => {
     var string = poem.nouns[0];
+    var stringplus = string.replace(/\s+/g, '+');
+    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=20`)
+      .then(res => {
+        this.setState({adjectivescollection: res.data});
+        this.state.adjectivescollection.forEach((adj) => {
+          if (adj.numSyllables === 1) {
+            this.state.adj1sarray.push(adj.word);
+          } else if (adj.numSyllables === 2) {
+            this.state.adj2sarray.push(adj.word);
+          } else if (adj.numSyllables === 3) {
+            this.state.adj3sarray.push(adj.word);
+          }
+        }
+        );
+      });
+  }
+
+  makeadjectivesarrays1 = (poem) => {
+    var string = poem.nouns[1];
     var stringplus = string.replace(/\s+/g, '+');
     axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=10`)
       .then(res => {
@@ -99,38 +116,18 @@ class PoemNew extends React.Component {
           }
         }
         );
+        return this.state.adj1sarray;
+      })
+      .then(() => {
+        console.log('adj1', this.state.adj1sarray);
+        console.log('adj2', this.state.adj2sarray);
+        console.log('adj3', this.state.adj3sarray);
+        this.makehaiku();
       });
-    return this.makeadjectivesarrays1();
   }
-
-  makeadjectivesarrays1 = () => {
-    const poem = this.state.poem;
-    var string = poem.nouns[1];
-    var stringplus = string.replace(/\s+/g, '+');
-    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=5`)
-      .then(res => {
-        this.setState({adjectivescollection: res.data});
-        this.state.adjectivescollection.forEach((adj) => {
-          if (adj.numSyllables === 1) {
-            this.state.adj1sarray.push(adj.word);
-          } else if (adj.numSyllables === 2) {
-            this.state.adj2sarray.push(adj.word);
-          } else if (adj.numSyllables === 3) {
-            this.state.adj3sarray.push(adj.word);
-          }
-        }
-        );
-      });
-    return this.makehaiku();
-  }
-
-
 
   makehaiku = () => {
     const a = this.state;
-    console.log('adj1', a.adj1sarray);
-    console.log('adj2', a.adj2sarray);
-    console.log('adj3', a.adj3sarray);
     this.setState(prevState => ({
       haiku: {
         ...prevState.haiku,
@@ -140,7 +137,7 @@ class PoemNew extends React.Component {
       }
     }));
     console.log('here is the haiku', this.state.haiku);
-    return this.handleHaikuSubmit();
+    this.handleHaikuSubmit();
   }
 
 
@@ -151,29 +148,10 @@ class PoemNew extends React.Component {
     })
       .then(res => {
         this.setState({poem: res.data, haiku: {} });
-        // if (this.state.blank === 0) {
-        //   document.getElementsByClassName('poemdisplay')[0].style.display = 'block';
-        //   document.getElementsByClassName('poemform')[0].style.display = 'none';
-        //   this.setState({blank: 1});
       }
       )
       .then(() => this.props.history.push(`/poems/${poem._id}`));
     // .catch(err => this.setState({ errors: err.response.data.errors }));
-  }
-
-
-
-
-
-  reset = (poem) => {
-    axios.delete(`/api/poems/${poem._id}`
-      , {
-        headers: {Authorization: `Bearer ${Auth.getToken()}`
-        }
-      }
-    )
-      .then(res => this.setState({poems: res.data}))
-      .then(location.reload());
   }
 
 
@@ -194,7 +172,7 @@ class PoemNew extends React.Component {
           />
         </div>
 
-
+        {/* <button onClick={this.makehaiku}>make haiku</button> */}
       </section>
     );
   }

@@ -13,11 +13,11 @@ class PoemShow extends React.Component {
     axios.get(`/api/poems/${this.props.match.params.id}`)
       .then(res => {
         this.setState({poem: res.data});
-        console.log(this.state.poem);
+        // console.log(this.state.poem);
       });
   }
 
-  // arrow functions are the best in react as you can use them in callbacks
+
   handleDelete = () => {
     axios.delete(`/api/poems/${this.props.match.params.id}`, {
       headers: {Authorization: `Bearer ${Auth.getToken()}`}
@@ -34,18 +34,20 @@ class PoemShow extends React.Component {
     return (
       <section>
 
-        <div className="card">
+        {poem.haiku && <div className="card">
           <div className="card-image" style={{ backgroundImage: `url(${poem.image})` }}>
           </div>
           <div className="card-content">
             <div className="content">
-              <p> {poem.haiku[0].line1} </p>
-              <p> {poem.haiku[0].line2} </p>
-              <p> {poem.haiku[0].line3} </p>
+              <div>
+                <p> {poem.haiku[0].line1} </p>
+                <p> {poem.haiku[0].line2} </p>
+                <p> {poem.haiku[0].line3} </p>
+              </div>
             </div>
             {(Auth.getPayload().sub === poem.poet._id) && <button className= 'button is-danger' onClick={this.handleDelete}>Delete this photohaiku</button>}
           </div>
-        </div>
+        </div>}
 
       </section>
     );

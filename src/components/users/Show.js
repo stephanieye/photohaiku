@@ -21,7 +21,7 @@ class UsersShow extends React.Component {
     axios.get('/api/poems')
       .then(res => {
         this.setState({poems: res.data});
-        console.log(this.state.poems);
+        // console.log(this.state.poems);
       });
   }
 
@@ -39,7 +39,7 @@ class UsersShow extends React.Component {
 
         <div className="columns is-multiline">
           {this.state.poems.map(poem =>
-            (poem.poet === user._id) &&
+            ((poem.poet === user._id) && (poem.haiku[0] !== undefined)) &&
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
               <Link to={`/poems/${poem._id}`}>
                 <div className="card">
@@ -48,9 +48,11 @@ class UsersShow extends React.Component {
                   ></div>
                   <div className="card-content">
                     <p className="subtitle is-6">{poem.createdAtRelative}</p>
-                    <p>{poem.haiku[0].line1}</p>
-                    <p>{poem.haiku[0].line2}</p>
-                    <p>{poem.haiku[0].line3}</p>
+                    <div>
+                      <p> {poem.haiku[0].line1} </p>
+                      <p> {poem.haiku[0].line2} </p>
+                      <p> {poem.haiku[0].line3} </p>
+                    </div>
                   </div>
                 </div>
               </Link>
