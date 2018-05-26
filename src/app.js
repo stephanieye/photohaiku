@@ -10,6 +10,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 
 import PoemNew from './components/poems/PoemNew';
+import PoemShow from './components/poems/PoemShow';
 
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
@@ -46,6 +47,7 @@ class App extends React.Component {
                 <Route exact path="/login" component={AuthLogin} />
                 <Route exact path="/register" component={AuthRegister} />
                 <Route exact path="/createpoem" component={PoemNew} />
+                <Route exact path="/poems/:id" component={PoemShow} />
                 <Route exact path="/" component={Home} />
                 {/* <Route component={NotFound} />  */}
               </Switch>

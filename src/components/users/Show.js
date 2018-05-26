@@ -10,24 +10,18 @@ class UsersShow extends React.Component {
   state = {
     user: null,
     errors: {},
-    poem: {}
+    poem: {},
+    poems: []
   }
 
 
   componentDidMount() {
     axios.get(`/api/users/${this.props.match.params.id}`)
       .then(res => this.setState({user: res.data}));
+    axios.get('/api/poems')
+      .then(res => this.setState({poems: res.data}));
   }
 
-  handlePoemDelete = (poem) => {
-    axios.delete(`/api/users/${this.props.match.params.id}/poems/${poem._id}`
-      , {
-        headers: {Authorization: `Bearer ${Auth.getToken()}`
-        }
-      }
-    )
-      .then(res => this.setState({user: res.data}));
-  }
 
   render() {
     const {user} = this.state;
@@ -41,35 +35,24 @@ class UsersShow extends React.Component {
         </div>
 
         <div className="columns is-multiline">
-
-          {user.poems.map(poem =>
+          {this.state.poems.map(poem =>
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
-
-              <div className="card">
-                <div
-                  className="card-image"
-                  style={{ backgroundImage: `url(${poem.image})` }}
-                ></div>
-                <div className="card-content">
-                  <div className="media">
-                    <div className="media-content">
-                      <p className="subtitle is-7">Created {poem.createdAtRelative}</p>
-                      <ul>
-                        <li>{poem.haiku[0].line1}</li>
-                        <li>{poem.haiku[0].line2}</li>
-                        <li>{poem.haiku[0].line3}</li>
-                      </ul>
-                    </div>
+              <Link to={`/poems/${poem._id}`}>
+                <div className="card">
+                  <div className="card-image"
+                    style={{ backgroundImage: `url(${poem.image})` }}
+                  ></div>
+                  <div className="card-content">
+                    {/* <p className="title is-4">by {poem.poet}</p> */}
+                    <p className="subtitle is-6">{poem.createdAtRelative}</p>
+                    <p>{poem.haiku[0].line1}</p>
+                    <p>{poem.haiku[0].line2}</p>
+                    <p>{poem.haiku[0].line3}</p>
                   </div>
-
-                  { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) &&
-                  <button className="button is-danger" onClick= {() => {
-                    this.handlePoemDelete(poem);
-                  }}>Delete this poem</button> }
                 </div>
-              </div>
-            </div> )}
-
+              </Link>
+            </div>
+          )}
         </div>
 
       </section>);

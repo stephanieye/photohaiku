@@ -43,11 +43,11 @@ class PoemNew extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`/api/users/${Auth.getPayload().sub}/poems`, this.state.poem, {
+    axios.post('/api/poems', this.state.poem, {
       headers: {Authorization: `Bearer ${Auth.getToken()}`}
     })
       .then(res => {
-        this.setState({user: res.data, poem: {} });
+        this.setState({poem: res.data});
         // const newku = this.state.user.poems[(this.state.user.poems.length)-1];
         this.makenounsarrays();
       });
@@ -55,9 +55,9 @@ class PoemNew extends React.Component {
   }
 
   makenounsarrays = () => {
-    const newku = this.state.user.poems[(this.state.user.poems.length)-1];
-    console.log(newku);
-    newku.nouns.forEach((noun) => {
+    const poem = this.state.poem;
+    console.log(poem);
+    poem.nouns.forEach((noun) => {
       if(noun.length <= 3 ||
         ((noun.length === 4) && (noun.slice(-1) === ('e'))) ||
         ((noun.length === 4) && (noun.slice(-1) === ('t')))) {
@@ -83,8 +83,8 @@ class PoemNew extends React.Component {
 
 
   makeadjectivesarrays0 = () => {
-    const newku = this.state.user.poems[(this.state.user.poems.length)-1];
-    var string = newku.nouns[0];
+    const poem = this.state.poem;
+    var string = poem.nouns[0];
     var stringplus = string.replace(/\s+/g, '+');
     axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=10`)
       .then(res => {
@@ -104,8 +104,8 @@ class PoemNew extends React.Component {
   }
 
   makeadjectivesarrays1 = () => {
-    const newku = this.state.user.poems[(this.state.user.poems.length)-1];
-    var string = newku.nouns[1];
+    const poem = this.state.poem;
+    var string = poem.nouns[1];
     var stringplus = string.replace(/\s+/g, '+');
     axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=5`)
       .then(res => {
@@ -145,30 +145,34 @@ class PoemNew extends React.Component {
 
 
   handleHaikuSubmit = () => {
-    const newku = this.state.user.poems[(this.state.user.poems.length)-1];
-    axios.post(`/api/users/${Auth.getPayload().sub}/poems/${newku._id}/haiku`, this.state.haiku, {
+    const poem = this.state.poem;
+    axios.post(`/api/poems/${poem._id}/haiku`, this.state.haiku, {
       headers: {Authorization: `Bearer ${Auth.getToken()}`}
     })
       .then(res => {
-        this.setState({user: res.data, haiku: {} });
-        if (this.state.blank === 0) {
-          document.getElementsByClassName('kudisplay')[0].style.display = 'block';
-          document.getElementsByClassName('kuform')[0].style.display = 'none';
-          this.setState({blank: 1});
-        }
-      })
-      .catch(err => this.setState({ errors: err.response.data.errors }));
+        this.setState({poem: res.data, haiku: {} });
+        // if (this.state.blank === 0) {
+        //   document.getElementsByClassName('poemdisplay')[0].style.display = 'block';
+        //   document.getElementsByClassName('poemform')[0].style.display = 'none';
+        //   this.setState({blank: 1});
+      }
+      )
+      .then(() => this.props.history.push(`/poems/${poem._id}`));
+    // .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
 
-  reset = (ku) => {
-    axios.delete(`/api/users/${Auth.getPayload().sub}/poems/${ku._id}`
+
+
+
+  reset = (poem) => {
+    axios.delete(`/api/poems/${poem._id}`
       , {
         headers: {Authorization: `Bearer ${Auth.getToken()}`
         }
       }
     )
-      .then(res => this.setState({user: res.data}))
+      .then(res => this.setState({poems: res.data}))
       .then(location.reload());
   }
 
@@ -176,33 +180,33 @@ class PoemNew extends React.Component {
   render() {
     const {user} = this.state;
     if(!user) return null;
-    const ku = this.state.user.poems[(this.state.user.poems.length)-1];
+    const poem = this.state.poem;
 
     return (
       <section>
         <h1 className='title is-1'>Create a photohaiku</h1>
 
-        {ku && <div className='kudisplay'>
+        {/* {poem && <div className='poemdisplay'>
           <div className="card">
-            <div className="card-image" style={{ backgroundImage: `url(${ku.image})` }}>
+            <div className="card-image" style={{ backgroundImage: `url(${poem.image})` }}>
             </div>
             <div className="card-content">
               <div className="content">
                 <p>Thank you for your photo!</p>
-                {/* <p> {ku.haiku[0].line1} </p>
-                <p> {ku.haiku[0].line2} </p> */}
-                {/* <p> {ku.haiku[0].line3} </p>  */}
-              </div>
+                {/* <p> {poem.haiku[0].line1} </p>
+                <p> {poem.haiku[0].line2} </p>
+                <p> {poem.haiku[0].line3} </p> */}
+              {/* </div>
             </div>
           </div>
           <button className='button is-primary'>Create my haiku</button>
           <button className='button is-danger' onClick={() => {
-            this.reset(ku);
+            this.reset(poem);
           }}>I would like to start over again</button>
-        </div> }
+        </div> } */}
 
 
-        <div className='kuform'>
+        <div className='poemform'>
           <h2 className='title is-2'>First, submit a photo:</h2>
           <Form
             handleChange={this.handleChange}

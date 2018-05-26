@@ -1,7 +1,11 @@
 const router = require('express').Router();
 const users = require('../controllers/auth');
+const poems = require('../controllers/poem');
 const auth = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
+
+router.post('/register' , auth.register);
+router.post('/login' , auth.login);
 
 router.route('/users')
   .get(users.index);
@@ -16,18 +20,14 @@ router.route('/users/:id')
 //   .put(users.update)
 //   .delete(users.delete);
 
-router.post('/users/:id/poems', secureRoute, users.poemCreate);
-router.delete('/users/:id/poems/:poemId', secureRoute, users.poemDelete);
+router.route('/poems')
+  .get(poems.index)
+  .post(secureRoute, poems.create);
 
-router.post('/users/:id/poems/:poemId/haiku', secureRoute, users.haikuCreate);
+router.route('/poems/:id')
+  .get(poems.show)
+  .delete(secureRoute, poems.delete);
 
-// router.post('/users/:id/poems', users.poemCreate);
-// router.delete('/users/:id/poems/:poemId', users.poemDelete);
-//
-// router.post('/users/:id/poems/:poemId/haiku', users.haikuCreate);
-
-router.post('/register' , auth.register);
-router.post('/login' , auth.login);
-
+router.post('/poems/:id/haiku', secureRoute, poems.haikuCreate);
 
 module.exports = router;
