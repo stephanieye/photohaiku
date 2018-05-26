@@ -141,7 +141,18 @@ class PoemNew extends React.Component {
     const a1 = this.state.adj1sarray;
     const a2 = this.state.adj2sarray;
     const a3 = this.state.adj3sarray;
-    if (random === 1) {
+    if (random === 0) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `to ${n2[0]} or not`,
+          line2: `to ${n2[0]}: only the ${n1[0]}`,
+          line3: 'would ask that question',
+          attr: 'William Shakespeare'
+        }
+      })
+      );
+    } else if (random === 1) {
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -190,7 +201,7 @@ class PoemNew extends React.Component {
           ...prevState.haiku,
           line1: `look at this ${n2[0]}:`,
           line2: `so ${a2[0]} and ${a3[0]}.`,
-          line3: `but check out my ${n1[0]}!`
+          line3: `that's what i call ${n1[0]}!`
         }
       })
       );
