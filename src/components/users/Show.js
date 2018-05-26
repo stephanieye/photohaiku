@@ -19,7 +19,10 @@ class UsersShow extends React.Component {
     axios.get(`/api/users/${this.props.match.params.id}`)
       .then(res => this.setState({user: res.data}));
     axios.get('/api/poems')
-      .then(res => this.setState({poems: res.data}));
+      .then(res => {
+        this.setState({poems: res.data});
+        console.log(this.state.poems);
+      });
   }
 
 
@@ -36,6 +39,7 @@ class UsersShow extends React.Component {
 
         <div className="columns is-multiline">
           {this.state.poems.map(poem =>
+            (poem.poet === user._id) &&
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
               <Link to={`/poems/${poem._id}`}>
                 <div className="card">
@@ -43,7 +47,6 @@ class UsersShow extends React.Component {
                     style={{ backgroundImage: `url(${poem.image})` }}
                   ></div>
                   <div className="card-content">
-                    {/* <p className="title is-4">by {poem.poet}</p> */}
                     <p className="subtitle is-6">{poem.createdAtRelative}</p>
                     <p>{poem.haiku[0].line1}</p>
                     <p>{poem.haiku[0].line2}</p>

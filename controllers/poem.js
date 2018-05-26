@@ -12,7 +12,7 @@ function indexRoute(req, res, next){
 function showRoute(req, res, next){
   Poem
     .findById(req.params.id)
-    .populate('haiku')
+    .populate('poet haiku')
     .exec()
     .then(poem => {
       if(!poem) return res.sendStatus(404);
@@ -42,7 +42,7 @@ function deleteRoute(req, res, next){
 
 function poemHaikuCreate(req, res, next) {
   Poem.findById(req.params.id)
-    .populate('haiku')
+    .populate('poet haiku')
     .exec()
     .then(poem => {
       poem.haiku.push(req.body);
