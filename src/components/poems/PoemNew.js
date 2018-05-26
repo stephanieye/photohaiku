@@ -13,16 +13,17 @@ class PoemNew extends React.Component {
     poem: {},
     nounscollection: [],
     adjectivescollection: [],
-    noun1sarray: [],
-    noun2sarray: [],
-    noun3sarray: [],
-    adj1sarray: [],
-    adj2sarray: [],
-    adj3sarray: [],
+    noun1sarray: ['place', 'thing'],
+    noun2sarray: ['locale', 'object'],
+    noun3sarray: ['location', 'material'],
+    adj1sarray: ['good', 'bad'],
+    adj2sarray: ['lovely', 'horrid'],
+    adj3sarray: ['excellent', 'disgusting'],
     haiku: {
       line1: '',
       line2: '',
-      line3: ''
+      line3: '',
+      attr: ''
     }
   }
 
@@ -64,15 +65,15 @@ class PoemNew extends React.Component {
       if(noun.length <= 3 ||
         ((noun.length === 4) && (noun.slice(-1) === ('e'))) ||
         ((noun.length === 4) && (noun.slice(-1) === ('t')))) {
-        this.state.noun1sarray.push(noun);
+        this.state.noun1sarray.unshift(noun);
       } else {
         const noun1 = noun.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
         const noun2 = noun1.replace(/^y/, '');
         const syllables = noun2.match(/[aeiouy]{1,2}/g).length;
         if (syllables === 2) {
-          this.state.noun2sarray.push(noun);
+          this.state.noun2sarray.unshift(noun);
         } else if (syllables === 3) {
-          this.state.noun3sarray.push(noun);
+          this.state.noun3sarray.unshift(noun);
         }
       }
     });
@@ -88,11 +89,11 @@ class PoemNew extends React.Component {
         this.setState({adjectivescollection: res.data});
         this.state.adjectivescollection.forEach((adj) => {
           if (adj.numSyllables === 1) {
-            this.state.adj1sarray.push(adj.word);
+            this.state.adj1sarray.unshift(adj.word);
           } else if (adj.numSyllables === 2) {
-            this.state.adj2sarray.push(adj.word);
+            this.state.adj2sarray.unshift(adj.word);
           } else if (adj.numSyllables === 3) {
-            this.state.adj3sarray.push(adj.word);
+            this.state.adj3sarray.unshift(adj.word);
           }
         }
         );
@@ -102,16 +103,16 @@ class PoemNew extends React.Component {
   makeadjectivesarrays1 = (poem) => {
     var string = poem.nouns[1];
     var stringplus = string.replace(/\s+/g, '+');
-    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=10`)
+    axios.get(`http://api.datamuse.com/words?rel_trg=${stringplus}&md=s&max=10`)
       .then(res => {
         this.setState({adjectivescollection: res.data});
         this.state.adjectivescollection.forEach((adj) => {
           if (adj.numSyllables === 1) {
-            this.state.adj1sarray.push(adj.word);
+            this.state.adj1sarray.unshift(adj.word);
           } else if (adj.numSyllables === 2) {
-            this.state.adj2sarray.push(adj.word);
+            this.state.adj2sarray.unshift(adj.word);
           } else if (adj.numSyllables === 3) {
-            this.state.adj3sarray.push(adj.word);
+            this.state.adj3sarray.unshift(adj.word);
           }
         }
         );
@@ -125,25 +126,7 @@ class PoemNew extends React.Component {
         console.log('adj1', a.adj1sarray);
         console.log('adj2', a.adj2sarray);
         console.log('adj3', a.adj3sarray);
-        if (a.noun1sarray.length === 0) {
-          a.noun1sarray.push('thing');
-        }
-        else if (a.noun2sarray.length === 0) {
-          a.noun2sarray.push('object');
-        }
-        else if (a.noun3sarray.length === 0) {
-          a.noun3sarray.push('material');
-        }
-        else if (a.adj1sarray.length === 0) {
-          a.adj1sarray.push('nice');
-        }
-        else if (a.adj2sarray.length === 0) {
-          a.adj2sarray.push('lovely');
-        }
-        else if (a.adj3sarray.length === 0) {
-          a.adj3sarray.push('excellent');
-        }
-        return a.adj3sarray
+        return a.adj3sarray;
       })
       .then(() => this.makehaiku());
   }
@@ -151,7 +134,7 @@ class PoemNew extends React.Component {
 
 
   makehaiku = () => {
-    const random = 1;
+    const random = Math.floor(Math.random()*10);
     const n1 = this.state.noun1sarray;
     const n2 = this.state.noun2sarray;
     const n3 = this.state.noun3sarray;
@@ -162,9 +145,9 @@ class PoemNew extends React.Component {
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
-          line1: `In the ${a2[0]} ${n1[0]}`,
-          line2: `these ${a3[0]} ${n3[0]} -`,
-          line3: `Such ${a2[1]} ${n2[0]}.`
+          line1: `you say ${n3[0]}`,
+          line2: `i say ${a3[0]} ${n2[0]} -`,
+          line3: `isn't love the ${n1[0]}.`
         }
       })
       );
@@ -172,9 +155,83 @@ class PoemNew extends React.Component {
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
-          line1: `The ${a2[0]} ${n2[0]} -`,
-          line2: `${n3[0]}'s ${n1[0]} is ${a2[1]}`,
-          line3: `with your ${n3[1]}.`
+          line1: 'life: nothing more than',
+          line2: `${n3[0]}s on a ${n2[0]}...`,
+          line3: `but so ${a3[0]}!`,
+          attr: 'Nishiyama Soin'
+        }
+      })
+      );
+    } else if (random === 3) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `do not weep, ${n2[0]} -`,
+          line2: `${n3[0]}s and ${n1[0]}s themselves`,
+          line3: 'eventually part.',
+          attr: 'Kobayashi Issa'
+        }
+      })
+      );
+    } else if (random === 4) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `behold: a ${n2[0]}`,
+          line2: `that thinks it's a ${n3[0]}.`,
+          line3: `even ${n1[0]} can dream.`
+        }
+      })
+      );
+    } else if (random === 5) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `look at this ${n2[0]}:`,
+          line2: `so ${a2[0]} and ${a3[0]}.`,
+          line3: `but check out my ${n1[0]}!`
+        }
+      })
+      );
+    } else if (random === 6) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `i dreamed of ${n2[0]}`,
+          line2: `now all is ${a1[0]} ${n3[0]}:`,
+          line3: 'story of my life!'
+        }
+      })
+      );
+    } else if (random === 7) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `sing, my ${a1[0]} ${n2[0]}!`,
+          line2: `let my ${n1[0]} accompany`,
+          line3: `your ${a2[0]} ${n2[1]}.`,
+          attr: 'Sappho'
+        }
+      })
+      );
+    } else if (random === 8) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: 'so much depends on',
+          line2: `the ${a3[0]} ${n3[0]}`,
+          line3: `beside the ${n2[0]}.`,
+          attr: 'William Carlos Williams'
+        }
+      })
+      );
+    } else {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: 'let us not speak of',
+          line2: `the ${a2[0]} ${n2[0]}; instead`,
+          line3: `mind the ${n3[0]}.`
         }
       })
       );

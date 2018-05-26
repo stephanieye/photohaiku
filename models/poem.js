@@ -9,7 +9,8 @@ const client = new vision.ImageAnnotatorClient(
 const haikuSchema = new mongoose.Schema({
   line1: { type: String },
   line2: { type: String },
-  line3: { type: String }
+  line3: { type: String },
+  attr: { type: String }
 });
 
 
