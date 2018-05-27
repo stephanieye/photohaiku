@@ -10,7 +10,7 @@ const Form = ({ handleChange, handleSubmit, poem, errors }) => {
         {errors.name && <small>{errors.name}</small>}
       </div>
 
-      <button disabled={ formInvalid } className="button is-primary">Submit</button>
+      <button disabled={ formInvalid } className="button is-create">submit</button>
     </form>
   );
 };

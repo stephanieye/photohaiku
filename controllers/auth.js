@@ -7,7 +7,7 @@ function register(req, res, next) {
     .then(user => {
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' });
       res.json({
-        message: `Thank you for registering, ${user.username}!`,
+        message: `thank you for registering, ${user.username}!`,
         token,
         user
       });
@@ -25,7 +25,7 @@ function login(req, res, next) {
 
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' });
       res.json({
-        message: `Welcome back, ${user.username}!`,
+        message: `welcome back, ${user.username}!`,
         token,
         user
       });

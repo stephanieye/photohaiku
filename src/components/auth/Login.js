@@ -16,12 +16,12 @@ class AuthLogin extends React.Component {
     axios.post('/api/login', this.state)
       .then(res => {
         Auth.setToken(res.data.token);
-        Flash.setMessage('info', res.data.message);
+        Flash.setMessage('welcome', res.data.message);
       })
       .then(()=>
         this.props.history.push('/createpoem'))
       .catch(()=> {
-        Flash.setMessage('danger', 'Invalid credentials...');
+        Flash.setMessage('denied', 'sorry, you made a mistake whilst logging in.');
         this.props.history.replace('/login');
       });
   }
@@ -29,6 +29,7 @@ class AuthLogin extends React.Component {
 
   render() {
     return (
+
       <form onSubmit={this.handleSubmit}>
         <div className="field">
           <input
@@ -45,7 +46,7 @@ class AuthLogin extends React.Component {
             placeholder="password"
             onChange={this.handleChange}/>
         </div>
-        <button className ="button is-primary">Submit</button>
+        <button className ="button is-create">submit</button>
       </form>
     );
   }

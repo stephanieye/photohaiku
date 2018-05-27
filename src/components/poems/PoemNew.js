@@ -55,7 +55,7 @@ class PoemNew extends React.Component {
         this.makeadjectivesarrays1(poem);
       })
       .catch(()=> {
-        Flash.setMessage('danger', 'Sorry, the photohaiku robot does not like that photo. Please try again!');
+        Flash.setMessage('denied', 'Sorry, the photohaiku robot does not like that photo. Please try again!');
         this.props.history.replace('/createpoem');
       });
   }
@@ -149,7 +149,7 @@ class PoemNew extends React.Component {
           line1: `to ${n2[0]} or not`,
           line2: `to ${n2[0]}: only the ${n1[0]}`,
           line3: 'would ask that question',
-          attr: 'William Shakespeare'
+          attr: '(with apologies to william shakespeare)'
         }
       })
       );
@@ -160,7 +160,7 @@ class PoemNew extends React.Component {
           line1: `you say ${n3[0]}`,
           line2: `i say ${a3[0]} ${n2[0]} -`,
           line3: 'i am right, of course!',
-          attr: 'Ira Gershwin'
+          attr: '(with apologies to ira gershwin)'
         }
       })
       );
@@ -171,7 +171,7 @@ class PoemNew extends React.Component {
           line1: 'life: nothing more than',
           line2: `${n3[0]}s on the ${n2[0]}...`,
           line3: `but so ${a3[0]}!`,
-          attr: 'Nishiyama Soin'
+          attr: '(with apologies to nishiyama soin)'
         }
       })
       );
@@ -182,7 +182,7 @@ class PoemNew extends React.Component {
           line1: `do not weep, ${n2[0]} -`,
           line2: `${n3[0]}s and ${n1[0]}s themselves`,
           line3: 'eventually part.',
-          attr: 'Kobayashi Issa'
+          attr: '(with apologies to kobayashi issa)'
         }
       })
       );
@@ -223,7 +223,7 @@ class PoemNew extends React.Component {
           line1: `sing, my ${a1[0]} ${n2[0]}!`,
           line2: `let my ${n1[0]} accompany`,
           line3: `your ${a2[0]} ${n2[1]}.`,
-          attr: 'Sappho'
+          attr: '(with apologies to sappho)'
         }
       })
       );
@@ -234,7 +234,7 @@ class PoemNew extends React.Component {
           line1: 'so much depends on',
           line2: `the ${a3[0]} ${n3[0]}`,
           line3: `beside the ${n2[0]}.`,
-          attr: 'William Carlos Williams'
+          attr: '(with apologies to william carlos williams)'
         }
       })
       );
@@ -274,7 +274,7 @@ class PoemNew extends React.Component {
       )
       .then(() => this.props.history.push(`/poems/${poem._id}`))
       .catch(()=> {
-        Flash.setMessage('danger', 'Sorry, the photohaiku robot does not like that photo. Please try again!');
+        Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again!');
         this.props.history.replace('/createpoem');
       });
   }
@@ -286,7 +286,7 @@ class PoemNew extends React.Component {
 
     return (
       <section>
-        <h1 className='title is-1'>Submit a photo</h1>
+        <h2>Submit a photo</h2>
 
         <div className='poemform'>
           <Form
@@ -297,7 +297,6 @@ class PoemNew extends React.Component {
           />
         </div>
 
-        {/* <button onClick={this.makehaiku}>make haiku</button> */}
       </section>
     );
   }

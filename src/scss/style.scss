@@ -1,18 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans|IM+Fell+DW+Pica:400,400i|IM+Fell+English+SC');
 
+$grey: rgba(147, 154, 188, 1);
+
+
+body {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 25px;
+}
+
 h1 {
-  font-family: 'IM Fell English SC', serif;
+  font-family: 'IM Fell DW Pica', serif;
   font-size: 50px;
 }
 
 h2 {
   font-family: 'IM Fell DW Pica', serif;
+  font-size: 40px;
+}
+
+h3 {
+  font-family: 'IM Fell DW Pica', serif;
   font-size: 30px;
 }
 
-p {
+button {
   font-family: 'Alegreya Sans', sans-serif;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .card {
@@ -45,11 +58,65 @@ p {
   text-align: center;
 }
 
-.link {
+a {
   font-weight: 700;
   color: black;
+    &:hover {
+    color: $grey;
+  }
+}
+
+.navbar-brand {
+  a {
+    font-style: italic;
+    &:hover {
+      color: inherit;
+      text-shadow: 2px 2px $grey;
+    }
+  }
+}
+
+.navbar-end {
+  a {
   &:hover {
-    color: grey;
+    color: white;
+    background-color: $grey;
+  }
+}
+}
+
+.navbar-burger {
+  &:hover {
+    background-color: $grey;
+  }
+}
+
+
+.is-denied {
+  color: white;
+  background-color: black;
+}
+
+.is-welcome {
+  color: white;
+  background-color: $grey;
+}
+
+.is-create {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  &:hover {
+    color: white;
+    background-color: $grey;
+  }
+}
+
+.is-destroy {
+  color: white;
+  background-color: black;
+  &:hover {
+    background-color: red;
   }
 }
 

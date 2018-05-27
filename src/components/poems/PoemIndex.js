@@ -26,7 +26,7 @@ class PoemIndex extends React.Component {
                     style={{ backgroundImage: `url(${poem.image})` }}
                   ></div></Link>
                 <div className="card-content">
-                  <Link to={`/users/${poem.poet._id}`}><h2 className="link">{poem.poet.username}</h2></Link>
+                  <Link to={`/users/${poem.poet._id}`}><h3>{poem.poet.username}</h3></Link>
                   <p className="subtitle is-6">{poem.createdAtRelative}</p>
                   <div>
                     <p> {poem.haiku[0].line1} </p>

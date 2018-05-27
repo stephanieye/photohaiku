@@ -38,17 +38,27 @@ class PoemShow extends React.Component {
         {poem.haiku && <div className="card">
           <div className="card-image-show" style={{ backgroundImage: `url(${poem.image})` }}>
           </div>
-          <div className="card-content">
-            <Link to={`/users/${poem.poet._id}`}><h2>{poem.poet.username}</h2></Link>
-            <p className='subtitle is-6'>{poem.createdAtRelative}</p>
-            <div>
-              <p> {poem.haiku[0].line1} </p>
-              <p> {poem.haiku[0].line2} </p>
-              <p> {poem.haiku[0].line3} </p>
-              <p> {poem.haiku[0].attr} </p>
+          <div className="card-content columns">
+
+
+            <div className='column'>
+              <Link to={`/users/${poem.poet._id}`}><h3>{poem.poet.username}</h3></Link>
+              <p className='subtitle is-6'>{poem.createdAtRelative}</p>
+
+              <div>
+                <p> {poem.haiku[0].line1} </p>
+                <p> {poem.haiku[0].line2} </p>
+                <p> {poem.haiku[0].line3} </p>
+                <p className ='subtitle is-5'> {poem.haiku[0].attr} </p>
+              </div>
             </div>
+            {(Auth.isAuthenticated() && (Auth.getPayload().sub === poem.poet._id)) &&
+              <div className='column has-text-right-desktop has-text-right-tablet'>
+                <button className= 'button is-destroy' onClick={this.handleDelete}>delete this photohaiku</button>
+              </div>
+            }
           </div>
-          {(Auth.isAuthenticated() && (Auth.getPayload().sub === poem.poet._id)) && <button className= 'button is-danger' onClick={this.handleDelete}>Delete this photohaiku</button>}
+
         </div>}
 
       </section>

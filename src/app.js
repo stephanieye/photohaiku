@@ -6,7 +6,6 @@ import {
   Switch
 } from 'react-router-dom';
 
-import Home from './components/Home';
 import Navbar from './components/Navbar';
 
 import PoemNew from './components/poems/PoemNew';
@@ -41,16 +40,15 @@ class App extends React.Component {
           <section className='section'>
             <div className='container'>
               <Switch>
-
                 <SecureRoute exact path="/users/:id/edit" component={UsersEdit} />
                 <Route exact path="/users/:id" component={UsersShow} />
                 <Route exact path="/users" component={UsersIndex} />
-                <Route exact path="/login" component={AuthLogin} />
                 <Route exact path="/register" component={AuthRegister} />
-                <Route exact path="/createpoem" component={PoemNew} />
-                <Route exact path="/poems" component={PoemIndex} />
+                <Route exact path="/login" component={AuthLogin} />
+                <SecureRoute exact path="/createpoem" component={PoemNew} />
                 <Route exact path="/poems/:id" component={PoemShow} />
-                <Route exact path="/" component={Home} />
+                <Route exact path="/poems" component={PoemIndex} />
+                <Route exact path="/" component={PoemIndex} />
                 {/* <Route component={NotFound} />  */}
               </Switch>
             </div>

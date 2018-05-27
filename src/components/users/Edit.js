@@ -27,7 +27,7 @@ class UsersEdit extends React.Component {
     })
       .then(() => this.props.history.push(`/users/${id}`))
       .catch(()=> {
-        Flash.setMessage('danger', 'Invalid credentials...');
+        Flash.setMessage('denied', 'sorry, you made a mistake whilst updating your profile.');
         this.props.history.replace('/login');
       });
   }
@@ -82,11 +82,11 @@ class UsersEdit extends React.Component {
               placeholder="Please confirm your password"
               onChange={this.handleChange}/>
           </div>
-          <button className ="button is-primary">Submit</button>
+          <button className ="button is-create">submit</button>
         </form>
         <div className='dangerzone'>
           <p className="title is-3">Warning! If you delete your account, all your photohaiku will be gone forever.</p>
-          <button className="button is-danger" onClick= {this.handleDelete}>Delete your account</button>
+          <button className="button is-destroy" onClick= {this.handleDelete}>delete your account</button>
         </div>
       </section>
     );

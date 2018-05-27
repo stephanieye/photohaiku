@@ -16,12 +16,12 @@ class AuthRegister extends React.Component {
     axios.post('/api/register', this.state)
       .then(res => {
         Auth.setToken(res.data.token);
-        Flash.setMessage('info', res.data.message);
+        Flash.setMessage('welcome', res.data.message);
       })
       .then(()=>
         this.props.history.push('/createpoem'))
       .catch(()=> {
-        Flash.setMessage('danger', 'Sorry, something went wrong with your registration. Please try again.');
+        Flash.setMessage('denied', 'sorry, something went wrong with your registration. please try again.');
         this.props.history.replace('/register');
       });
   }
@@ -60,7 +60,7 @@ class AuthRegister extends React.Component {
             placeholder="passwordConfirmation"
             onChange={this.handleChange}/>
         </div>
-        <button className ="button is-primary">Submit</button>
+        <button className ="button is-create">submit</button>
       </form>
     );
   }

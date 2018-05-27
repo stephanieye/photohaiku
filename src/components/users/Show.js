@@ -32,9 +32,12 @@ class UsersShow extends React.Component {
 
     return (
       <section>
-        <div className='box'>
-          <h1 className='title is-1'>{user.username}</h1>
-          { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) && <Link to={`/users/${user._id}/edit`} className="button">Edit</Link>}
+
+        <div className='columns'>
+          <div className='column'>
+            <h2>{user.username}</h2>
+          </div>
+          { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) && <div className='column has-text-right-desktop has-text-right-tablet'><Link to={`/users/${user._id}/edit`} className="button is-create">edit your profile</Link></div>}
         </div>
 
         <div className="columns is-multiline">
@@ -49,13 +52,12 @@ class UsersShow extends React.Component {
                   ></div>
                 </Link>
                 <div className="card-content">
-                  <Link to={`/users/${poem.poet._id}`}><h2>{poem.poet.username}</h2></Link>
+                  <Link to={`/users/${poem.poet._id}`}><h3>{poem.poet.username}</h3></Link>
                   <p className='subtitle is-6'>{poem.createdAtRelative}</p>
                   <div>
                     <p> {poem.haiku[0].line1} </p>
                     <p> {poem.haiku[0].line2} </p>
                     <p> {poem.haiku[0].line3} </p>
-                    <p> {poem.haiku[0].attr} </p>
                   </div>
                 </div>
               </div>
