@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Form = ({ handleChange, handleSubmit, poem, errors }) => {
+const Form = ({ handleChange, handleSubmit, handleProcess, poem, errors }) => {
   const formInvalid = Object.keys(errors).some(key => errors[key]);
   return (
     <form onSubmit={handleSubmit}>
@@ -10,7 +10,7 @@ const Form = ({ handleChange, handleSubmit, poem, errors }) => {
         {errors.name && <small>{errors.name}</small>}
       </div>
 
-      <button disabled={ formInvalid } className="button is-create">submit</button>
+      <button disabled={ formInvalid } className="button is-create" onClick={handleProcess}>submit</button>
     </form>
   );
 };

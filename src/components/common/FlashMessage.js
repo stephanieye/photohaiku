@@ -22,7 +22,9 @@ class FlashMessage extends React.Component {
     return (
       <div>
         {this.state.messages && Object.keys(this.state.messages).map(type =>
-          <div key={type} className={`notification is-${type}`}>{this.state.messages[type]}</div>
+          <div key={type} className={`notification is-${type}`}>
+            <p className='has-text-centered'>{this.state.messages[type]}</p>
+          </div>
         )}
       </div>
     );

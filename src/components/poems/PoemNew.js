@@ -40,6 +40,18 @@ class PoemNew extends React.Component {
     this.setState({ poem, [name]: value });
   }
 
+  handleProcess = () => {
+    document.getElementsByClassName('poemform')[0].style.display = 'none';
+    document.getElementsByClassName('instructions')[0].style.display = 'none';
+    document.getElementsByClassName('process')[0].style.display = 'block';
+  }
+
+  handleRefresh = () => {
+    document.getElementsByClassName('poemform')[0].style.display = 'block';
+    document.getElementsByClassName('instructions')[0].style.display = 'block';
+    document.getElementsByClassName('process')[0].style.display = 'none';
+  }
+
 
 
   handleSubmit = (e) => {
@@ -56,6 +68,7 @@ class PoemNew extends React.Component {
       })
       .catch(()=> {
         Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again.');
+        this.handleRefresh();
         this.props.history.replace('/createpoem');
       });
   }
@@ -287,16 +300,25 @@ class PoemNew extends React.Component {
     return (
       <section>
         <div className='instructions'>
-        <p>give me a photo</p>
-        <p>and i will create for you</p>
-        <p>a bespoke haiku</p>
-        <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
-      </div>
+          <p>give me a photo</p>
+          <p>and i will create for you</p>
+          <p>a bespoke haiku</p>
+          <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
+        </div>
+
+        <div className='process'>
+          <p>your humble servant</p>
+          <p>performs poetic labours</p>
+          <p>thanks for your patience</p>
+          <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
+          <img className='loading' src='images/loading.gif' />
+        </div>
 
         <div className='poemform'>
           <Form
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
+            handleProcess={this.handleProcess}
             errors={this.state.errors}
             poem={this.state.poem}
           />

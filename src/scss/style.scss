@@ -36,10 +36,22 @@ section {
   font-style: italic;
 }
 
+.loading {
+  height: 50px;
+  width: 50px;
+}
+
 .instructions {
   margin: 0 auto;
   text-align: center;
   margin-bottom: 40px;
+}
+
+.process {
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 40px;
+  display: none;
 }
 
 .card {
