@@ -7,7 +7,7 @@ class AuthLogin extends React.Component {
   state ={};
 
   handleChange = ({target: {name, value}}) => {
-    this.setState({[name]: value});
+    this.setState({ [name]: value });
   }
 
   handleSubmit = (e) => {
@@ -30,15 +30,18 @@ class AuthLogin extends React.Component {
   render() {
     return (
 
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} noValidate>
         <div className="field">
+          <label htmlFor="email">email address</label>
           <input
+            type='email'
             className="input"
             name="email"
             placeholder="email"
             onChange={this.handleChange}/>
         </div>
         <div className="field">
+          <label htmlFor="name">password</label>
           <input
             type="password"
             className="input"

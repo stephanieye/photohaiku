@@ -4,10 +4,18 @@ import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
 
 class AuthRegister extends React.Component {
-  state ={};
+  state ={
+    errors: {}
+  };
 
   handleChange = ({target: {name, value}}) => {
     this.setState({[name]: value});
+    this.setState(prevState => ({
+      errors: {
+        ...prevState.errors,
+        [name]: ''
+      }
+    }));
   }
 
   handleRegister = (e) => {
@@ -20,7 +28,9 @@ class AuthRegister extends React.Component {
       })
       .then(()=>
         this.props.history.push('/createpoem'))
-      .catch(()=> {
+      .catch((err)=> {
+        console.log(err.response.data.errors);
+        this.setState({errors: err.response.data.errors});
         Flash.setMessage('denied', 'sorry, something went wrong with your registration. please try again.');
         this.props.history.replace('/register');
       });
@@ -36,6 +46,7 @@ class AuthRegister extends React.Component {
             name="username"
             placeholder="username"
             onChange={this.handleChange}/>
+          {this.state.errors.username && <p className= 'subtitle is-5'>{this.state.errors.username}</p>}
         </div>
         <div className="field">
           <input
@@ -43,6 +54,7 @@ class AuthRegister extends React.Component {
             name="email"
             placeholder="email"
             onChange={this.handleChange}/>
+          {this.state.errors.email && <p className= 'subtitle is-5'>{this.state.errors.email}</p>}
         </div>
         <div className="field">
           <input
@@ -51,6 +63,7 @@ class AuthRegister extends React.Component {
             name="password"
             placeholder="password"
             onChange={this.handleChange}/>
+          {this.state.errors.password && <p className= 'subtitle is-5'>{this.state.errors.password}</p>}
         </div>
         <div className="field">
           <input
@@ -59,6 +72,7 @@ class AuthRegister extends React.Component {
             name="passwordConfirmation"
             placeholder="passwordConfirmation"
             onChange={this.handleChange}/>
+          {this.state.errors.passwordConfirmation && <p className= 'subtitle is-5'>{this.state.errors.passwordConfirmation}</p>}
         </div>
         <button className ="button is-create">submit</button>
       </form>

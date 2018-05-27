@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt');
 
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, lowercase: true },
-  email: { type: String, required: true, unique: true, lowercase: true },
-  password: { type: String, required: true }
+  username: { type: String, required: 'please provide a username', lowercase: true },
+  email: { type: String, required: 'please provide an email address', unique: 'this email address is already registered with photohaiku', lowercase: true },
+  password: { type: String, required: 'please provide a password' }
 });
 
 userSchema.plugin(require('mongoose-unique-validator'));
@@ -29,7 +29,7 @@ userSchema
 
 userSchema.pre('validate', function checkPassword(next){
   if(this.isModified('password') && this._passwordConfirmation !== this.password){
-    this.invalidate('passwordConfirmation', 'does not match');
+    this.invalidate('passwordConfirmation', 'your password and password confirmation do not match');
   }
   next();
 });
