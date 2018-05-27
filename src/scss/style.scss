@@ -28,6 +28,20 @@ button {
   font-size: 25px;
 }
 
+section {
+  padding: 0;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.instructions {
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 .card {
   margin: 0 auto;
   min-height: 450px;

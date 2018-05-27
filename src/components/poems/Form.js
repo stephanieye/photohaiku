@@ -5,7 +5,7 @@ const Form = ({ handleChange, handleSubmit, poem, errors }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="field">
-        <label htmlFor="image">Image</label>
+        <label htmlFor="image">image url</label>
         <input id="image" name="image" className="input" placeholder="image"  onChange={handleChange}  value={poem.image || ''}/>
         {errors.name && <small>{errors.name}</small>}
       </div>

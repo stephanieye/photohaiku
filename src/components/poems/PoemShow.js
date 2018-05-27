@@ -53,8 +53,8 @@ class PoemShow extends React.Component {
               </div>
             </div>
             {(Auth.isAuthenticated() && (Auth.getPayload().sub === poem.poet._id)) &&
-              <div className='column has-text-right-desktop has-text-right-tablet'>
-                <button className= 'button is-destroy' onClick={this.handleDelete}>delete this photohaiku</button>
+              <div className='column has-text-right-desktop has-text-right-tablet is-one-third-desktop is-one-third-tablet'>
+                <button className= 'button is-destroy' onClick={this.handleDelete}>delete</button>
               </div>
             }
           </div>

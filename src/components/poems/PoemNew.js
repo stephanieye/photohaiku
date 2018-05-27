@@ -55,7 +55,7 @@ class PoemNew extends React.Component {
         this.makeadjectivesarrays1(poem);
       })
       .catch(()=> {
-        Flash.setMessage('denied', 'Sorry, the photohaiku robot does not like that photo. Please try again!');
+        Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again.');
         this.props.history.replace('/createpoem');
       });
   }
@@ -274,7 +274,7 @@ class PoemNew extends React.Component {
       )
       .then(() => this.props.history.push(`/poems/${poem._id}`))
       .catch(()=> {
-        Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again!');
+        Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again.');
         this.props.history.replace('/createpoem');
       });
   }
@@ -286,7 +286,12 @@ class PoemNew extends React.Component {
 
     return (
       <section>
-        <h2>Submit a photo</h2>
+        <div className='instructions'>
+        <p>give me a photo</p>
+        <p>and i will create for you</p>
+        <p>a bespoke haiku</p>
+        <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
+      </div>
 
         <div className='poemform'>
           <Form
