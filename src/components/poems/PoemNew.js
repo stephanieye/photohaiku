@@ -134,7 +134,8 @@ class PoemNew extends React.Component {
 
 
   makehaiku = () => {
-    const random = Math.floor(Math.random()*10);
+    // const random = 10;
+    const random = Math.floor(Math.random()*11);
     const n1 = this.state.noun1sarray;
     const n2 = this.state.noun2sarray;
     const n3 = this.state.noun3sarray;
@@ -237,13 +238,23 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else {
+    } else if (random === 9) {
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
           line1: 'let us not speak of',
           line2: `the ${a2[0]} ${n2[0]}; instead`,
           line3: `mind your ${n3[0]}.`
+        }
+      })
+      );
+    } else {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `you love ${n3[0]}...`,
+          line2: 'but not as much as i love',
+          line3: `${a3[0]} ${n2[0]}!`
         }
       })
       );
