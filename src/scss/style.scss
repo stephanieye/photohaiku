@@ -1,5 +1,18 @@
-html {
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans|IM+Fell+DW+Pica:400,400i|IM+Fell+English+SC');
 
+h1 {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 50px;
+}
+
+h2 {
+  font-family: 'IM Fell DW Pica', serif;
+  font-size: 30px;
+}
+
+p {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 30px;
 }
 
 .card {
@@ -30,6 +43,14 @@ html {
   padding: 20px;
   border-radius: 20px;
   text-align: center;
+}
+
+.link {
+  font-weight: 700;
+  color: black;
+  &:hover {
+    color: grey;
+  }
 }
 
 @media only screen and (max-width: 600px) {

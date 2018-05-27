@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
+import { Link } from 'react-router-dom';
 
 
 class PoemShow extends React.Component {
@@ -38,16 +39,16 @@ class PoemShow extends React.Component {
           <div className="card-image-show" style={{ backgroundImage: `url(${poem.image})` }}>
           </div>
           <div className="card-content">
-            <div className="content">
-              <div>
-                <p> {poem.haiku[0].line1} </p>
-                <p> {poem.haiku[0].line2} </p>
-                <p> {poem.haiku[0].line3} </p>
-                <p> {poem.haiku[0].attr} </p>
-              </div>
+            <Link to={`/users/${poem.poet._id}`}><h2>{poem.poet.username}</h2></Link>
+            <p className='subtitle is-6'>{poem.createdAtRelative}</p>
+            <div>
+              <p> {poem.haiku[0].line1} </p>
+              <p> {poem.haiku[0].line2} </p>
+              <p> {poem.haiku[0].line3} </p>
+              <p> {poem.haiku[0].attr} </p>
             </div>
-            {(Auth.isAuthenticated() && (Auth.getPayload().sub === poem.poet._id)) && <button className= 'button is-danger' onClick={this.handleDelete}>Delete this photohaiku</button>}
           </div>
+          {(Auth.isAuthenticated() && (Auth.getPayload().sub === poem.poet._id)) && <button className= 'button is-danger' onClick={this.handleDelete}>Delete this photohaiku</button>}
         </div>}
 
       </section>

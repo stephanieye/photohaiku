@@ -37,13 +37,12 @@ class Navbar extends React.Component {
 
         <div className={`navbar-menu ${this.state.navIsOpen ? 'is-active' : ''}`}>
           <div className="navbar-end">
-            {Auth.isAuthenticated() && <Link to={`/users/${Auth.getPayload().sub}`} className="navbar-item">Your Profile</Link>}
-            {Auth.isAuthenticated() && <Link to='/createpoem' className="navbar-item">Create a poem</Link>}
-            <Link to="/users" className="navbar-item">Users</Link>
-            <Link to="/poems" className="navbar-item">Browse all photohaiku</Link>
-            {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item">Logout</a>}
-            {!Auth.isAuthenticated() && <Link to="/register" className="navbar-item">Register</Link>}
-            {!Auth.isAuthenticated() && <Link to="/login" className="navbar-item">Login</Link>}
+            {Auth.isAuthenticated() && <Link to={`/users/${Auth.getPayload().sub}`} className="navbar-item"><h2>your profile</h2></Link>}
+            {Auth.isAuthenticated() && <Link to='/createpoem' className="navbar-item"><h2>create a poem</h2></Link>}
+            <Link to="/poems" className="navbar-item"><h2>browse all photohaiku</h2></Link>
+            {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item"><h2>logout</h2></a>}
+            {!Auth.isAuthenticated() && <Link to="/register" className="navbar-item"><h2>register</h2></Link>}
+            {!Auth.isAuthenticated() && <Link to="/login" className="navbar-item"><h2>login</h2></Link>}
           </div>
         </div>
       </nav>
