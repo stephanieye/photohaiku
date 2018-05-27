@@ -3,6 +3,7 @@ const Poem = require('../models/poem');
 function indexRoute(req, res, next){
   Poem
     .find()
+    .populate('poet haiku')
     .exec()
     .then(poems =>
       res.json(poems))

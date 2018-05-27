@@ -1,45 +1,24 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Auth from '../../lib/Auth';
 
-
-
-class UsersShow extends React.Component {
-
+class PoemIndex extends React.Component {
   state = {
-    user: null,
-    errors: {},
-    poem: {},
     poems: []
   }
 
-
   componentDidMount() {
-    axios.get(`/api/users/${this.props.match.params.id}`)
-      .then(res => this.setState({user: res.data}));
     axios.get('/api/poems')
-      .then(res => {
-        this.setState({poems: res.data});
-        console.log(this.state.poems);
-      });
+      .then(res => this.setState({poems: res.data}));
   }
 
 
-  render() {
-    const {user} = this.state;
-    if(!user) return null;
 
+  render() {
     return (
       <section>
-        <div className='box'>
-          <h1 className='title is-1'>{user.username}</h1>
-          { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) && <Link to={`/users/${user._id}/edit`} className="button">Edit</Link>}
-        </div>
-
         <div className="columns is-multiline">
           {this.state.poems.map(poem =>
-            ((poem.poet._id === user._id) && (poem.haiku[0] !== undefined)) &&
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
               <Link to={`/poems/${poem._id}`}>
                 <div className="card">
@@ -47,6 +26,7 @@ class UsersShow extends React.Component {
                     style={{ backgroundImage: `url(${poem.image})` }}
                   ></div>
                   <div className="card-content">
+                    <p className="subtitle is-6">by {poem.poet.username}</p>
                     <p className="subtitle is-6">{poem.createdAtRelative}</p>
                     <div>
                       <p> {poem.haiku[0].line1} </p>
@@ -59,9 +39,9 @@ class UsersShow extends React.Component {
             </div>
           )}
         </div>
-
-      </section>);
+      </section>
+    );
   }
 }
 
-export default UsersShow;
+export default PoemIndex;
