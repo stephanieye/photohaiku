@@ -9,7 +9,6 @@ class PoemNew extends React.Component {
 
   state = {
     user: null,
-    errors: {},
     poem: {},
     nounscollection: [],
     adjectivescollection: [],
@@ -319,7 +318,6 @@ class PoemNew extends React.Component {
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             handleProcess={this.handleProcess}
-            errors={this.state.errors}
             poem={this.state.poem}
           />
         </div>

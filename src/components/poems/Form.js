@@ -1,16 +1,14 @@
 import React from 'react';
 
-const Form = ({ handleChange, handleSubmit, handleProcess, poem, errors }) => {
-  const formInvalid = Object.keys(errors).some(key => errors[key]);
+const Form = ({ handleChange, handleSubmit, handleProcess, poem }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="image">image url</label>
-        <input id="image" name="image" className="input" placeholder="image"  onChange={handleChange}  value={poem.image || ''}/>
-        {errors.name && <small>{errors.name}</small>}
+        <input id="image" name="image" className="input" placeholder="image url"  onChange={handleChange}  value={poem.image || ''}/>
       </div>
 
-      <button disabled={ formInvalid } className="button is-create" onClick={handleProcess}>submit</button>
+      <button className="button is-create" onClick={handleProcess}>submit</button>
     </form>
   );
 };
