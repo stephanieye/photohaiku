@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Form from './Form';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
 
@@ -34,27 +33,36 @@ class PoemNew extends React.Component {
       });
   }
 
-  handleChange = ({ target: { name, value } }) => {
-    const poem = {...this.state.poem, [name]: value};
-    this.setState({ poem, [name]: value });
+
+  openPicker = () => {
+    var fsClient = filestack.init('AFc6g9A9lQ8GwCOk8ALGaz');
+    fsClient.pick({
+      fromSources:["local_file_system","url","imagesearch","facebook","instagram","webcam"],
+      accept:["image/*"],
+      maxFiles: 1,
+      minFiles: 1,
+      transformations: {
+        crop: true
+      }
+    })
+      .then((response) => {
+        const image = response.filesUploaded[0].url;
+        this.setState({ poem: {image: image} });
+        console.log(this.state.poem);
+        this.handleProcess();
+      });
   }
 
+
   handleProcess = () => {
+    this.handleSubmit();
     document.getElementsByClassName('poemform')[0].style.display = 'none';
     document.getElementsByClassName('instructions')[0].style.display = 'none';
     document.getElementsByClassName('process')[0].style.display = 'block';
   }
 
-  handleRefresh = () => {
-    document.getElementsByClassName('poemform')[0].style.display = 'block';
-    document.getElementsByClassName('instructions')[0].style.display = 'block';
-    document.getElementsByClassName('process')[0].style.display = 'none';
-  }
 
-
-
-  handleSubmit = (e) => {
-    e.preventDefault();
+  handleSubmit = () => {
     axios.post('/api/poems', this.state.poem, {
       headers: {Authorization: `Bearer ${Auth.getToken()}`}
     })
@@ -71,6 +79,14 @@ class PoemNew extends React.Component {
         this.props.history.replace('/createpoem');
       });
   }
+
+
+  handleRefresh = () => {
+    document.getElementsByClassName('poemform')[0].style.display = 'block';
+    document.getElementsByClassName('instructions')[0].style.display = 'block';
+    document.getElementsByClassName('process')[0].style.display = 'none';
+  }
+
 
   makenounsarrays = (poem) => {
     poem.nouns.forEach((noun) => {
@@ -92,7 +108,6 @@ class PoemNew extends React.Component {
   }
 
 
-
   makeadjectivesarrays0 = (poem) => {
     var string = poem.nouns[0];
     var stringplus = string.replace(/\s+/g, '+');
@@ -111,6 +126,7 @@ class PoemNew extends React.Component {
         );
       });
   }
+
 
   makeadjectivesarrays1 = (poem) => {
     var string = poem.nouns[1];
@@ -142,7 +158,6 @@ class PoemNew extends React.Component {
       })
       .then(() => this.makehaiku());
   }
-
 
 
   makehaiku = () => {
@@ -313,13 +328,8 @@ class PoemNew extends React.Component {
           <img className='loading' src='images/loading.gif' />
         </div>
 
-        <div className='poemform'>
-          <Form
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            handleProcess={this.handleProcess}
-            poem={this.state.poem}
-          />
+        <div className='poemform has-text-centered'>
+          <button className='is-create' onClick={this.openPicker}>click here to upload a photo</button>
         </div>
 
       </section>
