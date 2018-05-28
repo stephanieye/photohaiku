@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const vision = require('@google-cloud/vision');
 const client = new vision.ImageAnnotatorClient(
-  {keyFilename: '../photohaiku-95c6f32c0f45.json'}
+  {keyFilename: './photohaiku-95c6f32c0f45.json'}
 );
 
 

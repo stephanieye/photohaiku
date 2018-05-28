@@ -45,6 +45,7 @@
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
     "bulma": "^0.7.1",
+    "dotenv": "^5.0.1",
     "filestack-js": "^1.0.0-rc2",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",

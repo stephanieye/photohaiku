@@ -13,6 +13,9 @@ class UsersIndex extends React.Component {
   }
 
 
+here = () => {
+  console.log(port);
+}
 
   render() {
     return (
@@ -22,6 +25,7 @@ class UsersIndex extends React.Component {
             <div className="column is-one-third-desktop is-half-tablet" key={user._id}>
               <Link to={`/users/${user._id}`}>
                 <p className="title is-4">{user.username}</p>
+                <button onClick={this.here}>here</button>
               </Link>
             </div>
           )}
