@@ -33,7 +33,7 @@ class UsersShow extends React.Component {
   }
 
   userpoems = () => {
-    this.setState({userpoems: _.filter(this.state.poems, (poem) => poem.poet._id === this.state.user._id)});
+    this.setState({userpoems: _.filter(this.state.poems, (poem) => poem.poet._id === this.state.user._id && poem.haiku[0] !== undefined)});
     console.log(this.state.userpoems);
   }
 
@@ -52,8 +52,15 @@ class UsersShow extends React.Component {
           </div>
           { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) && <div className='column has-text-right-desktop has-text-right-tablet'><Link to={`/users/${user._id}/edit`} className="button is-create">edit your profile</Link></div>}
         </div>
-
-        <div className="columns is-multiline">
+        {userpoems.length === 0 && <div>
+          <div className='instructions'>
+            <p>as yet you have no</p>
+            <p>photohaiku. change your life:</p>
+            <Link to={'/createpoem'}><p>submit a photo.</p></Link>
+            <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
+          </div>
+        </div>}
+        {userpoems.length !== 0 && <div className="columns is-multiline">
           {userpoems.map(poem =>
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
 
@@ -75,7 +82,7 @@ class UsersShow extends React.Component {
               </div>
             </div>
           )}
-        </div>
+        </div>}
 
       </section>);
   }
