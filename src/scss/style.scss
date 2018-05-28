@@ -41,9 +41,6 @@ section {
 footer {
   font-family: 'IM Fell English SC', serif;
   margin-top: 100px;
-  a {
-      font-weight: inherit;
-  }
 }
 
 input {
@@ -84,7 +81,7 @@ input {
 
 .card {
   margin: 0 auto;
-  min-height: 450px;
+  min-height: 650px;
   max-width: 600px;
 }
 
@@ -92,14 +89,7 @@ input {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 300px;
-}
-
-.card-image-show {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 600px;
+  height: 350px;
 }
 
 .dangerzone {
@@ -114,7 +104,6 @@ input {
 
 a {
   text-decoration: none;
-  font-weight: 700;
   color: black;
     &:hover {
     color: $grey;
@@ -181,8 +170,9 @@ a {
     font-size: 20px;
   }
 
-  .card-image-show {
-    height: 300px;
+  .card {
+    min-height: 300px;
   }
+
 
 }

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
 import _ from 'lodash';
+import Poem from '../poems/Poem';
 
 
 
@@ -63,23 +64,10 @@ class UsersShow extends React.Component {
         {userpoems.length !== 0 && <div className="columns is-multiline">
           {userpoems.map(poem =>
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
-
-              <div className="card">
-                <Link to={`/poems/${poem._id}`}>
-                  <div className="card-image"
-                    style={{ backgroundImage: `url(${poem.image})` }}
-                  ></div>
-                </Link>
-                <div className="card-content">
-                  <Link to={`/users/${poem.poet._id}`}><h3>{poem.poet.username}</h3></Link>
-                  <p className='subtitle is-6'>{poem.createdAtRelative}</p>
-                  <div>
-                    <p> {poem.haiku[0].line1} </p>
-                    <p> {poem.haiku[0].line2} </p>
-                    <p> {poem.haiku[0].line3} </p>
-                  </div>
-                </div>
-              </div>
+              <Link to={`/poems/${poem._id}`}>
+                <Poem
+                  poem={poem} />
+              </Link>
             </div>
           )}
         </div>}

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Form from '../auth/Form';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
+import Poem from './Poem';
 
 class PoemRandom extends React.Component {
   state = {
@@ -59,23 +60,12 @@ class PoemRandom extends React.Component {
       return (
         <section>
           <div className='columns is-variable is-8 reverse'>
-
             <div className='column'>
-              <div className="card">
-                <Link to={`/poems/${poem._id}`}>
-                  <div className="card-image"
-                    style={{ backgroundImage: `url(${poem.image})` }}
-                  ></div></Link>
-                <div className="card-content">
-                  <h3>{poem.poet.username}</h3>
-                  <p className="subtitle is-6">{poem.createdAtRelative}</p>
-                  <div>
-                    <p> {poem.haiku[0].line1} </p>
-                    <p> {poem.haiku[0].line2} </p>
-                    <p> {poem.haiku[0].line3} </p>
-                  </div>
-                </div>
-              </div>
+              <Link to={`/poems/${poem._id}`}>
+                <Poem
+                  poem={poem}/>
+              </Link>  
+
             </div>
 
             <div className='column'>
