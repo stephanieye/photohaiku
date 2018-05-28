@@ -31,7 +31,6 @@ class AuthRegister extends React.Component {
       .catch((err)=> {
         console.log(err.response.data.errors);
         this.setState({errors: err.response.data.errors});
-        Flash.setMessage('denied', 'sorry, something went wrong with your registration. please try again.');
         this.props.history.replace('/register');
       });
   }
@@ -70,7 +69,7 @@ class AuthRegister extends React.Component {
             type="password"
             className="input"
             name="passwordConfirmation"
-            placeholder="passwordConfirmation"
+            placeholder="password"
             onChange={this.handleChange}/>
           {this.state.errors.passwordConfirmation && <p className= 'subtitle is-5'>{this.state.errors.passwordConfirmation}</p>}
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
-import Flash from '../../lib/Flash';
+import Form from './Form';
 
 class UsersEdit extends React.Component {
   state = {
@@ -14,9 +14,22 @@ class UsersEdit extends React.Component {
       .then(res => this.setState({user: res.data}));
   }
 
-  handleChange = ({ target: { name, value } }) => {
-    const errors ={...this.state.errors, [name]: ''};
-    this.setState({ errors, [name]: value });
+  handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({[name]: value});
+    this.setState(prevState => ({
+      user: {
+        ...prevState.user,
+        [name]: value
+      }
+    }));
+    this.setState(prevState => ({
+      errors: {
+        ...prevState.errors,
+        [name]: ''
+      }
+    }));
   }
 
   handleSubmit = (e) => {
@@ -26,9 +39,10 @@ class UsersEdit extends React.Component {
       headers: {Authorization: `Bearer ${Auth.getToken()}`}
     })
       .then(() => this.props.history.push(`/users/${id}`))
-      .catch(()=> {
-        Flash.setMessage('denied', 'sorry, you made a mistake whilst updating your profile.');
-        this.props.history.replace('/login');
+      .catch((err)=> {
+        console.log(err.response.data.errors);
+        this.setState({errors: err.response.data.errors});
+        this.props.history.replace(`/users/${id}/edit`);
       });
   }
 
@@ -51,41 +65,18 @@ class UsersEdit extends React.Component {
     if(!user) return null;
     return (
       <section>
-        <form onSubmit={this.handleSubmit}>
-          <div className="field">
-            <input
-              className="input"
-              name="username"
-              placeholder={user.username}
-              onChange={this.handleChange}/>
-          </div>
-          <div className="field">
-            <input
-              className="input"
-              name="email"
-              placeholder={user.email}
-              onChange={this.handleChange}/>
-          </div>
-          <div className="field">
-            <input
-              type="password"
-              className="input"
-              name="password"
-              placeholder="Please provide a password"
-              onChange={this.handleChange}/>
-          </div>
-          <div className="field">
-            <input
-              type="password"
-              className="input"
-              name="passwordConfirmation"
-              placeholder="Please confirm your password"
-              onChange={this.handleChange}/>
-          </div>
-          <button className ="button is-create">submit</button>
-        </form>
-        <div className='dangerzone'>
-          <p className="title is-3">Warning! If you delete your account, all your photohaiku will be gone forever.</p>
+      <Form
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        errors={this.state.errors}
+        user={user}
+      />
+        <div className='dangerzone has-text-centered'>
+          <p>i hope you will stay</p>
+          <p>but i know all things must pass...</p>
+          <p>so: sayonara.</p>
+          <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
+
           <button className="button is-destroy" onClick= {this.handleDelete}>delete your account</button>
         </div>
       </section>

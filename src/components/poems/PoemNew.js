@@ -301,14 +301,14 @@ class PoemNew extends React.Component {
         <div className='instructions'>
           <p>give me a photo</p>
           <p>and i will create for you</p>
-          <p>a bespoke haiku</p>
+          <p>a bespoke haiku.</p>
           <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
         </div>
 
         <div className='process'>
           <p>your humble servant</p>
-          <p>performs poetic labours</p>
-          <p>thanks for your patience</p>
+          <p>performs poetic labours:</p>
+          <p>thanks for your patience.</p>
           <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
           <img className='loading' src='images/loading.gif' />
         </div>
