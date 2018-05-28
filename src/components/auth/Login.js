@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
+import Form from './Form';
 
 class AuthLogin extends React.Component {
   state ={};
@@ -30,27 +31,10 @@ class AuthLogin extends React.Component {
   render() {
     return (
 
-      <form onSubmit={this.handleSubmit} noValidate>
-        <div className="field">
-          <label htmlFor="email">email address</label>
-          <input
-            type='email'
-            className="input"
-            name="email"
-            placeholder="please enter your email address"
-            onChange={this.handleChange}/>
-        </div>
-        <div className="field">
-          <label htmlFor="name">password</label>
-          <input
-            type="password"
-            className="input"
-            name="password"
-            placeholder="please enter your password"
-            onChange={this.handleChange}/>
-        </div>
-        <button className ="button is-create">submit</button>
-      </form>
+    <Form
+      handleSubmit={this.handleSubmit}
+      handChange={this.handleChange}
+    />
     );
   }
 }

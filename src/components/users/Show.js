@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
+import _ from 'lodash';
 
 
 
@@ -10,6 +11,7 @@ class UsersShow extends React.Component {
   state = {
     user: null,
     poems: [],
+    userpoems: [],
     errors: {},
     poem: {}
   }
@@ -25,18 +27,21 @@ class UsersShow extends React.Component {
         axios.get('/api/poems')
           .then(res => {
             this.setState({poems: res.data});
-            console.log(this.state.poems);
-            return this.state.poems;
-          })
-          .then(this.render());
+            this.userpoems();
+          });
       });
   }
 
+  userpoems = () => {
+    this.setState({userpoems: _.filter(this.state.poems, (poem) => poem.poet._id === this.state.user._id)});
+    console.log(this.state.userpoems);
+  }
 
-  render = () => {
+
+  render() {
     const user = this.state.user;
-    const poems = this.state.poems;
-    if(!user || !poems) return null;
+    const userpoems = this.state.userpoems;
+    if(!user) return null;
 
     return (
       <section>
@@ -49,8 +54,7 @@ class UsersShow extends React.Component {
         </div>
 
         <div className="columns is-multiline">
-          {poems.map(poem =>
-            ((poem.poet._id === user._id) && (poem.haiku[0] !== undefined)) &&
+          {userpoems.map(poem =>
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
 
               <div className="card">

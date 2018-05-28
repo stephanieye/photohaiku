@@ -31,7 +31,7 @@ class Navbar extends React.Component {
             {Auth.isAuthenticated() && <Link className="navbar-item" to="/poems">
               <h1>photohaiku</h1>
             </Link>}
-            {! Auth.isAuthenticated() && <Link className="navbar-item" to="/">
+            {!Auth.isAuthenticated() && <Link className="navbar-item" to="/">
               <h1>photohaiku</h1>
             </Link>}
             <a role="button" className={`navbar-burger ${this.state.navIsOpen? 'is-active' : ''}`} onClick={this.handleToggle}>

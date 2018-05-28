@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Form from '../auth/Form';
+import Auth from '../../lib/Auth';
+import Flash from '../../lib/Flash';
 
 class PoemRandom extends React.Component {
   state = {
@@ -27,49 +30,83 @@ class PoemRandom extends React.Component {
       });
   }
 
-  render() {
-    const poem = this.state.poem;
-    if(!poem.poet) return null;
 
-    return (
-      <section>
-        <div className='columns is-variable is-8 reverse'>
+    handleChange = ({target: {name, value}}) => {
+      this.setState({[name]: value});
+    }
 
-          <div className='column'>
-            <div className="card">
-              <Link to={`/poems/${poem._id}`}>
-                <div className="card-image"
-                  style={{ backgroundImage: `url(${poem.image})` }}
-                ></div></Link>
-              <div className="card-content">
-                <h3>{poem.poet.username}</h3>
-                <p className="subtitle is-6">{poem.createdAtRelative}</p>
-                <div>
-                  <p> {poem.haiku[0].line1} </p>
-                  <p> {poem.haiku[0].line2} </p>
-                  <p> {poem.haiku[0].line3} </p>
+    handleSubmit = (e) => {
+      e.preventDefault();
+
+      axios.post('/api/login', this.state)
+        .then(res => {
+          Auth.setToken(res.data.token);
+          Flash.setMessage('welcome', res.data.message);
+        })
+        .then(()=>
+          this.props.history.push('/createpoem'))
+        .catch(()=> {
+          Flash.setMessage('denied', 'sorry, either your email address or password is wrong, or you are not registered.');
+          this.props.history.replace('/');
+        });
+    }
+
+
+    render() {
+      const poem = this.state.poem;
+      if(!poem.poet) return null;
+
+      return (
+        <section>
+          <div className='columns is-variable is-8 reverse'>
+
+            <div className='column'>
+              <div className="card">
+                <Link to={`/poems/${poem._id}`}>
+                  <div className="card-image"
+                    style={{ backgroundImage: `url(${poem.image})` }}
+                  ></div></Link>
+                <div className="card-content">
+                  <h3>{poem.poet.username}</h3>
+                  <p className="subtitle is-6">{poem.createdAtRelative}</p>
+                  <div>
+                    <p> {poem.haiku[0].line1} </p>
+                    <p> {poem.haiku[0].line2} </p>
+                    <p> {poem.haiku[0].line3} </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='column'>
+              {!Auth.isAuthenticated() && <Form
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit} />}
+              <div className='definitions columns is-multiline'>
+                <div className='column is-half-tablet is-one-third-widescreen'>
+
+                  <h4>photo</h4>
+                  <p className='subtitle is-5'>/ˈfəʊtəʊ/<br />
+                a picture made using a camera.</p>
+
+                </div>
+                <div className='column is-half-tablet is-one-third-widescreen'>
+                  <h4>haiku</h4>
+                  <p className='subtitle is-5'>/ˈhʌɪkuː/<br />
+                a japanese poem of 17 syllables, in three lines of five, seven, and five.</p>
+                </div>
+                <div className='column'>
+                  <h4>photohaiku</h4>
+                  <p className='subtitle is-5'>/ˈfəʊtəʊˈhʌɪkuː/<br />
+                an original haiku based on a submitted photo, created by the photohaiku robot using image content analysis, lexicon-based algorithms, and the poetic muse.</p>
                 </div>
               </div>
             </div>
           </div>
-
-          <div className='column'>
-            <h3>photo</h3>
-            <p>/ˈfəʊtəʊ/</p>
-            <p>a picture made using a camera.</p>
-            <br />
-            <h3>haiku</h3>
-            <p>/ˈhʌɪkuː/</p>
-            <p>a japanese poem of 17 syllables, in three lines of five, seven, and five.</p>
-            <br />
-            <h3>photohaiku</h3>
-            <p>/ˈfəʊtəʊˈhʌɪkuː/</p>
-            <p>an original haiku based on a submitted photo, created by the photohaiku robot using image content analysis, lexicon-based algorithms, and the poetic muse.</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
+          <footer className='has-text-centered'><p className='subtitle is-6'>designed by <a href='http://stephanieye.com' target='new'>stephanie ye</a> <span className='subtitle is-7'>&#9733;</span> london 2018</p></footer>
+        </section>
+      );
+    }
 }
 
 export default PoemRandom;

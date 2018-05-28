@@ -23,6 +23,11 @@ h3 {
   font-size: 30px;
 }
 
+h4 {
+  font-family: 'IM Fell DW Pica', serif;
+  font-size: 25px;
+}
+
 button {
   font-family: 'Alegreya Sans', sans-serif;
   font-size: 25px;
@@ -33,9 +38,22 @@ section {
   padding: 0;
 }
 
+footer {
+  font-family: 'IM Fell English SC', serif;
+  margin-top: 100px;
+  a {
+      font-weight: inherit;
+  }
+}
+
+input {
+  margin-bottom: 20px;
+}
+
 .reverse {
   flex-direction: row-reverse;
 }
+
 
 .italics {
   font-style: italic;
@@ -44,6 +62,11 @@ section {
 .loading {
   height: 50px;
   width: 50px;
+}
+
+.definitions {
+  margin-top: 20px;
+  border-top: 2px solid $grey;
 }
 
 .instructions {
@@ -152,7 +175,11 @@ a {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
+
+  body {
+    font-size: 20px;
+  }
 
   .card-image-show {
     height: 300px;
