@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
+import Form from '../users/Form';
 
 class AuthRegister extends React.Component {
   state ={
@@ -18,7 +19,7 @@ class AuthRegister extends React.Component {
     }));
   }
 
-  handleRegister = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     axios.post('/api/register', this.state)
@@ -38,43 +39,12 @@ class AuthRegister extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleRegister}>
-        <div className="field">
-          <input
-            className="input"
-            name="username"
-            placeholder="username"
-            onChange={this.handleChange}/>
-          {this.state.errors.username && <p className= 'subtitle is-5'>{this.state.errors.username}</p>}
-        </div>
-        <div className="field">
-          <input
-            className="input"
-            name="email"
-            placeholder="email"
-            onChange={this.handleChange}/>
-          {this.state.errors.email && <p className= 'subtitle is-5'>{this.state.errors.email}</p>}
-        </div>
-        <div className="field">
-          <input
-            type="password"
-            className="input"
-            name="password"
-            placeholder="password"
-            onChange={this.handleChange}/>
-          {this.state.errors.password && <p className= 'subtitle is-5'>{this.state.errors.password}</p>}
-        </div>
-        <div className="field">
-          <input
-            type="password"
-            className="input"
-            name="passwordConfirmation"
-            placeholder="password"
-            onChange={this.handleChange}/>
-          {this.state.errors.passwordConfirmation && <p className= 'subtitle is-5'>{this.state.errors.passwordConfirmation}</p>}
-        </div>
-        <button className ="button is-create">submit</button>
-      </form>
+      <Form
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        errors={this.state.errors}
+        user={this.state}
+      />
     );
   }
 }

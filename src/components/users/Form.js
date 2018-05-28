@@ -8,6 +8,7 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
         <input
           className="input"
           name="username"
+          placeholder="please provide a username"
           value={user.username || ''}
           onChange={handleChange}/>
         {errors.username && <p className= 'subtitle is-5'>{errors.username}</p>}
@@ -17,6 +18,7 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
         <input
           className="input"
           name="email"
+          placeholder="please provide an email address"
           value={user.email || ''}
           onChange={handleChange}/>
         {errors.email && <p className= 'subtitle is-5'>{errors.email}</p>}

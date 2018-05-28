@@ -41,12 +41,12 @@ class App extends React.Component {
             <div className='container'>
               <Switch>
                 <SecureRoute exact path="/users/:id/edit" component={UsersEdit} />
-                <Route exact path="/users/:id" component={UsersShow} />
+                <SecureRoute exact path="/users/:id" component={UsersShow} />
                 <Route exact path="/users" component={UsersIndex} />
                 <Route exact path="/register" component={AuthRegister} />
                 <Route exact path="/login" component={AuthLogin} />
                 <SecureRoute exact path="/createpoem" component={PoemNew} />
-                <Route exact path="/poems/:id" component={PoemShow} />
+                <SecureRoute exact path="/poems/:id" component={PoemShow} />
                 <Route exact path="/poems" component={PoemIndex} />
                 <Route exact path="/" component={PoemIndex} />
                 {/* <Route component={NotFound} />  */}

@@ -37,7 +37,7 @@ class AuthLogin extends React.Component {
             type='email'
             className="input"
             name="email"
-            placeholder="email"
+            placeholder="please enter your email address"
             onChange={this.handleChange}/>
         </div>
         <div className="field">
@@ -46,7 +46,7 @@ class AuthLogin extends React.Component {
             type="password"
             className="input"
             name="password"
-            placeholder="password"
+            placeholder="please enter your password"
             onChange={this.handleChange}/>
         </div>
         <button className ="button is-create">submit</button>

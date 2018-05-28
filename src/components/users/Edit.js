@@ -65,12 +65,12 @@ class UsersEdit extends React.Component {
     if(!user) return null;
     return (
       <section>
-      <Form
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        errors={this.state.errors}
-        user={user}
-      />
+        <Form
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          errors={this.state.errors}
+          user={user}
+        />
         <div className='dangerzone has-text-centered'>
           <p>i hope you will stay</p>
           <p>but i know all things must pass...</p>
