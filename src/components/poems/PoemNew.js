@@ -160,7 +160,7 @@ class PoemNew extends React.Component {
           ...prevState.haiku,
           line1: `to ${n2[0]} or not`,
           line2: `to ${n2[0]}: only the ${n1[0]}`,
-          line3: 'would ask that question',
+          line3: 'would ask that question.',
           attr: '(with apologies to william shakespeare)'
         }
       })

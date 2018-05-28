@@ -2,18 +2,17 @@ import React from 'react';
 
 const Form = ({ handleChange, handleSubmit }) => {
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="email">email address</label>
         <input
-          type='email'
           className="input"
           name="email"
           placeholder="please enter your email address"
           onChange={handleChange}/>
       </div>
       <div className="field">
-        <label htmlFor="name">password</label>
+        <label htmlFor="password">password</label>
         <input
           type="password"
           className="input"

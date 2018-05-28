@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
-import Form from './Form';
 
 class AuthLogin extends React.Component {
   state ={};
@@ -13,7 +12,6 @@ class AuthLogin extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     axios.post('/api/login', this.state)
       .then(res => {
         Auth.setToken(res.data.token);
@@ -22,6 +20,7 @@ class AuthLogin extends React.Component {
       .then(()=>
         this.props.history.push('/createpoem'))
       .catch(()=> {
+        console.log(this.state);
         Flash.setMessage('denied', 'sorry, either your email address or password is wrong, or you are not registered.');
         this.props.history.replace('/login');
       });
@@ -31,10 +30,26 @@ class AuthLogin extends React.Component {
   render() {
     return (
 
-    <Form
-      handleSubmit={this.handleSubmit}
-      handChange={this.handleChange}
-    />
+      <form onSubmit={this.handleSubmit}>
+        <div className="field">
+          <label htmlFor="email">email address</label>
+          <input
+            className="input"
+            name="email"
+            placeholder="please enter your email address"
+            onChange={this.handleChange}/>
+        </div>
+        <div className="field">
+          <label htmlFor="password">password</label>
+          <input
+            type="password"
+            className="input"
+            name="password"
+            placeholder="please enter your password"
+            onChange={this.handleChange}/>
+        </div>
+        <button className ="button is-create">submit</button>
+      </form>
     );
   }
 }
