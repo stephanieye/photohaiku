@@ -26,10 +26,15 @@ h3 {
 button {
   font-family: 'Alegreya Sans', sans-serif;
   font-size: 25px;
+  margin-bottom: 10px;
 }
 
 section {
   padding: 0;
+}
+
+.reverse {
+  flex-direction: row-reverse;
 }
 
 .italics {

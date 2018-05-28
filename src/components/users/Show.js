@@ -9,26 +9,34 @@ class UsersShow extends React.Component {
 
   state = {
     user: null,
+    poems: [],
     errors: {},
-    poem: {},
-    poems: []
+    poem: {}
   }
 
 
   componentDidMount() {
     axios.get(`/api/users/${this.props.match.params.id}`)
-      .then(res => this.setState({user: res.data}));
-    axios.get('/api/poems')
       .then(res => {
-        this.setState({poems: res.data});
-        console.log(this.state.poems);
+        this.setState({user: res.data});
+        return this.state.user;
+      })
+      .then(() => {
+        axios.get('/api/poems')
+          .then(res => {
+            this.setState({poems: res.data});
+            console.log(this.state.poems);
+            return this.state.poems;
+          })
+          .then(this.render());
       });
   }
 
 
-  render() {
-    const {user} = this.state;
-    if(!user) return null;
+  render = () => {
+    const user = this.state.user;
+    const poems = this.state.poems;
+    if(!user || !poems) return null;
 
     return (
       <section>
@@ -41,7 +49,7 @@ class UsersShow extends React.Component {
         </div>
 
         <div className="columns is-multiline">
-          {this.state.poems.map(poem =>
+          {poems.map(poem =>
             ((poem.poet._id === user._id) && (poem.haiku[0] !== undefined)) &&
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
 

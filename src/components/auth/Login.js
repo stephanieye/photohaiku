@@ -7,7 +7,7 @@ class AuthLogin extends React.Component {
   state ={};
 
   handleChange = ({target: {name, value}}) => {
-    this.setState({ [name]: value });
+    this.setState({[name]: value});
   }
 
   handleSubmit = (e) => {
@@ -21,7 +21,7 @@ class AuthLogin extends React.Component {
       .then(()=>
         this.props.history.push('/createpoem'))
       .catch(()=> {
-        Flash.setMessage('denied', 'sorry, you made a mistake whilst logging in.');
+        Flash.setMessage('denied', 'sorry, either your email address or password is wrong, or you are not registered.');
         this.props.history.replace('/login');
       });
   }

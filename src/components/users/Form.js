@@ -8,7 +8,7 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
         <input
           className="input"
           name="username"
-          placeholder="please provide a username"
+          placeholder="username"
           value={user.username || ''}
           onChange={handleChange}/>
         {errors.username && <p className= 'subtitle is-5'>{errors.username}</p>}
@@ -18,7 +18,7 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
         <input
           className="input"
           name="email"
-          placeholder="please provide an email address"
+          placeholder="email address"
           value={user.email || ''}
           onChange={handleChange}/>
         {errors.email && <p className= 'subtitle is-5'>{errors.email}</p>}
@@ -29,7 +29,7 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
           type="password"
           className="input"
           name="password"
-          placeholder="please provide a password"
+          placeholder="password"
           onChange={handleChange}/>
         {errors.password && <p className= 'subtitle is-5'>{errors.password}</p>}
       </div>
@@ -39,7 +39,7 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
           type="password"
           className="input"
           name="passwordConfirmation"
-          placeholder="please confirm your password"
+          placeholder="password confirmation"
           onChange={handleChange}/>
         {errors.passwordConfirmation && <p className= 'subtitle is-5'>{errors.passwordConfirmation}</p>}
       </div>

@@ -5,7 +5,7 @@ import Flash from '../../lib/Flash';
 
 
 const SecureRoute = ({ component: Component, ...rest}) => {
-  !Auth.isAuthenticated() && Flash.setMessage('denied', 'sorry, please log in first.');
+  !Auth.isAuthenticated() && Flash.setMessage('denied', 'to explore photohaiku, please log in.');
 
   return (
     <Route {...rest} render={props =>

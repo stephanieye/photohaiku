@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Poem = require('../models/poem');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../config/environment');
 
@@ -20,7 +21,7 @@ function login(req, res, next) {
   User.findOne({ email: req.body.email })
     .then(user => {
       if(!user || !user.validatePassword(req.body.password)) {
-        return res.status(401).json({ message: 'Unauthorised' });
+        return res.status(401).json({ message: 'sorry, either your email address or password is incorrect.' });
       }
 
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' });
@@ -72,12 +73,20 @@ function deleteRoute(req, res, next){
     .findById(req.params.id)
     .exec()
     .then(user => {
+      Poem
+        .find({poet: user})
+        .then((poems) => {
+          poems.forEach((poem)=> {
+            return poem.remove();
+          });
+        });
       if(!user) return res.sendStatus(404);
       return user.remove();
     })
     .then(() => res.sendStatus(204))
     .catch(next);
 }
+
 
 
 module.exports = {

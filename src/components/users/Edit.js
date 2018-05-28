@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
 import Form from './Form';
+import Flash from '../../lib/Flash.js';
 
 class UsersEdit extends React.Component {
   state = {
@@ -38,7 +39,10 @@ class UsersEdit extends React.Component {
     axios.put(`/api/users/${id}`, this.state, {
       headers: {Authorization: `Bearer ${Auth.getToken()}`}
     })
-      .then(() => this.props.history.push(`/users/${id}`))
+      .then(() => {
+        Flash.setMessage('welcome', 'you have successfully updated your profile.');
+        this.props.history.push(`/users/${id}`);
+      })
       .catch((err)=> {
         console.log(err.response.data.errors);
         this.setState({errors: err.response.data.errors});
@@ -50,6 +54,7 @@ class UsersEdit extends React.Component {
     axios.delete(`/api/users/${this.props.match.params.id}`, {
       headers: {Authorization: `Bearer ${Auth.getToken()}`}
     })
+      .then(Flash.setMessage('denied', 'sayonara.'))
       .then(this.handleLogout);
   }
 
@@ -78,6 +83,7 @@ class UsersEdit extends React.Component {
           <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
 
           <button className="button is-destroy" onClick= {this.handleDelete}>delete your account</button>
+          <p className='subtitle is-6'>deleting your account also deletes all your photohaiku, forever</p>
         </div>
       </section>
     );

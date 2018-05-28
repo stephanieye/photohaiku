@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 import PoemNew from './components/poems/PoemNew';
 import PoemIndex from './components/poems/PoemIndex';
 import PoemShow from './components/poems/PoemShow';
+import PoemRandom from './components/poems/PoemRandom';
 
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
@@ -48,7 +49,7 @@ class App extends React.Component {
                 <SecureRoute exact path="/createpoem" component={PoemNew} />
                 <SecureRoute exact path="/poems/:id" component={PoemShow} />
                 <Route exact path="/poems" component={PoemIndex} />
-                <Route exact path="/" component={PoemIndex} />
+                <Route exact path="/" component={PoemRandom} />
                 {/* <Route component={NotFound} />  */}
               </Switch>
             </div>

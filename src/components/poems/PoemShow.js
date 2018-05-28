@@ -14,7 +14,6 @@ class PoemShow extends React.Component {
     axios.get(`/api/poems/${this.props.match.params.id}`)
       .then(res => {
         this.setState({poem: res.data});
-        // console.log(this.state.poem);
       });
   }
 

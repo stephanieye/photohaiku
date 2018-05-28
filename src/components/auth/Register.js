@@ -30,7 +30,6 @@ class AuthRegister extends React.Component {
       .then(()=>
         this.props.history.push('/createpoem'))
       .catch((err)=> {
-        console.log(err.response.data.errors);
         this.setState({errors: err.response.data.errors});
         this.props.history.replace('/register');
       });
