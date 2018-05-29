@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 class PoemIndex extends React.Component {
   state = {
-    poems: [],
-    poem: {}
+    poems: []
+    // poem: {}
   }
 
   componentDidMount() {
@@ -18,7 +18,8 @@ class PoemIndex extends React.Component {
   starred = (poem) => {
     console.log(Auth.getPayload().sub);
     if (!poem.stars.includes(Auth.getPayload().sub)) {
-      const newstar = poem.stars.push(Auth.getPayload().sub);
+      const newstar =
+      poem.stars.push(Auth.getPayload().sub);
       this.setState({...poem, [poem.stars]: newstar});
       console.log(poem);
       axios.put(`/api/poems/${poem._id}`, poem, {
@@ -27,7 +28,8 @@ class PoemIndex extends React.Component {
     } else {
       const index = poem.stars.indexOf(Auth.getPayload().sub);
       if (index > -1) {
-        const newstar = poem.stars.splice(index, 1);
+        const newstar =
+        poem.stars.splice(index, 1);
         this.setState({...poem, [poem.stars]: newstar});
         console.log(poem);
         axios.put(`/api/poems/${poem._id}`, poem, {
