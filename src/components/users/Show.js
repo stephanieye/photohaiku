@@ -50,6 +50,7 @@ class UsersShow extends React.Component {
         <div className='columns'>
           <div className='column'>
             <h2>{user.username}</h2>
+            <p className='title is-5'>{userpoems.length} photohaiku</p>
           </div>
           { Auth.isAuthenticated() && (Auth.getPayload().sub === user._id) && <div className='column has-text-right-desktop has-text-right-tablet'><Link to={`/users/${user._id}/edit`} className="button is-create">edit your profile</Link></div>}
         </div>
