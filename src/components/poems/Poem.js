@@ -14,8 +14,8 @@ const Poem = ({ poem, starred }) => {
         <div className='columns is-mobile is-gapless'>
           <div className='column'>
 
-            {Auth.isAuthenticated() && <h3><Link to={`/users/${poem.poet._id}`}>{poem.poet.username}</Link></h3>}
-            {!Auth.isAuthenticated() && <h3>a photohaiku poet</h3>}
+            {Auth.isAuthenticated() && <h5><Link to={`/users/${poem.poet._id}`}>{poem.poet.username}</Link></h5>}
+            {!Auth.isAuthenticated() && <h5>a photohaiku poet</h5>}
 
             <p className="subtitle is-6">{poem.createdAtRelative}</p>
           </div>
