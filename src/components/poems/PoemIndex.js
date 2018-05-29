@@ -21,11 +21,11 @@ class PoemIndex extends React.Component {
         <div className="columns is-multiline">
           {this.state.poems.map(poem =>
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
-              <Link to={`/poems/${poem._id}`}>
-                <Poem
-                  poem={poem}
-                />
-              </Link>
+
+              <Poem
+                poem={poem}
+              />
+
             </div>
           )}
         </div>

@@ -61,10 +61,8 @@ class PoemRandom extends React.Component {
         <section>
           <div className='columns is-variable is-8 reverse'>
             <div className='column'>
-              <Link to={`/poems/${poem._id}`}>
-                <Poem
-                  poem={poem}/>
-              </Link>  
+              <Poem
+                poem={poem}/>
 
             </div>
 

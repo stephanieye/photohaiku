@@ -65,10 +65,9 @@ class UsersShow extends React.Component {
         {userpoems.length !== 0 && <div className="columns is-multiline">
           {userpoems.map(poem =>
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
-              <Link to={`/poems/${poem._id}`}>
-                <Poem
-                  poem={poem} />
-              </Link>
+              <Poem
+                poem={poem}
+              />
             </div>
           )}
         </div>}

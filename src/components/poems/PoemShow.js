@@ -34,12 +34,10 @@ class PoemShow extends React.Component {
     if(!poem) return null;
     return (
       <section>
-        <Link to={`/users/${poem.poet._id}`}>
-          {poem.haiku &&
+        {poem.haiku &&
           <Poem
             poem={poem} />
-          }
-        </Link>
+        }
         <br />
         {Auth.getPayload().sub === poem.poet._id &&
           <div className='has-text-centered'>
