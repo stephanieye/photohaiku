@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Form from '../auth/Form';
 import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
@@ -54,17 +54,17 @@ class PoemRandom extends React.Component {
 
 
     render() {
-      // const poem = this.state.poem;
-      // if(!poem.poet) return null;
+      const poem = this.state.poem;
+      if(!poem.poet) return null;
 
       return (
         <section>
           <div className='columns is-variable is-8 reverse'>
-            {/* <div className='column'>
+            <div className='column'>
               <Poem
                 poem={poem}/>
 
-            </div> */}
+            </div>
 
             <div className='column'>
               {!Auth.isAuthenticated() && <Form
