@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: 'please provide a username', unique: 'this username is already registered with photohaiku', lowercase: true },
+  username: { type: String, required: 'please provide a username', lowercase: true },
   email: { type: String, required: 'please provide an email address', unique: 'this email address is already registered with photohaiku', lowercase: true },
   password: { type: String, required: 'please provide a password' }
 });
