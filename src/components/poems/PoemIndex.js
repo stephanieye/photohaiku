@@ -61,8 +61,8 @@ class PoemIndex extends React.Component {
                     {Auth.isAuthenticated() && <div className='column is-one-quarter has-text-right'>
                       <p>
 
-                        {(!poem.stars.includes(Auth.getPayload().sub)) && <span onClick={this.starred}>&#9734;</span>}
-                        {(poem.stars.includes(Auth.getPayload().sub)) && <span onClick={this.starred}>&#9733;</span>}
+                        {(!poem.stars.includes(Auth.getPayload().sub)) && <span onClick={()=> this.starred(poem)}>&#9734;</span>}
+                        {(poem.stars.includes(Auth.getPayload().sub)) && <span onClick={()=>this.starred(poem)}>&#9733;</span>}
 
                       </p>
 
