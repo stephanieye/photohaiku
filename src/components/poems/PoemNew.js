@@ -111,7 +111,7 @@ class PoemNew extends React.Component {
   makeadjectivesarrays0 = (poem) => {
     var string = poem.nouns[0];
     var stringplus = string.replace(/\s+/g, '+');
-    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=20`)
+    axios.get(`https://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=20`)
       .then(res => {
         this.setState({adjectivescollection: res.data});
         this.state.adjectivescollection.forEach((adj) => {
@@ -131,7 +131,7 @@ class PoemNew extends React.Component {
   makeadjectivesarrays1 = (poem) => {
     var string = poem.nouns[1];
     var stringplus = string.replace(/\s+/g, '+');
-    axios.get(`http://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=10`)
+    axios.get(`https://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=10`)
       .then(res => {
         this.setState({adjectivescollection: res.data});
         this.state.adjectivescollection.forEach((adj) => {
