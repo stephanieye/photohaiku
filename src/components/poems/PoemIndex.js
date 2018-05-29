@@ -24,6 +24,16 @@ class PoemIndex extends React.Component {
       axios.put(`/api/poems/${poem._id}`, poem, {
         headers: {Authorization: `Bearer ${Auth.getToken()}`}
       });
+    } else {
+      const index = poem.stars.indexOf(Auth.getPayload().sub);
+      if (index > -1) {
+        const newstar = poem.stars.splice(index, 1);
+        this.setState({...poem, [poem.stars]: newstar});
+        console.log(poem);
+        axios.put(`/api/poems/${poem._id}`, poem, {
+          headers: {Authorization: `Bearer ${Auth.getToken()}`}
+        });
+      }
     }
   }
 
