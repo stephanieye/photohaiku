@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
 const vision = require('@google-cloud/vision');
-const client = new vision.ImageAnnotatorClient(
-  {keyFilename: './photohaiku-95c6f32c0f45.json'}
-);
-
+const client = new vision.ImageAnnotatorClient({
+  credentials: {
+    client_email: 'photohaiku@photohaiku-205113.iam.gserviceaccount.com',
+    private_key: process.env.VISION_PRIVATE_KEY.replace(/\\n/g, '\n')
+  }
+});
 
 const haikuSchema = new mongoose.Schema({
   line1: { type: String },
