@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Poem from './Poem.js';
 import Auth from '../../lib/Auth';
+import { Link } from 'react-router-dom';
 
 class PoemIndex extends React.Component {
   state = {
@@ -32,7 +33,7 @@ class PoemIndex extends React.Component {
         <div className="columns is-multiline">
           {this.state.poems.map(poem =>
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
-
+              <p className='has-text-right'><Link to={`/poems/${poem._id}`}>&#8226;&#8226;&#8226;</Link></p>
               <Poem
                 poem={poem}
                 starred={() => this.starred(poem)}

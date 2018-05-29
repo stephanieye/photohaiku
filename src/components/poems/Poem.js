@@ -17,13 +17,12 @@ const Poem = ({ poem, starred }) => {
             <p className="subtitle is-6">{poem.createdAtRelative}</p>
           </div>
           {Auth.isAuthenticated() && <div className='column is-one-quarter has-text-right'>
-            <p><Link to={`/poems/${poem._id}`}><span className='dotdotdot'>&#8226;&#8226;&#8226;</span></Link>
+            <p>
 
               {(!poem.stars.includes(Auth.getPayload().sub)) && <span onClick={starred}>&#9734;</span>}
               {(poem.stars.includes(Auth.getPayload().sub)) && <span onClick={starred}>&#9733;</span>}
 
             </p>
-
 
             <p className='subtitle is-6'>{poem.stars.length} stars</p>
           </div>}

@@ -77,6 +77,7 @@ class UsersShow extends React.Component {
         {userpoems.length !== 0 && <div className="columns is-multiline">
           {userpoems.map(poem =>
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
+              <p className='has-text-right dotdotdot'><Link to={`/poems/${poem._id}`}>&#8226;&#8226;&#8226;</Link></p>
               <Poem
                 poem={poem}
                 starred={() => this.starred(poem)}
