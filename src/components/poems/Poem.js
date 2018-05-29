@@ -13,7 +13,10 @@ const Poem = ({ poem, starred }) => {
       <div className="card-content">
         <div className='columns is-mobile is-gapless'>
           <div className='column'>
-            <h3><Link to={`/users/${poem.poet._id}`}>{poem.poet.username}</Link></h3>
+
+            {Auth.isAuthenticated() && <h3><Link to={`/users/${poem.poet._id}`}>{poem.poet.username}</Link></h3>}
+            {!Auth.isAuthenticated() && <h3>a photohaiku poet</h3>}
+
             <p className="subtitle is-6">{poem.createdAtRelative}</p>
           </div>
           {Auth.isAuthenticated() && <div className='column is-one-quarter has-text-right'>
