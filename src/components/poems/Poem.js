@@ -30,12 +30,12 @@ const Poem = ({ poem, starred }) => {
             <p className='subtitle is-6'>{poem.stars.length} stars</p>
           </div>}
         </div>
-        <div>
+        {poem.haiku[0] && <div>
           <p> {poem.haiku[0].line1} </p>
           <p> {poem.haiku[0].line2} </p>
           <p> {poem.haiku[0].line3} </p>
           <p className='subtitle is-6'> {poem.haiku[0].attr} </p>
-        </div>
+        </div>}
       </div>
     </div>
   );

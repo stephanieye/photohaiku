@@ -365,7 +365,7 @@ class PoemNew extends React.Component {
           <p>performs poetic labours:</p>
           <p>thanks for your patience.</p>
           <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
-          <img className='loading' src='images/loading.gif' />
+          <img className='loading' src='http://stephanieye.com/images/loading.gif' />
         </div>
 
         <div className='poemform has-text-centered'>
