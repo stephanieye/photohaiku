@@ -161,8 +161,8 @@ class PoemNew extends React.Component {
 
 
   makehaiku = () => {
-    // const random = 10;
-    const random = Math.floor(Math.random()*11);
+    // const random = 13;
+    const random = Math.floor(Math.random()*15);
     const n1 = this.state.noun1sarray;
     const n2 = this.state.noun2sarray;
     const n3 = this.state.noun3sarray;
@@ -272,6 +272,46 @@ class PoemNew extends React.Component {
           line1: 'let us not speak of',
           line2: `the ${a2[0]} ${n2[0]}; instead`,
           line3: `mind your ${n3[0]}.`
+        }
+      })
+      );
+    } else if (random === 10) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: 'the shadow of the',
+          line2: `${n3[0]} is sufficient`,
+          line3: `for your ${a1[0]} ${n2[0]}.`
+        }
+      })
+      );
+    } else if (random === 11) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `when the ${n1[0]} hits the`,
+          line2: `${n2[0]}, all we can do is`,
+          line3: `keep calm and ${n2[1]}.`
+        }
+      })
+      );
+    } else if (random === 12) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `o ${a2[0]} ${n2[0]}!`,
+          line2: `your body is ${n3[0]},`,
+          line3: `but your soul is ${n1[0]}.`
+        }
+      })
+      );
+    } else if (random === 13) {
+      this.setState(prevState => ({
+        haiku: {
+          ...prevState.haiku,
+          line1: `the moment is ${a1[0]}:`,
+          line2: `put away your ${n3[0]};`,
+          line3: `remember the ${n1[0]}.`
         }
       })
       );

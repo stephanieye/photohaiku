@@ -40,9 +40,9 @@ User
           haiku: [{line1: 'do not weep, ocean -', line2: 'horizons and waves themselves', line3: 'eventually part.', attr: '(with apologies to kobayashi issa)'}]
         }
         ,
-        {image: 'http://stephslye.github.io/images/cat.jpg',
+        {image: 'http://stephslye.github.io/images/cats.jpg',
           poet: users[0],
-          haiku: [{line1: 'behold: the window', line2: 'dreaming that it is the cat:', line3: "isn't that female?", attr: ''}]
+          haiku: [{line1: 'you love dog breed group...', line2: 'but not as much as i love', line3: 'siamese kitten!', attr: ''}]
         }
         ,
         {image: 'http://stephslye.github.io/images/london.jpg',
