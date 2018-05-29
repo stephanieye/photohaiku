@@ -1,11 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Poem from './Poem.js';
+import Auth from '../../lib/Auth';
 
 class PoemIndex extends React.Component {
   state = {
-    poems: []
+    poems: [],
+    poem: {}
   }
 
   componentDidMount() {
@@ -13,7 +14,17 @@ class PoemIndex extends React.Component {
       .then(res => this.setState({poems: res.data}));
   }
 
-
+  starred = (poem) => {
+    console.log(Auth.getPayload().sub);
+    if (!poem.stars.includes(Auth.getPayload().sub)) {
+      const newstar = poem.stars.push(Auth.getPayload().sub);
+      this.setState({...poem, [poem.stars]: newstar});
+      console.log(poem);
+      axios.put(`/api/poems/${poem._id}`, poem, {
+        headers: {Authorization: `Bearer ${Auth.getToken()}`}
+      });
+    }
+  }
 
   render() {
     return (
@@ -24,6 +35,7 @@ class PoemIndex extends React.Component {
 
               <Poem
                 poem={poem}
+                starred={() => this.starred(poem)}
               />
 
             </div>

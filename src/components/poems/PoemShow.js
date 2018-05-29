@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Auth from '../../lib/Auth';
-import { Link } from 'react-router-dom';
 import Poem from './Poem';
 
 
@@ -18,6 +17,17 @@ class PoemShow extends React.Component {
       });
   }
 
+  starred = (poem) => {
+    console.log(Auth.getPayload().sub);
+    if (!poem.stars.includes(Auth.getPayload().sub)) {
+      const newstar = poem.stars.push(Auth.getPayload().sub);
+      this.setState({...poem, [poem.stars]: newstar});
+      console.log(poem);
+      axios.put(`/api/poems/${poem._id}`, this.state.poem, {
+        headers: {Authorization: `Bearer ${Auth.getToken()}`}
+      });
+    }
+  }
 
   handleDelete = () => {
     axios.delete(`/api/poems/${this.props.match.params.id}`, {
@@ -36,7 +46,9 @@ class PoemShow extends React.Component {
       <section>
         {poem.haiku &&
           <Poem
-            poem={poem} />
+            poem={poem}
+            starred={() => this.starred(poem)}
+          />
         }
         <br />
         {Auth.getPayload().sub === poem.poet._id &&

@@ -38,6 +38,18 @@ class UsersShow extends React.Component {
     console.log(this.state.userpoems);
   }
 
+  starred = (poem) => {
+    console.log(Auth.getPayload().sub);
+    if (!poem.stars.includes(Auth.getPayload().sub)) {
+      const newstar = poem.stars.push(Auth.getPayload().sub);
+      this.setState({...poem, [poem.stars]: newstar});
+      console.log(poem);
+      axios.put(`/api/poems/${poem._id}`, poem, {
+        headers: {Authorization: `Bearer ${Auth.getToken()}`}
+      });
+    }
+  }
+
 
   render() {
     const user = this.state.user;
@@ -67,6 +79,8 @@ class UsersShow extends React.Component {
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
               <Poem
                 poem={poem}
+                starred={() => this.starred(poem)}
+
               />
             </div>
           )}

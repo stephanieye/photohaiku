@@ -17,6 +17,7 @@ const haikuSchema = new mongoose.Schema({
 const poemSchema = new mongoose.Schema({
   image: { type: String, required: 'This field is required!' },
   nouns: [{ type: String }],
+  stars: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   poet: { type: mongoose.Schema.ObjectId, ref: 'User' },
   haiku: [haikuSchema]
 }, {

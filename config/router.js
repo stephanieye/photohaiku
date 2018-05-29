@@ -26,6 +26,7 @@ router.route('/poems')
 
 router.route('/poems/:id')
   .get(poems.show)
+  .put(poems.update)
   .delete(secureRoute, poems.delete);
 
 router.post('/poems/:id/haiku', secureRoute, poems.haikuCreate);

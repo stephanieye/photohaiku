@@ -30,6 +30,18 @@ function createRoute(req, res, next){
     .catch(next);
 }
 
+function updateRoute(req, res, next){
+  Poem
+    .findById(req.params.id)
+    .then(poem => {
+      if(!poem) return res.sendStatus(404);
+      return Object.assign(poem, req.body);
+    })
+    .then(poem => poem.save())
+    .then(poem => res.status(201).json(poem))
+    .catch(next);
+}
+
 function deleteRoute(req, res, next){
   Poem
     .findById(req.params.id)
@@ -58,6 +70,7 @@ module.exports = {
   index: indexRoute,
   show: showRoute,
   create: createRoute,
+  update: updateRoute,
   delete: deleteRoute,
   haikuCreate: poemHaikuCreate
 };
