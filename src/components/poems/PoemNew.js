@@ -124,6 +124,11 @@ class PoemNew extends React.Component {
           }
         }
         );
+      })
+      .catch(()=> {
+        Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again.');
+        this.handleRefresh();
+        this.props.history.replace('/createpoem');
       });
   }
 
@@ -156,7 +161,12 @@ class PoemNew extends React.Component {
         console.log('adj3', a.adj3sarray);
         return a.adj3sarray;
       })
-      .then(() => this.makehaiku());
+      .then(() => this.makehaiku())
+      .catch(()=> {
+        Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again.');
+        this.handleRefresh();
+        this.props.history.replace('/createpoem');
+      });
   }
 
 

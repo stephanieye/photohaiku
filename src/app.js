@@ -13,6 +13,10 @@ import PoemIndex from './components/poems/PoemIndex';
 import PoemShow from './components/poems/PoemShow';
 import PoemRandom from './components/poems/PoemRandom';
 
+import TagIndex from './components/tags/TagIndex';
+import TagShow from './components/tags/TagShow';
+
+
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
 import UsersEdit from './components/users/Edit';
@@ -49,6 +53,8 @@ class App extends React.Component {
                 <SecureRoute exact path="/createpoem" component={PoemNew} />
                 <SecureRoute exact path="/poems/:id" component={PoemShow} />
                 <SecureRoute exact path="/poems" component={PoemIndex} />
+                <SecureRoute exact path="/tags/:noun" component={TagShow} />
+                <SecureRoute exact path="/tags" component={TagIndex} />
                 <Route exact path="/" component={PoemRandom} />
                 <Route component={NotFound} />
               </Switch>

@@ -40,6 +40,16 @@ a {
   font-style: italic;
 }
 
+.hashtag {
+  font-family: 'IM Fell DW Pica', serif;
+  margin-right: 20px;
+  color: $grey;
+}
+
+.grey {
+  color: $grey;
+}
+
 @media only screen and (max-width: 768px) {
 
   body {

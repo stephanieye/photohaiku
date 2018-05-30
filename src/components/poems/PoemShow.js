@@ -7,7 +7,10 @@ import Poem from './Poem';
 class PoemShow extends React.Component {
   state = {
     poem: null,
-    errors: {}
+    errors: {},
+    tags: [],
+    tagnounarray: [],
+    newtag: {}
   }
 
   componentDidMount() {
@@ -49,6 +52,27 @@ class PoemShow extends React.Component {
       .then(() => this.props.history.push(`/users/${Auth.getPayload().sub}`));
   }
 
+  handleHashtag = (tag) => {
+    axios.get('/api/tags')
+      .then(res => {
+        this.setState({tags: res.data});
+        this.state.tags.forEach(tag => this.state.tagnounarray.push(tag.noun));
+        // console.log(this.state.tagnounarray);
+        if (this.state.tagnounarray.includes(tag)) {
+          this.props.history.replace(`/tags/${tag}`);
+        } else {
+          this.setState({newtag: {noun: tag}});
+          console.log(this.state.newtag);
+          axios.post('/api/tags', this.state.newtag, {
+            headers: {Authorization: `Bearer ${Auth.getToken()}`}
+          })
+            .then(this.props.history.replace(`/tags/${tag}`));
+        }
+      })
+      .catch(()=> this.props.history.replace('/404')
+      );
+  }
+
 
 
   render() {
@@ -57,6 +81,28 @@ class PoemShow extends React.Component {
     if(!poem) return null;
     return (
       <section>
+        <div className='tagbar'>
+          <p>
+            <span className='hashtag' onClick={() => {
+              const tag = poem.nouns[0];
+              this.handleHashtag(tag);
+            }}>
+              #{poem.nouns[0]}
+            </span>
+            <span className='hashtag' onClick={() => {
+              const tag = poem.nouns[1];
+              this.handleHashtag(tag);
+            }}>
+              #{poem.nouns[1]}
+            </span>
+            <span className='hashtag' onClick={() => {
+              const tag = poem.nouns[2];
+              this.handleHashtag(tag);
+            }}>
+              #{poem.nouns[2]}
+            </span>
+          </p>
+        </div>
         {poem.haiku &&
           <Poem
             poem={poem}

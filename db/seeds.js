@@ -7,10 +7,12 @@ mongoose.connect(dbURI);
 
 const User = require('../models/user');
 const Poem = require('../models/poem');
+const Tag = require('../models/tag');
 
 
 User.collection.drop();
 Poem.collection.drop();
+Tag.collection.drop();
 
 
 User

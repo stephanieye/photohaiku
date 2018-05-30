@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const users = require('../controllers/auth');
 const poems = require('../controllers/poem');
+const tags = require('../controllers/tag');
 const auth = require('../controllers/auth');
 const secureRoute = require('../lib/secureRoute');
 
@@ -30,5 +31,16 @@ router.route('/poems/:id')
   .delete(secureRoute, poems.delete);
 
 router.post('/poems/:id/haiku', secureRoute, poems.haikuCreate);
+
+
+router.route('/tags')
+  .get(tags.index)
+  .post(tags.create);
+
+router.route('/tags/:noun')
+  .get(tags.show);
+  // .put(poems.update)
+  // .delete(secureRoute, poems.delete);
+
 
 module.exports = router;

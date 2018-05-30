@@ -35,6 +35,20 @@ footer {
   width: 50px;
 }
 
+.tagcloud {
+  padding: 0 10px 40px;
+  a {
+    color: $grey;
+  }
+}
+
+.tagbar {
+  max-width: 500px;
+  text-align: center;
+  padding: 0 10px 10px;;
+  margin: 0 auto;
+}
+
 .card {
   margin: 0 auto;
   min-height: 640px;
