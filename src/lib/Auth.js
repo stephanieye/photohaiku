@@ -27,9 +27,9 @@ class Auth {
     return now < payload.exp;
   }
 
-  static isCurrentUser(user) {
-    return this.isAuthenticated() && user._id === this.getPayload().sub;
-  }
+  // static isCurrentUser(user) {
+  //   return this.isAuthenticated() && user._id === this.getPayload().sub;
+  // }
 
 }
 

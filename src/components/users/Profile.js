@@ -92,7 +92,7 @@ class UsersProfile extends React.Component {
             <p className='title is-5'>{userpoems.length} photohaiku</p>
           </div>
           <div className='column has-text-right-desktop has-text-right-tablet'>
-            <Link to={`/users/${user._id}/edit`} className="button is-create">edit your profile</Link><br />
+            <Link to={`/users/${user._id}/edit`} className="button is-create">update your account</Link><br />
             <a onClick={this.handleLogout} className="button is-destroy">logout</a>
           </div>
         </div>

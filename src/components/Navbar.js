@@ -40,10 +40,10 @@ class Navbar extends React.Component {
 
           <div className={`navbar-menu ${this.state.navIsOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
-              <Link to='/createpoem' className="navbar-item"><h3>create a photohaiku</h3></Link>
+              <Link to='/createpoem' className="navbar-item"><h3>create photohaiku</h3></Link>
               {!Auth.isAuthenticated() && <Link to="/register" className="navbar-item"><h3>register</h3></Link>}
               {Auth.isAuthenticated() && <Link to="/poems" className="navbar-item"><h3>all photohaiku</h3></Link>}
-              {Auth.isAuthenticated() && <Link to="/profile" className="navbar-item"><h3>your profile</h3></Link>}
+              {Auth.isAuthenticated() && <Link to="/profile" className="navbar-item"><h3>your photohaiku</h3></Link>}
               {!Auth.isAuthenticated() && <Link to="/login" className="navbar-item"><h3>login</h3></Link>}
               {/* {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item"><h3>logout</h3></a>} */}
 
