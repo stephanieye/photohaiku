@@ -7,8 +7,9 @@ footer {
   margin-top: 80px;
 }
 
-input {
+.field {
   margin-bottom: 20px;
+  max-width: 500px;
 }
 
 .definitions {
@@ -36,7 +37,7 @@ input {
 
 .card {
   margin: 0 auto;
-  min-height: 620px;
+  min-height: 640px;
   max-width: 500px;
 }
 
