@@ -22,7 +22,7 @@ import AuthRegister from './components/auth/Register';
 
 import SecureRoute from './components/common/SecureRoute';
 import FlashMessage from './components/common/FlashMessage';
-// import NotFound from './components/common/NotFound';
+import NotFound from './components/common/NotFound';
 
 
 
@@ -48,9 +48,9 @@ class App extends React.Component {
                 <Route exact path="/login" component={AuthLogin} />
                 <SecureRoute exact path="/createpoem" component={PoemNew} />
                 <SecureRoute exact path="/poems/:id" component={PoemShow} />
-                <Route exact path="/poems" component={PoemIndex} />
+                <SecureRoute exact path="/poems" component={PoemIndex} />
                 <Route exact path="/" component={PoemRandom} />
-                {/* <Route component={NotFound} />  */}
+                <Route component={NotFound} />
               </Switch>
             </div>
           </section>
