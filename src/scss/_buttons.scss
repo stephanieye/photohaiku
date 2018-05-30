@@ -1,0 +1,27 @@
+button {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.dotdotdot {
+  line-height: 15px;
+}
+
+.is-create {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  &:hover {
+    color: white;
+    background-color: $grey;
+  }
+}
+
+.is-destroy {
+  color: white;
+  background-color: black;
+  &:hover {
+    background-color: red;
+  }
+}

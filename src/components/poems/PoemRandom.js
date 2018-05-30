@@ -59,26 +59,21 @@ class PoemRandom extends React.Component {
 
       return (
         <section>
-          <div className='columns is-variable is-8 reverse'>
-            <div className='column'>
-              <Poem
-                poem={poem}/>
+          <div className='columns is-variable is-8'>
 
-            </div>
 
             <div className='column'>
               {!Auth.isAuthenticated() && <Form
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit} />}
-              <div className='definitions columns is-multiline'>
-                <div className='column is-half-tablet is-one-third-widescreen'>
 
+              <div className='definitions columns is-multiline'>
+                <div className='column is-half-tablet is-one-third-widescreen home'>
                   <h4>photo</h4>
                   <p className='subtitle is-5'>/ˈfəʊtəʊ/<br />
                 a picture made using a camera.</p>
-
                 </div>
-                <div className='column is-half-tablet is-one-third-widescreen'>
+                <div className='column is-half-tablet is-one-third-widescreen home'>
                   <h4>haiku</h4>
                   <p className='subtitle is-5'>/ˈhʌɪkuː/<br />
                 a japanese poem of 17 syllables, in three lines of five, seven, and five.</p>
@@ -89,6 +84,11 @@ class PoemRandom extends React.Component {
                 an original haiku based on a submitted photo, created by the photohaiku robot using image content analysis, lexicon-based algorithms, and the poetic muse.</p>
                 </div>
               </div>
+
+            </div>
+            <div className='column home'>
+              <Poem
+                poem={poem}/>
             </div>
           </div>
           <footer className='has-text-centered'><p className='subtitle is-6'>designed by <a href='http://stephanieye.com' target='new'>stephanie ye</a> <span className='subtitle is-7'>&#9733;</span> london 2018</p></footer>

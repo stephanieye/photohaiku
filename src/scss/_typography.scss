@@ -1,0 +1,53 @@
+body {
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: 25px;
+}
+
+h1 {
+  font-family: 'IM Fell DW Pica', serif;
+  font-size: 50px;
+}
+
+h2 {
+  font-family: 'IM Fell DW Pica', serif;
+  font-size: 40px;
+}
+
+h3 {
+  font-family: 'IM Fell DW Pica', serif;
+  font-size: 30px;
+}
+
+h4 {
+  font-family: 'IM Fell DW Pica', serif;
+  font-size: 25px;
+}
+
+h5 {
+  font-family: 'IM Fell DW Pica', serif;
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+    &:hover {
+    color: $grey;
+  }
+}
+
+.italics {
+  font-style: italic;
+}
+
+@media only screen and (max-width: 768px) {
+
+  body {
+    font-size: 20px;
+  }
+
+
+  h3 {
+    font-size: 25px;
+  }
+}

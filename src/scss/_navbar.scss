@@ -1,0 +1,24 @@
+.navbar-brand {
+  a {
+    font-style: italic;
+    &:hover {
+      color: inherit;
+      text-shadow: 2px 2px $grey;
+    }
+  }
+}
+
+.navbar-end {
+  a {
+  &:hover {
+    color: white;
+    background-color: $grey;
+  }
+}
+}
+
+.navbar-burger {
+  &:hover {
+    background-color: $grey;
+  }
+}
