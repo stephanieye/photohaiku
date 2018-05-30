@@ -14,7 +14,8 @@ const Poem = ({ poem, starred }) => {
         <div className='columns is-mobile is-gapless'>
           <div className='column'>
 
-            {Auth.isAuthenticated() && <h5><Link to={`/users/${poem.poet._id}`}>{poem.poet.username}</Link></h5>}
+            {(Auth.isAuthenticated() && poem.poet._id === Auth.getPayload().sub) && <h5><Link to='/profile'>{poem.poet.username} (you)</Link></h5>}
+            {(Auth.isAuthenticated() && poem.poet._id !== Auth.getPayload().sub) && <h5><Link to={`/users/${poem.poet._id}`}>{poem.poet.username}</Link></h5>}
             {!Auth.isAuthenticated() && <h5>a photohaiku poet</h5>}
 
             <p className="subtitle is-6">{poem.createdAtRelative}</p>

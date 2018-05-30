@@ -41,7 +41,7 @@ class UsersEdit extends React.Component {
     })
       .then(() => {
         Flash.setMessage('welcome', 'you have successfully updated your profile.');
-        this.props.history.push(`/users/${id}`);
+        this.props.history.push('/profile');
       })
       .catch((err)=> {
         console.log(err.response.data.errors);

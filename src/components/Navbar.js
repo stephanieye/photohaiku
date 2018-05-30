@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Auth from '../lib/Auth';
-import Flash from '../lib/Flash';
+// import Flash from '../lib/Flash';
 
 class Navbar extends React.Component {
 
@@ -17,11 +17,11 @@ class Navbar extends React.Component {
     this.state.navIsOpen && this.setState({ navIsOpen: false });
   }
 
-  handleLogout = () => {
-    Auth.logout();
-    Flash.setMessage('welcome', 'you have successfully logged out.');
-    this.props.history.push('/');
-  }
+  // handleLogout = () => {
+  //   Auth.logout();
+  //   Flash.setMessage('welcome', 'you have successfully logged out.');
+  //   this.props.history.push('/');
+  // }
 
   render() {
     return (
@@ -40,13 +40,12 @@ class Navbar extends React.Component {
 
           <div className={`navbar-menu ${this.state.navIsOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
-
               <Link to='/createpoem' className="navbar-item"><h3>create a photohaiku</h3></Link>
               {!Auth.isAuthenticated() && <Link to="/register" className="navbar-item"><h3>register</h3></Link>}
               {Auth.isAuthenticated() && <Link to="/poems" className="navbar-item"><h3>all photohaiku</h3></Link>}
-              {Auth.isAuthenticated() && <Link to={`/users/${Auth.getPayload().sub}`} className="navbar-item"><h3>your profile</h3></Link>}
+              {Auth.isAuthenticated() && <Link to="/profile" className="navbar-item"><h3>your profile</h3></Link>}
               {!Auth.isAuthenticated() && <Link to="/login" className="navbar-item"><h3>login</h3></Link>}
-              {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item"><h3>logout</h3></a>}
+              {/* {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item"><h3>logout</h3></a>} */}
 
             </div>
           </div>

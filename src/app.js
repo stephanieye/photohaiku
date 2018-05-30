@@ -20,6 +20,7 @@ import TagShow from './components/tags/TagShow';
 import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
 import UsersEdit from './components/users/Edit';
+import UsersProfile from './components/users/Profile';
 
 import AuthLogin from './components/auth/Login';
 import AuthRegister from './components/auth/Register';
@@ -50,6 +51,7 @@ class App extends React.Component {
                 <Route exact path="/users" component={UsersIndex} />
                 <Route exact path="/register" component={AuthRegister} />
                 <Route exact path="/login" component={AuthLogin} />
+                <SecureRoute exact path="/profile" component={UsersProfile} />
                 <SecureRoute exact path="/createpoem" component={PoemNew} />
                 <SecureRoute exact path="/poems/:id" component={PoemShow} />
                 <SecureRoute exact path="/poems" component={PoemIndex} />

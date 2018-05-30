@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import Auth from '../../lib/Auth';
 import _ from 'lodash';
 import Poem from '../poems/Poem';
+import Flash from '../../lib/Flash';
 
 
 
-class UsersShow extends React.Component {
+class UsersProfile extends React.Component {
 
   state = {
     user: null,
@@ -19,7 +20,7 @@ class UsersShow extends React.Component {
 
 
   componentDidMount() {
-    axios.get(`/api/users/${this.props.match.params.id}`)
+    axios.get(`/api/users/${Auth.getPayload().sub}`)
       .then(res => {
         this.setState({user: res.data});
         this.getPoems();
@@ -70,6 +71,12 @@ class UsersShow extends React.Component {
     }
   }
 
+  handleLogout = () => {
+    Auth.logout();
+    Flash.setMessage('welcome', 'you have successfully logged out.');
+    this.props.history.push('/');
+  }
+
 
   render() {
     const user = this.state.user;
@@ -83,6 +90,10 @@ class UsersShow extends React.Component {
           <div className='column'>
             <h2>{user.username}</h2>
             <p className='title is-5'>{userpoems.length} photohaiku</p>
+          </div>
+          <div className='column has-text-right-desktop has-text-right-tablet'>
+            <Link to={`/users/${user._id}/edit`} className="button is-create">edit your profile</Link><br />
+            <a onClick={this.handleLogout} className="button is-destroy">logout</a>
           </div>
         </div>
         {userpoems.length === 0 && <div>
@@ -110,4 +121,4 @@ class UsersShow extends React.Component {
   }
 }
 
-export default UsersShow;
+export default UsersProfile;
