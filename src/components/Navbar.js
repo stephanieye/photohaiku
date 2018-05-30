@@ -28,12 +28,9 @@ class Navbar extends React.Component {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className='container'>
           <div className="navbar-brand">
-            {Auth.isAuthenticated() && <Link className="navbar-item" to="/poems">
+            <Link className="navbar-item" to="/">
               <h1>photohaiku</h1>
-            </Link>}
-            {!Auth.isAuthenticated() && <Link className="navbar-item" to="/">
-              <h1>photohaiku</h1>
-            </Link>}
+            </Link>
             <a role="button" className={`navbar-burger ${this.state.navIsOpen? 'is-active' : ''}`} onClick={this.handleToggle}>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
@@ -46,6 +43,7 @@ class Navbar extends React.Component {
 
               <Link to='/createpoem' className="navbar-item"><h3>create a photohaiku</h3></Link>
               {!Auth.isAuthenticated() && <Link to="/register" className="navbar-item"><h3>register</h3></Link>}
+              {Auth.isAuthenticated() && <Link to="/poems" className="navbar-item"><h3>all photohaiku</h3></Link>}
               {Auth.isAuthenticated() && <Link to={`/users/${Auth.getPayload().sub}`} className="navbar-item"><h3>your profile</h3></Link>}
               {!Auth.isAuthenticated() && <Link to="/login" className="navbar-item"><h3>login</h3></Link>}
               {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item"><h3>logout</h3></a>}

@@ -30,6 +30,9 @@ class UsersShow extends React.Component {
             this.setState({poems: res.data});
             this.userpoems();
           });
+      })
+      .catch(()=> {
+        this.props.history.replace('/404');
       });
   }
 
