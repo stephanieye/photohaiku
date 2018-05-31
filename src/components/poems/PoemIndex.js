@@ -31,49 +31,30 @@ class PoemIndex extends React.Component {
         this.state.tags.forEach(tag => {
           this.state.tagnounarray.push(tag.noun);
         });
-        // console.log(this.state.poems);
-        // console.log(this.state.tagnounarray);
         this.state.poems.forEach(poem => {
-          if (!this.state.tagnounarray.includes(poem.nouns[0])) {
-            this.state.tagnounarray.push(poem.nouns[0]);
-            const tag = poem.nouns[0];
-            this.createTags(tag);
-          } else {
-            this.state.tagnounarray.push(poem.nouns[0]);
-          }
+          poem.nouns.forEach(noun => {
+            if (!this.state.tagnounarray.includes(noun)) {
+              this.state.tagnounarray.push(noun);
+              const tag = noun;
+              this.createTags(tag);
+            } else {
+              this.state.tagnounarray.push(noun);
+            }
+          });
+          this.handleFrequency();
         });
-        this.state.poems.forEach(poem => {
-          if (!this.state.tagnounarray.includes(poem.nouns[1])) {
-            this.state.tagnounarray.push(poem.nouns[1]);
-            const tag = poem.nouns[1];
-            this.createTags(tag);
-          } else {
-            this.state.tagnounarray.push(poem.nouns[1]);
-          }
-        });
-        this.state.poems.forEach(poem => {
-          if (!this.state.tagnounarray.includes(poem.nouns[2])) {
-            this.state.tagnounarray.push(poem.nouns[2]);
-            const tag = poem.nouns[2];
-            this.createTags(tag);
-          } else {
-            this.state.tagnounarray.push(poem.nouns[2]);
-          }
-        });
-        this.handleFrequency();
       });
   }
 
   createTags = (tag) => {
     this.setState({newtag: {noun: tag}});
-    // console.log(this.state.newtag);
     axios.post('/api/tags', this.state.newtag, {
       headers: {Authorization: `Bearer ${Auth.getToken()}`}
     });
-    axios.get('/api/tags')
-      .then(res => {
-        this.setState({tags: res.data});
-      });
+    // axios.get('/api/tags')
+    //   .then(res => {
+    //     this.setState({tags: res.data});
+    //   });
   }
 
   handleFrequency = () => {
@@ -152,11 +133,7 @@ class PoemIndex extends React.Component {
 
             {Object.keys(this.state.frequencyArray).map(x =>
               <Link to={`/tags/${x}`} key={x}>
-                {this.state.frequencyArray[x] === 1 &&
-                <span className="hashtag violet">
-                #{x}
-                </span>}
-                {this.state.frequencyArray[x] === 2 &&
+                {this.state.frequencyArray[x] < 3 &&
                 <span className="hashtag indigo">
                 #{x}
                 </span>}
