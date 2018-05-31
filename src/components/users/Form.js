@@ -1,4 +1,5 @@
 import React from 'react';
+import Auth from '../../lib/Auth';
 
 const Form = ({ handleChange, handleSubmit, user, errors }) => {
   return (
@@ -48,7 +49,9 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
           onChange={handleChange}/>
 
       </div>
-      <button className ="button is-create">submit</button>
+      {!Auth.isAuthenticated() && <button className ="button is-create">register</button>}
+      {Auth.isAuthenticated() && <button className ="button is-create">update</button>}
+
     </form>
   );
 };
