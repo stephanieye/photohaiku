@@ -45,6 +45,34 @@ a {
   margin-right: 20px;
   color: $grey;
   display: inline-block;
+  &.violet {
+  color: violet;
+  font-size: 20px
+  }
+  &.indigo {
+  color: indigo;
+  font-size: 30px
+  }
+  &.blue {
+  color: blue;
+  font-size: 40px
+  }
+  &.green {
+  color: green;
+  font-size: 50px
+  }
+  &.yellow {
+  color: yellow;
+  font-size: 60px
+  }
+  &.orange {
+  color: orange;
+  font-size: 70px
+  }
+  &.red {
+  color: red;
+  font-size: 80px
+  }
 }
 
 .grey {

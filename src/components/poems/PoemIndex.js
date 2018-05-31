@@ -3,6 +3,7 @@ import axios from 'axios';
 import Auth from '../../lib/Auth';
 import { Link } from 'react-router-dom';
 import Poem from './Poem';
+import _ from 'lodash';
 
 class PoemIndex extends React.Component {
   state = {
@@ -11,7 +12,8 @@ class PoemIndex extends React.Component {
     tags: [],
     tagnounarray: [],
     newtag: {},
-    gridshow: false
+    gridshow: false,
+    frequencyArray: []
   }
 
   componentDidMount() {
@@ -36,6 +38,8 @@ class PoemIndex extends React.Component {
             this.state.tagnounarray.push(poem.nouns[0]);
             const tag = poem.nouns[0];
             this.createTags(tag);
+          } else {
+            this.state.tagnounarray.push(poem.nouns[0]);
           }
         });
         this.state.poems.forEach(poem => {
@@ -43,6 +47,8 @@ class PoemIndex extends React.Component {
             this.state.tagnounarray.push(poem.nouns[1]);
             const tag = poem.nouns[1];
             this.createTags(tag);
+          } else {
+            this.state.tagnounarray.push(poem.nouns[1]);
           }
         });
         this.state.poems.forEach(poem => {
@@ -50,8 +56,11 @@ class PoemIndex extends React.Component {
             this.state.tagnounarray.push(poem.nouns[2]);
             const tag = poem.nouns[2];
             this.createTags(tag);
+          } else {
+            this.state.tagnounarray.push(poem.nouns[2]);
           }
         });
+        this.handleFrequency();
       });
   }
 
@@ -67,14 +76,19 @@ class PoemIndex extends React.Component {
       });
   }
 
+  handleFrequency = () => {
+    this.setState({frequencyArray: _.countBy(this.state.tagnounarray)});
+    console.log('here', Object.keys(this.state.frequencyArray));
+  }
+
 
   starred = (poem) => {
-    console.log(Auth.getPayload().sub);
+    // console.log(Auth.getPayload().sub);
     if (!poem.stars.includes(Auth.getPayload().sub)) {
       const newstar =
       poem.stars.push(Auth.getPayload().sub);
       this.setState({...poem, [poem.stars]: newstar});
-      console.log(poem);
+      // console.log(poem);
       axios.put(`/api/poems/${poem._id}`, poem, {
         headers: {Authorization: `Bearer ${Auth.getToken()}`}
       });
@@ -84,7 +98,7 @@ class PoemIndex extends React.Component {
         const newstar =
         poem.stars.splice(index, 1);
         this.setState({...poem, [poem.stars]: newstar});
-        console.log(poem);
+        // console.log(poem);
         axios.put(`/api/poems/${poem._id}`, poem, {
           headers: {Authorization: `Bearer ${Auth.getToken()}`}
         });
@@ -128,11 +142,46 @@ class PoemIndex extends React.Component {
 
         <div className='tagcloud'>
           <p className='has-text-centered'>
-            {this.state.tags.map(tag =>
+            {/* {this.state.tags.map(tag =>
               <Link to={`/tags/${tag.noun}`} key={tag._id}>
                 <span className="hashtag">
                 #{tag.noun}
                 </span>
+              </Link>
+            )} */}
+
+            {Object.keys(this.state.frequencyArray).map(x =>
+              <Link to={`/tags/${x}`} key={x}>
+                {this.state.frequencyArray[x] === 1 &&
+                <span className="hashtag violet">
+                #{x}
+                </span>}
+                {this.state.frequencyArray[x] === 2 &&
+                <span className="hashtag indigo">
+                #{x}
+                </span>}
+                {this.state.frequencyArray[x] === 3 &&
+                <span className="hashtag blue">
+                #{x}
+                </span>}
+                {this.state.frequencyArray[x] === 4 &&
+                <span className="hashtag green">
+                #{x}
+                </span>}
+                {this.state.frequencyArray[x] === 5 &&
+                <span className="hashtag yellow">
+                #{x}
+                </span>}
+                {this.state.frequencyArray[x] === 6 &&
+                <span className="hashtag orange">
+                #{x}
+                </span>}
+                {this.state.frequencyArray[x] > 6 &&
+                <span className="hashtag red">
+                #{x}
+                </span>}
+
+
               </Link>
             )}
           </p>
