@@ -38,12 +38,14 @@ class AuthRegister extends React.Component {
 
   render() {
     return (
-      <Form
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        errors={this.state.errors}
-        user={this.state}
-      />
+      <div className='formbox'>
+        <Form
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          errors={this.state.errors}
+          user={this.state}
+        />
+      </div>
     );
   }
 }

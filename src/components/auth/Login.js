@@ -29,27 +29,28 @@ class AuthLogin extends React.Component {
 
   render() {
     return (
-
-      <form onSubmit={this.handleSubmit}>
-        <div className="field">
-          <label htmlFor="email">email address</label>
-          <input
-            className="input"
-            name="email"
-            placeholder="please enter your email address"
-            onChange={this.handleChange}/>
-        </div>
-        <div className="field">
-          <label htmlFor="password">password</label>
-          <input
-            type="password"
-            className="input"
-            name="password"
-            placeholder="please enter your password"
-            onChange={this.handleChange}/>
-        </div>
-        <button className ="button is-create">submit</button>
-      </form>
+      <div className='formbox'>
+        <form onSubmit={this.handleSubmit}>
+          <div className="field">
+            <label htmlFor="email">email address</label>
+            <input
+              className="input"
+              name="email"
+              placeholder="please enter your email address"
+              onChange={this.handleChange}/>
+          </div>
+          <div className="field">
+            <label htmlFor="password">password</label>
+            <input
+              type="password"
+              className="input"
+              name="password"
+              placeholder="please enter your password"
+              onChange={this.handleChange}/>
+          </div>
+          <button className ="button is-create">submit</button>
+        </form>
+      </div>
     );
   }
 }

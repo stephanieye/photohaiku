@@ -5,7 +5,7 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
     <form onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="username">username</label>
-        {errors.username && <p className= 'subtitle is-5'>{errors.username}</p>}
+        {errors.username && <p className= 'subtitle is-5 italics'>{errors.username}</p>}
         <input
           className="input"
           name="username"
@@ -16,7 +16,7 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
       </div>
       <div className="field">
         <label htmlFor="email">email</label>
-        {errors.email && <p className= 'subtitle is-5'>{errors.email}</p>}
+        {errors.email && <p className= 'subtitle is-5 italics'>{errors.email}</p>}
         <input
           className="input"
           name="email"
@@ -27,7 +27,7 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
       </div>
       <div className="field">
         <label htmlFor="password">password</label>
-        {errors.password && <p className= 'subtitle is-5'>{errors.password}</p>}
+        {errors.password && <p className= 'subtitle is-5 italics'>{errors.password}</p>}
         <input
           type="password"
           className="input"
@@ -38,8 +38,8 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
       </div>
       <div className="field">
         <label htmlFor="passwordConfirmation">password confirmation</label>
-        {errors.password && <p className= 'subtitle is-5'>{errors.password}</p>}
-        {errors.passwordConfirmation && <p className= 'subtitle is-5'>{errors.passwordConfirmation}</p>}
+        {errors.password && <p className= 'subtitle is-5 italics'>{errors.password}</p>}
+        {errors.passwordConfirmation && <p className= 'subtitle is-5 italics'>{errors.passwordConfirmation}</p>}
         <input
           type="password"
           className="input"

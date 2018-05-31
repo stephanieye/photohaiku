@@ -13,11 +13,11 @@ import PoemIndex from './components/poems/PoemIndex';
 import PoemShow from './components/poems/PoemShow';
 import PoemRandom from './components/poems/PoemRandom';
 
-import TagIndex from './components/tags/TagIndex';
+// import TagIndex from './components/tags/TagIndex';
 import TagShow from './components/tags/TagShow';
 
 
-import UsersIndex from './components/users/Index';
+// import UsersIndex from './components/users/Index';
 import UsersShow from './components/users/Show';
 import UsersEdit from './components/users/Edit';
 import UsersProfile from './components/users/Profile';
@@ -48,7 +48,7 @@ class App extends React.Component {
               <Switch>
                 <SecureRoute exact path="/users/:id/edit" component={UsersEdit} />
                 <SecureRoute exact path="/users/:id" component={UsersShow} />
-                <Route exact path="/users" component={UsersIndex} />
+                {/* <Route exact path="/users" component={UsersIndex} /> */}
                 <Route exact path="/register" component={AuthRegister} />
                 <Route exact path="/login" component={AuthLogin} />
                 <SecureRoute exact path="/profile" component={UsersProfile} />
@@ -56,7 +56,7 @@ class App extends React.Component {
                 <SecureRoute exact path="/poems/:id" component={PoemShow} />
                 <SecureRoute exact path="/poems" component={PoemIndex} />
                 <SecureRoute exact path="/tags/:noun" component={TagShow} />
-                <SecureRoute exact path="/tags" component={TagIndex} />
+                {/* <SecureRoute exact path="/tags" component={TagIndex} /> */}
                 <Route exact path="/" component={PoemRandom} />
                 <Route component={NotFound} />
               </Switch>

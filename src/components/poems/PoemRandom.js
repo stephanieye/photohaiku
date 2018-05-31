@@ -63,9 +63,13 @@ class PoemRandom extends React.Component {
 
 
             <div className='column'>
-              {!Auth.isAuthenticated() && <Form
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit} />}
+              {!Auth.isAuthenticated() &&
+                <div className='formbox'>
+                  <Form
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit} />
+                </div>
+              }
 
               <div className='definitions columns is-multiline'>
                 <div className='column is-half-tablet is-one-third-widescreen home'>
