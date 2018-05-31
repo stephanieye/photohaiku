@@ -6,6 +6,7 @@ import Auth from '../../lib/Auth';
 import Flash from '../../lib/Flash';
 import Poem from './Poem';
 
+
 class PoemRandom extends React.Component {
   state = {
     poems: [],
@@ -52,6 +53,33 @@ class PoemRandom extends React.Component {
         });
     }
 
+    starred = (poem) => {
+
+
+      // console.log(Auth.getPayload().sub);
+      if (!poem.stars.includes(Auth.getPayload().sub)) {
+        const newstar =
+          poem.stars.push(Auth.getPayload().sub);
+        this.setState({...poem, [poem.stars]: newstar});
+        // console.log(poem);
+        axios.put(`/api/poems/${poem._id}`, poem, {
+          headers: {Authorization: `Bearer ${Auth.getToken()}`}
+        });
+      } else {
+        const index = poem.stars.indexOf(Auth.getPayload().sub);
+        if (index > -1) {
+          const newstar =
+            poem.stars.splice(index, 1);
+          this.setState({...poem, [poem.stars]: newstar});
+          // console.log(poem);
+          axios.put(`/api/poems/${poem._id}`, poem, {
+            headers: {Authorization: `Bearer ${Auth.getToken()}`}
+          });
+        }
+      }
+    }
+
+
 
     render() {
       const poem = this.state.poem;
@@ -92,7 +120,11 @@ class PoemRandom extends React.Component {
             </div>
             <div className='column home'>
               <Poem
-                poem={poem}/>
+                poem={poem}
+                starred={()=> {
+                  this.starred(poem);
+                }}
+              />
             </div>
           </div>
           <footer className='has-text-centered'><p className='subtitle is-6'>designed by <a href='http://stephanieye.com' target='new'>stephanie ye</a> <span className='subtitle is-7'>&#9733;</span> london 2018</p></footer>
