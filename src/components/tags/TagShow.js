@@ -73,12 +73,12 @@ class TagShow extends React.Component {
     return (
       <section>
 
-        <div className='columns'>
-          <div className='column'>
-            <h2 className='grey'>#{tag[0].noun}</h2>
-            <p className='title is-5'>{tagpoems.length} photohaiku</p>
-          </div>
+
+        <div className='has-text-centered-mobile'>
+          <h2 className='grey'>#{tag[0].noun}</h2>
+          <p className='title is-5'>{tagpoems.length} photohaiku</p>
         </div>
+
         {tagpoems.length === 0 && <div>
           <div className='instructions'>
             <p>alas! there are no</p>
@@ -87,6 +87,7 @@ class TagShow extends React.Component {
             <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
           </div>
         </div>}
+
         {tagpoems.length !== 0 && <div className="columns is-multiline">
           {tagpoems.map(poem =>
             <div className="column is-one-third-desktop is-half-tablet" key={poem._id}>
