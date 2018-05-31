@@ -129,9 +129,11 @@ class PoemIndex extends React.Component {
         <div className='tagcloud'>
           <p className='has-text-centered'>
             {this.state.tags.map(tag =>
-              <span className="hashtag" key={tag._id}><Link to={`/tags/${tag.noun}`}>
+              <Link to={`/tags/${tag.noun}`} key={tag._id}>
+                <span className="hashtag">
                 #{tag.noun}
-              </Link></span>
+                </span>
+              </Link>
             )}
           </p>
         </div>
