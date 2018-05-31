@@ -80,7 +80,7 @@ class UsersShow extends React.Component {
       <section>
 
         <div className='columns'>
-          <div className='column'>
+          <div className='column has-text-centered-mobile'>
             <h2>{user.username}</h2>
             <p className='title is-5'>{userpoems.length} photohaiku</p>
           </div>
