@@ -48,7 +48,7 @@ class AuthLogin extends React.Component {
               placeholder="please enter your password"
               onChange={this.handleChange}/>
           </div>
-          <button className ="button is-create">submit</button>
+          <button className ="button is-create">log in</button>
         </form>
       </div>
     );

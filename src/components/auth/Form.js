@@ -20,7 +20,7 @@ const Form = ({ handleChange, handleSubmit }) => {
           placeholder="please enter your password"
           onChange={handleChange}/>
       </div>
-      <button className ="button is-create">submit</button>
+      <button className ="button is-create">log in</button>
     </form>
   );
 };
