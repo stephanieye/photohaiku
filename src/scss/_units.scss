@@ -38,7 +38,7 @@ footer {
 }
 
 .tagcloud {
-  padding: 0 10px 40px;
+  padding: 10px 40px;
   a {
     color: $grey;
   }
@@ -49,6 +49,10 @@ footer {
   text-align: center;
   padding: 0 10px 10px;;
   margin: 0 auto;
+}
+
+.poemgrid {
+  display: none;
 }
 
 .card {

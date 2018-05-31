@@ -10,7 +10,8 @@ class PoemIndex extends React.Component {
     poem: {},
     tags: [],
     tagnounarray: [],
-    newtag: {}
+    newtag: {},
+    gridshow: false
   }
 
   componentDidMount() {
@@ -91,11 +92,41 @@ class PoemIndex extends React.Component {
     }
   }
 
+  handleViewChange = () => {
+    if (this.state.gridshow === false) {
+      document.getElementsByClassName('tagcloud')[0].style.display = 'none';
+      document.getElementsByClassName('tagcloudtab')[0].style.opacity = '0.5';
+      document.getElementsByClassName('poemgrid')[0].style.display = 'block';
+      document.getElementsByClassName('poemgridtab')[0].style.opacity = '1';
+      this.setState({gridshow: true});
+    } else {
+      document.getElementsByClassName('tagcloud')[0].style.display = 'block';
+      document.getElementsByClassName('tagcloudtab')[0].style.opacity = '1';
+      document.getElementsByClassName('poemgrid')[0].style.display = 'none';
+      document.getElementsByClassName('poemgridtab')[0].style.opacity = '0.5';
+      this.setState({gridshow: false});
+    }
+  }
+
+
+
   render() {
     return (
       <section>
+
+
+        <div className='columns is-mobile has-text-centered'>
+          <div className='column tagcloudtab' onClick={this.handleViewChange}>
+            <h1>&#9729;</h1>
+            <p>tag cloud</p>
+          </div>
+          <div className='column poemgridtab' onClick={this.handleViewChange}>
+            <h1>&#9638;</h1>
+            <p>poem grid</p>
+          </div>
+        </div>
+
         <div className='tagcloud'>
-          <h4>discover photohaiku through tags...</h4>
           <p className='has-text-centered'>
             {this.state.tags.map(tag =>
               <span className="hashtag" key={tag._id}><Link to={`/tags/${tag.noun}`}>
@@ -105,8 +136,7 @@ class PoemIndex extends React.Component {
           </p>
         </div>
 
-        <div>
-          <h4 className='has-text-right'>...or browse all photohaiku</h4>
+        <div className='poemgrid'>
           <br />
           <div className="columns is-multiline">
             {this.state.poems.map(poem =>
