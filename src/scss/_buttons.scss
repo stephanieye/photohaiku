@@ -8,10 +8,15 @@ button {
 
 .button {
   min-width: 170px;
+  margin-bottom: 10px;
 }
 
 .dotdotdot {
   line-height: 15px;
+}
+
+.profilecontrolsdotdotdot {
+  display: none;
 }
 
 .is-create {
@@ -30,4 +35,17 @@ button {
   &:hover {
     background-color: red;
   }
+}
+
+
+@media only screen and (max-width: 768px) {
+
+  .profilecontrolsdotdotdot {
+    display: block;
+  }
+
+  .profilecontrols {
+    display: none;
+  }
+
 }

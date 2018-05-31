@@ -15,7 +15,8 @@ class UsersProfile extends React.Component {
     poems: [],
     userpoems: [],
     errors: {},
-    poem: {}
+    poem: {},
+    open: false
   }
 
 
@@ -71,6 +72,17 @@ class UsersProfile extends React.Component {
     }
   }
 
+  controls = () => {
+    if (this.state.open === false) {
+      document.getElementsByClassName('profilecontrols')[0].style.display = 'block';
+      this.setState({open: true});
+    } else {
+      document.getElementsByClassName('profilecontrols')[0].style.display = 'none';
+      this.setState({open: false});
+    }
+  }
+
+
   handleLogout = () => {
     Auth.logout();
     Flash.setMessage('welcome', 'you have successfully logged out.');
@@ -90,10 +102,14 @@ class UsersProfile extends React.Component {
           <div className='column'>
             <h2>{user.username}</h2>
             <p className='title is-5'>{userpoems.length} photohaiku</p>
+            <p className='profilecontrolsdotdotdot title is-2' onClick={this.controls}>&#8226;&#8226;&#8226;</p>
+
           </div>
-          <div className='column has-text-right-desktop has-text-right-tablet'>
-            <Link to={`/users/${user._id}/edit`} className="button is-create">update your account</Link><br />
-            <a onClick={this.handleLogout} className="button is-destroy">logout</a>
+          <div className='column has-text-right-tablet'>
+            <div className='profilecontrols has-text-centered-mobile'>
+              <p><Link to={`/users/${user._id}/edit`} className="button is-create">update your account</Link></p>
+              <p><a onClick={this.handleLogout} className="button is-destroy">logout</a></p>
+            </div>
           </div>
         </div>
         {userpoems.length === 0 && <div>
