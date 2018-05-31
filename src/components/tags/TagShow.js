@@ -77,6 +77,7 @@ class TagShow extends React.Component {
         <div className='has-text-centered-mobile'>
           <h2 className='grey'>#{tag[0].noun}</h2>
           <p className='title is-5'>{tagpoems.length} photohaiku</p>
+          <br />
         </div>
 
         {tagpoems.length === 0 && <div>

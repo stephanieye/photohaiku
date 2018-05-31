@@ -83,6 +83,7 @@ class UsersShow extends React.Component {
           <div className='column has-text-centered-mobile'>
             <h2>{user.username}</h2>
             <p className='title is-5'>{userpoems.length} photohaiku</p>
+            <br />
           </div>
         </div>
         {userpoems.length === 0 && <div>
