@@ -49,9 +49,10 @@ const Form = ({ handleChange, handleSubmit, user, errors }) => {
           onChange={handleChange}/>
 
       </div>
-      {!Auth.isAuthenticated() && <button className ="button is-create">register</button>}
-      {Auth.isAuthenticated() && <button className ="button is-create">update</button>}
-
+      <div className='has-text-centered-mobile'>
+        {!Auth.isAuthenticated() && <button className ="button is-create">register</button>}
+        {Auth.isAuthenticated() && <button className ="button is-create">update</button>}
+      </div>
     </form>
   );
 };

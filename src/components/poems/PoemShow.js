@@ -82,7 +82,7 @@ class PoemShow extends React.Component {
     return (
       <section>
         <div className='tagbar'>
-          <p>
+          <p className='phashtag'>
             {poem.nouns.map(noun =>
               <span className='hashtag' key={noun} onClick={() => {
                 const tag = noun;

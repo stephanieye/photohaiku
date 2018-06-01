@@ -20,7 +20,9 @@ const Form = ({ handleChange, handleSubmit }) => {
           placeholder="please enter your password"
           onChange={handleChange}/>
       </div>
-      <button className ="button is-create">log in</button>
+      <div className='has-text-centered-mobile'>
+        <button className ="button is-create">log in</button>
+      </div>
     </form>
   );
 };

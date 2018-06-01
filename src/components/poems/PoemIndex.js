@@ -121,7 +121,7 @@ class PoemIndex extends React.Component {
         </div>
 
         <div className='tagcloud'>
-          <p className='has-text-centered'>
+          <p className='phashtag has-text-centered'>
             {/* {this.state.tags.map(tag =>
               <Link to={`/tags/${tag.noun}`} key={tag._id}>
                 <span className="hashtag">
@@ -156,8 +156,6 @@ class PoemIndex extends React.Component {
                 <span className="hashtag red">
                 #{x}
                 </span>}
-
-
               </Link>
             )}
           </p>

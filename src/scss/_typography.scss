@@ -40,12 +40,15 @@ a {
   font-style: italic;
 }
 
+.phashtag {
+  line-height: 20px;
+}
+
 .hashtag {
   font-family: 'IM Fell DW Pica', serif;
   margin: 0 5px;
   color: $grey;
   font-size: 20px;
-  line-height: 10px;
   display: inline-block;
   &.indigo {
   color: indigo;
@@ -91,4 +94,27 @@ a {
   h3 {
     font-size: 25px;
   }
+
+  .hashtag {
+    font-size: 15px;
+    &.indigo {
+    font-size: 15px;
+    }
+    &.blue {
+    font-size: 20px
+    }
+    &.green {
+    font-size: 25px
+    }
+    &.yellow {
+    font-size: 30px
+    }
+    &.orange {
+    font-size: 35px
+    }
+    &.red {
+    font-size: 40px
+    }
+  }
+
 }

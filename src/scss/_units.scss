@@ -39,15 +39,12 @@ footer {
 
 .tagcloud {
   padding: 10px 40px;
-  a {
-    color: $grey;
-  }
 }
 
 .tagbar {
   max-width: 500px;
   text-align: center;
-  padding: 0 10px 10px;;
+  padding: 10px 0;
   margin: 0 auto;
 }
 
@@ -69,10 +66,10 @@ footer {
 }
 
 .dangerzone {
-  width: 100%;
+  max-width: 500px;
   min-height: 250px;
   border: 5px solid red;
-  margin: 100px 20px 0 20px;
+  margin: 100px auto 0 auto;
   padding: 20px;
   border-radius: 20px;
   text-align: center;
@@ -113,6 +110,10 @@ footer {
 
   .formbox {
     padding: 0 15px;
+  }
+
+  .tagcloud {
+    padding: 10px 10px;
   }
 
 }
