@@ -59,7 +59,6 @@ class PoemIndex extends React.Component {
 
   handleFrequency = () => {
     this.setState({frequencyArray: _.countBy(this.state.tagnounarray)});
-    console.log('here', Object.keys(this.state.frequencyArray));
   }
 
 

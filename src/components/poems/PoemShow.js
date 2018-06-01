@@ -83,24 +83,14 @@ class PoemShow extends React.Component {
       <section>
         <div className='tagbar'>
           <p>
-            <span className='hashtag' onClick={() => {
-              const tag = poem.nouns[0];
-              this.handleHashtag(tag);
-            }}>
-              #{poem.nouns[0]}
-            </span>
-            <span className='hashtag' onClick={() => {
-              const tag = poem.nouns[1];
-              this.handleHashtag(tag);
-            }}>
-              #{poem.nouns[1]}
-            </span>
-            <span className='hashtag' onClick={() => {
-              const tag = poem.nouns[2];
-              this.handleHashtag(tag);
-            }}>
-              #{poem.nouns[2]}
-            </span>
+            {poem.nouns.map(noun =>
+              <span className='hashtag' key={noun} onClick={() => {
+                const tag = noun;
+                this.handleHashtag(tag);
+              }}>
+                #{noun}
+              </span>)}
+
           </p>
         </div>
         {poem.haiku &&
