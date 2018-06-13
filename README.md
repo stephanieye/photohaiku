@@ -1,167 +1,67 @@
-Upload a photo and get a haiku
+![Title Page](http://stephslye.github.io/images/photohaiku.png)
 
-1. Filestack - to upload a photo
+------------------
+#PHOTOHAIKU
+------------------
 
-2. Google Cloud Vision - analyse a photo and come up with set of words associated with photo
+* [View app on Heroku](https://photohaiku.herokuapp.com/)
+* [View repository on GitHub](https://github.com/stephslye/photohaiku)
 
-Documentation:
-https://cloud.google.com/vision/
+For my first MERN stack app, I knew I wanted to
+1. Work with an image content analysis API, as I am fascinated with that technology;
+2. Write lots of sorting and filtering functions, as I find them satisfying; and
+3. Create an app that creates a work of art.
+The result is Photohaiku, an app that produces an original haiku (a three-line poem of five, seven and five syllables) based on a user-submitted photo. Users can create their own photohaiku, as well as browse, view and like (and unlike) other users’ submissions.
 
-Post request:
-https://vision.googleapis.com/v1/images:annotate?key=YOUR_API_KEY
+![Index](http://stephslye.github.io/images/photohaiku1.png)
 
-{
-  "requests":[
-    {
-      "image":{
-        "source":{
-          "imageUri":
-            "image.jpg"
-        }
-      },
-      "features":[
-        {
-          "type":"LABEL_DETECTION",
-          "maxResults":10
-        }
-      ]
-    }
-  ]
-}
+----------
+##Approach
+----------
 
-Response:
+This project uses the Filestack, Google Cloud Vision and Datamuse APIs to receive the photos, analyse them, and provide arrays of related words (with syllable counts). I then plugged these words into my own templates to produce the photohaiku.
 
-{
-	"responses": [
-		{
-			"labelAnnotations": [
-				{
-					"mid": "/m/034z7h",
-					"description": "cityscape",
-					"score": 0.9672591,
-					"topicality": 0.9672591
-				},
-				{
-					"mid": "/m/01bqvp",
-					"description": "sky",
-					"score": 0.9378023,
-					"topicality": 0.9378023
-				},
-				{
-					"mid": "/m/0204fg",
-					"description": "skyline",
-					"score": 0.9254783,
-					"topicality": 0.9254783
-				},
-				{
-					"mid": "/m/039jbq",
-					"description": "urban area",
-					"score": 0.9182953,
-					"topicality": 0.9182953
-				},
-				{
-					"mid": "/m/01n32",
-					"description": "city",
-					"score": 0.91389555,
-					"topicality": 0.91389555
-				},
-				{
-					"mid": "/m/079cl",
-					"description": "skyscraper",
-					"score": 0.9060412,
-					"topicality": 0.9060412
-				},
-				{
-					"mid": "/m/05_5t0l",
-					"description": "landmark",
-					"score": 0.8866002,
-					"topicality": 0.8866002
-				},
-				{
-					"mid": "/m/015kr",
-					"description": "bridge",
-					"score": 0.8714855,
-					"topicality": 0.8714855
-				},
-				{
-					"mid": "/m/056mk",
-					"description": "metropolis",
-					"score": 0.8482781,
-					"topicality": 0.8482781
-				},
-				{
-					"mid": "/m/0838f",
-					"description": "water",
-					"score": 0.8148126,
-					"topicality": 0.8148126
-				}
-			]
-		}
-	]
-}
+I really enjoyed getting the three APIs to work together in one seamless (to the user) process, with the most challenging being the Google Cloud Vision API, as it had to be integrated into my model on the backend.
 
-3. Datamuse - process the words, find related words and number of syllables
+----------------------
+##Room for improvement
+----------------------
+* Going forward, I’d love to improve the functionality for user accounts, for example enabling users to set their account to private and to friend and unfriend other users.
 
-Documentation:
-https://www.datamuse.com/api/
+--------------
+##Technologies
+--------------
+Languages:
+* HTML5
+* SCSS
+* JavaScript
 
-Get request:
-https://api.datamuse.com/words?rel_jjb=cityscape&md=s&max=10
+Front-end Web Application Framework:
+* React
 
-Response:
+CSS Framework:
+* Bulma
 
-[
-	{
-		"word": "modern",
-		"score": 1001,
-		"numSyllables": 2
-	},
-	{
-		"word": "new",
-		"score": 1000,
-		"numSyllables": 1
-	},
-	{
-		"word": "urban",
-		"score": 999,
-		"numSyllables": 2
-	},
-	{
-		"word": "american",
-		"score": 998,
-		"numSyllables": 4
-	},
-	{
-		"word": "contemporary",
-		"score": 997,
-		"numSyllables": 5
-	},
-	{
-		"word": "entire",
-		"score": 996,
-		"numSyllables": 3
-	},
-	{
-		"word": "parisian",
-		"score": 995,
-		"numSyllables": 3
-	},
-	{
-		"word": "industrial",
-		"score": 994,
-		"numSyllables": 4
-	},
-	{
-		"word": "roman",
-		"score": 993,
-		"numSyllables": 2
-	},
-	{
-		"word": "traditional",
-		"score": 992,
-		"numSyllables": 4
-	}
-]
+REST client
+* Insomnia
 
-4. Finally
-Take these words and stick them into a haiku template (from a randomised set of haiku templates, made by myself). Display image and haiku.
+APIs:
+* [Filestack](https://www.filestack.com/)
+* [Google Cloud Vision](https://cloud.google.com/vision/)
+* [Datamuse](http://www.datamuse.com/)
+
+Typefaces:
+* [Google Fonts](http://fonts.google.com)
+
+Text Editor:
+* Atom
+
+Browser:
+* Chrome
+
+---------
+##Contact
+---------
+
+* hello@stephanieye.com
+* http://stephanieye.com
