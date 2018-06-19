@@ -111,11 +111,11 @@ class PoemIndex extends React.Component {
 
         <div className='columns is-mobile has-text-centered'>
           <div className='column tagcloudtab' onClick={this.handleViewChange}>
-            <h1>&#9729;</h1>
+            <h1><img className ='indexpageicon' src='http://stephanieye.com/images/icons/cloud.png' alt='tag cloud icon' /></h1>
             <p>tag cloud</p>
           </div>
           <div className='column poemgridtab' onClick={this.handleViewChange}>
-            <h1>&#9638;</h1>
+            <h1><img className ='indexpageicon' src='http://stephanieye.com/images/icons/grid.png' alt='poem grid icon' /></h1>
             <p>poem grid</p>
           </div>
         </div>

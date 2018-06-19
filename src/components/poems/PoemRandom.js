@@ -100,19 +100,19 @@ class PoemRandom extends React.Component {
               }
 
               <div className='definitions columns is-multiline'>
-                <div className='column is-half-tablet is-one-third-widescreen home'>
+                <div className='column is-half-tablet home'>
                   <h4>photo</h4>
                   <p className='subtitle is-5'>/ˈfəʊtəʊ/<br />
                 a picture made using a camera.</p>
                 </div>
-                <div className='column is-half-tablet is-one-third-widescreen home'>
+                <div className='column is-half-tablet home'>
                   <h4>haiku</h4>
                   <p className='subtitle is-5'>/ˈhʌɪkuː/<br />
                 a japanese poem of 17 syllables, in three lines of five, seven, and five.</p>
                 </div>
                 <div className='column'>
-                  <h4>photohaiku</h4>
-                  <p className='subtitle is-5'>/ˈfəʊtəʊˈhʌɪkuː/<br />
+                  <h3>photohaiku</h3>
+                  <p className='subtitle is-4'>/ˈfəʊtəʊˈhʌɪkuː/<br />
                 an original haiku based on a submitted photo, created by the photohaiku robot using image content analysis, lexicon-based algorithms, and the poetic muse.</p>
                 </div>
               </div>
