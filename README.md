@@ -35,7 +35,7 @@ I really enjoyed getting the three APIs to work together in one seamless (to the
 
 However, overall it was surprisingly easy to manipulate the APIs, giving me more time to work on the website's presentation. As I like maps, I decided to create a tag cloud that reflects the frequency of nouns associated with the photohaiku. Users can click on a tag to see all photohaiku associated with that noun.
 
-![Tag Cloud](http://stephslye.github.io/images/photohaikucloud.png)
+![Tag Cloud](http://stephslye.github.io/images/photohaikutagcloud.png)
 
 Otherwise, they can just view all photohaiku, displayed in a grid.
 
