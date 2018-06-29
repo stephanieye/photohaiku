@@ -9,6 +9,7 @@ const HtmlWebpack = new HtmlWebpackPlugin({
 });
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const CopyWebpack = new CopyWebpackPlugin([
   { from: './src/assets', to: 'assets' }
 ]);
