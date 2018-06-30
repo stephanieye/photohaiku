@@ -1,4 +1,4 @@
-![Title Page](http://stephslye.github.io/images/photohaikufront.png)
+![Title Page](http://stephslye.github.io/images/readme/photohaikufront.png)
 
 ------------------
 #PHOTOHAIKU
@@ -14,11 +14,11 @@ For my first MERN stack app, I knew I wanted to
 
 The result is Photohaiku, an app that produces an original haiku (a three-line poem of five, seven and five syllables) based on a user-submitted photo. Users can create their own photohaiku, as well as browse, view and like (and unlike) other users’ submissions.
 
-![Create](http://stephslye.github.io/images/photohaikucreate.png)
+![Create](http://stephslye.github.io/images/readme/photohaikucreate.png)
 
 Besides the photo and haiku, the user also sees all the nouns returned by the image content analysis API, displayed as tags.
 
-![Show](http://stephslye.github.io/images/photohaikushow.png)
+![Show](http://stephslye.github.io/images/readme/photohaikushow.png)
 
 ----------
 ##Approach
@@ -35,11 +35,11 @@ I really enjoyed getting the three APIs to work together in one seamless (to the
 
 However, overall it was surprisingly easy to manipulate the APIs, giving me more time to work on the website's presentation. As I like maps, I decided to create a tag cloud that reflects the frequency of nouns associated with the photohaiku. Users can click on a tag to see all photohaiku associated with that noun.
 
-![Tag Cloud](http://stephslye.github.io/images/photohaikutagcloud.png)
+![Tag Cloud](http://stephslye.github.io/images/readme/photohaikutagcloud.png)
 
 Otherwise, they can just view all photohaiku, displayed in a grid.
 
-![Photo Grid](http://stephslye.github.io/images/photohaikuindex.png)
+![Photo Grid](http://stephslye.github.io/images/readme/photohaikuindex.png)
 
 
 
