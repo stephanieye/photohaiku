@@ -32,32 +32,27 @@ User
 
     return Poem
       .create([
-        {image: 'http://stephslye.github.io/images/gallery.jpg',
+        {image: 'http://stephslye.github.io/images/photohaiku/gallery.jpg',
           poet: users[0],
           haiku: [{line1: 'let us not speak of', line2: 'the lovely hardwood; instead', line3: 'mind your art dealer.', attr: ''}]
         }
         ,
-        {image: 'http://stephslye.github.io/images/causeway.jpg',
+        {image: 'http://stephslye.github.io/images/photohaiku/kayak.jpg',
           poet: users[0],
           haiku: [{line1: 'do not weep, ocean -', line2: 'horizons and waves themselves', line3: 'eventually part.', attr: '(with apologies to kobayashi issa)'}]
         }
         ,
-        {image: 'http://stephslye.github.io/images/cats.jpg',
+        {image: 'http://stephslye.github.io/images/photohaiku/cats.jpg',
           poet: users[0],
           haiku: [{line1: 'you love dog breed group...', line2: 'but not as much as i love', line3: 'siamese kitten!', attr: ''}]
         }
         ,
-        {image: 'http://stephslye.github.io/images/london.jpg',
-          poet: users[1],
-          haiku: [{line1: 'so much depends on', line2: 'the beautiful skyscraper', line3: 'beside the water', attr: 'with apologies to william carlos williams'}]
-        }
-        ,
-        {image: 'http://stephslye.github.io/images/fes.jpg',
+        {image: 'http://stephslye.github.io/images/photohaiku/fes.jpg',
           poet: users[1],
           haiku: [{line1: 'look at this city:', line2: 'so major and beautiful.', line3: "that's what i call place!", attr: ''}]
         }
         ,
-        {image: 'http://stephslye.github.io/images/lisbon.jpg',
+        {image: 'http://stephslye.github.io/images/photohaiku/lisbon.jpg',
           poet: users[1],
           haiku: [{line1: 'to column or not', line2: 'to column: only the sky', line3: 'would ask that question.', attr: 'with apologies to william shakespeare'}]
         }

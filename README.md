@@ -29,9 +29,13 @@ This project uses the Filestack, Google Cloud Vision and Datamuse APIs:
 * Google Cloud Vision analyses the photos and produces an array of nouns associated with the image;
 * Datamuse provides arrays of adjectives associated with the nouns (with syllable counts).
 
-I then plugged these words into my own haiku templates to produce the photohaiku.
+I then plugged these words into my own haiku templates to produce the photohaiku:
 
-I really enjoyed getting the three APIs to work together in one seamless (to the user) process, with the most challenging being the Google Cloud Vision API, as it had to be integrated into my model on the backend. It was also a real bother to hide the API key for deployment as it was a file rather than a string; in the end, my instructor at General Assembly helped me to extract the required data from the file and present it as strings.
+![Photohaiku templates](http://stephslye.github.io/images/readme/photohaikutemplates.png)
+
+I really enjoyed getting the three APIs to work together in one seamless (to the user) process, with the most challenging being the Google Cloud Vision API, as it had to be integrated into my model on the backend. It was also a real bother to hide the API key for deployment as it was a file rather than a string; in the end, my instructor at General Assembly helped me to extract the required data from the file and present it as strings:
+
+![Poem Model](http://stephslye.github.io/images/readme/photohaikuAPIatbackend.png)
 
 However, overall it was surprisingly easy to manipulate the APIs, giving me more time to work on the website's presentation. As I like maps, I decided to create a tag cloud that reflects the frequency of nouns associated with the photohaiku. Users can click on a tag to see all photohaiku associated with that noun.
 

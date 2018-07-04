@@ -108,29 +108,29 @@ class PoemNew extends React.Component {
   }
 
 
-  makeadjectivesarrays0 = (poem) => {
-    var string = poem.nouns[0];
-    var stringplus = string.replace(/\s+/g, '+');
-    axios.get(`https://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=20`)
-      .then(res => {
-        this.setState({adjectivescollection: res.data});
-        this.state.adjectivescollection.forEach((adj) => {
-          if (adj.numSyllables === 1) {
-            this.state.adj1sarray.unshift(adj.word);
-          } else if (adj.numSyllables === 2) {
-            this.state.adj2sarray.unshift(adj.word);
-          } else if (adj.numSyllables === 3) {
-            this.state.adj3sarray.unshift(adj.word);
+    makeadjectivesarrays0 = (poem) => {
+      var string = poem.nouns[0];
+      var stringplus = string.replace(/\s+/g, '+');
+      axios.get(`https://api.datamuse.com/words?rel_jjb=${stringplus}&md=s&max=20`)
+        .then(res => {
+          this.setState({adjectivescollection: res.data});
+          this.state.adjectivescollection.forEach((adj) => {
+            if (adj.numSyllables === 1) {
+              this.state.adj1sarray.unshift(adj.word);
+            } else if (adj.numSyllables === 2) {
+              this.state.adj2sarray.unshift(adj.word);
+            } else if (adj.numSyllables === 3) {
+              this.state.adj3sarray.unshift(adj.word);
+            }
           }
-        }
-        );
-      })
-      .catch(()=> {
-        Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again.');
-        this.handleRefresh();
-        this.props.history.replace('/createpoem');
-      });
-  }
+          );
+        })
+        .catch(()=> {
+          Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again.');
+          this.handleRefresh();
+          this.props.history.replace('/createpoem');
+        });
+    }
 
 
   makeadjectivesarrays1 = (poem) => {
@@ -153,12 +153,6 @@ class PoemNew extends React.Component {
       })
       .then(() => {
         const a = this.state;
-        console.log('noun1', a.noun1sarray);
-        console.log('noun2', a.noun2sarray);
-        console.log('noun3', a.noun3sarray);
-        console.log('adj1', a.adj1sarray);
-        console.log('adj2', a.adj2sarray);
-        console.log('adj3', a.adj3sarray);
         return a.adj3sarray;
       })
       .then(() => this.makehaiku())
@@ -170,16 +164,17 @@ class PoemNew extends React.Component {
   }
 
 
-  makehaiku = () => {
-    // const random = 13;
-    const random = Math.floor(Math.random()*15);
-    const n1 = this.state.noun1sarray;
-    const n2 = this.state.noun2sarray;
-    const n3 = this.state.noun3sarray;
-    const a1 = this.state.adj1sarray;
-    const a2 = this.state.adj2sarray;
-    const a3 = this.state.adj3sarray;
-    if (random === 0) {
+makehaiku = () => {
+  const random = Math.floor(Math.random()*15);
+  const n1 = this.state.noun1sarray;
+  const n2 = this.state.noun2sarray;
+  const n3 = this.state.noun3sarray;
+  const a1 = this.state.adj1sarray;
+  const a2 = this.state.adj2sarray;
+  const a3 = this.state.adj3sarray;
+
+  switch (random) {
+    case 0:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -190,7 +185,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 1) {
+      break;
+    case 1:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -201,7 +197,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 2) {
+      break;
+    case 2:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -212,7 +209,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 3) {
+      break;
+    case 3:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -223,7 +221,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 4) {
+      break;
+    case 4:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -233,7 +232,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 5) {
+      break;
+    case 5:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -243,7 +243,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 6) {
+      break;
+    case 6:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -253,7 +254,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 7) {
+      break;
+    case 7:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -264,7 +266,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 8) {
+      break;
+    case 8:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -275,7 +278,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 9) {
+      break;
+    case 9:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -285,7 +289,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 10) {
+      break;
+    case 10:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -295,7 +300,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 11) {
+      break;
+    case 11:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -305,7 +311,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 12) {
+      break;
+    case 12:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -315,7 +322,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else if (random === 13) {
+      break;
+    case 13:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -325,7 +333,8 @@ class PoemNew extends React.Component {
         }
       })
       );
-    } else {
+      break;
+    default:
       this.setState(prevState => ({
         haiku: {
           ...prevState.haiku,
@@ -335,56 +344,57 @@ class PoemNew extends React.Component {
         }
       })
       );
+
+  }
+  return this.handleHaikuSubmit();
+}
+
+
+handleHaikuSubmit = () => {
+  const poem = this.state.poem;
+  axios.post(`/api/poems/${poem._id}/haiku`, this.state.haiku, {
+    headers: {Authorization: `Bearer ${Auth.getToken()}`}
+  })
+    .then(res => {
+      this.setState({poem: res.data, haiku: {} });
     }
-    return this.handleHaikuSubmit();
-  }
+    )
+    .then(() => this.props.history.push(`/poems/${poem._id}`))
+    .catch(()=> {
+      Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again.');
+      this.props.history.replace('/createpoem');
+    });
+}
 
 
-  handleHaikuSubmit = () => {
-    const poem = this.state.poem;
-    axios.post(`/api/poems/${poem._id}/haiku`, this.state.haiku, {
-      headers: {Authorization: `Bearer ${Auth.getToken()}`}
-    })
-      .then(res => {
-        this.setState({poem: res.data, haiku: {} });
-      }
-      )
-      .then(() => this.props.history.push(`/poems/${poem._id}`))
-      .catch(()=> {
-        Flash.setMessage('denied', 'sorry, the photohaiku robot does not like that photo. please try again.');
-        this.props.history.replace('/createpoem');
-      });
-  }
+render() {
+  const {user} = this.state;
+  if(!user) return null;
 
+  return (
+    <section>
+      <div className='instructions'>
+        <p>give me a photo</p>
+        <p>and i will create for you</p>
+        <p>a bespoke haiku.</p>
+        <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
+      </div>
 
-  render() {
-    const {user} = this.state;
-    if(!user) return null;
+      <div className='process'>
+        <p>your humble servant</p>
+        <p>performs poetic labours:</p>
+        <p>thanks for your patience.</p>
+        <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
+        <img className='loading' src='/assets/loading.gif' />
+      </div>
 
-    return (
-      <section>
-        <div className='instructions'>
-          <p>give me a photo</p>
-          <p>and i will create for you</p>
-          <p>a bespoke haiku.</p>
-          <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
-        </div>
+      <div className='poemform has-text-centered'>
+        <button className='is-create' onClick={this.openPicker}>click here to upload a photo</button>
+      </div>
 
-        <div className='process'>
-          <p>your humble servant</p>
-          <p>performs poetic labours:</p>
-          <p>thanks for your patience.</p>
-          <p className='subtitle is-6'>&hearts; <span className='italics'>the photohaiku robot</span></p>
-          <img className='loading' src='/assets/loading.gif' />
-        </div>
-
-        <div className='poemform has-text-centered'>
-          <button className='is-create' onClick={this.openPicker}>click here to upload a photo</button>
-        </div>
-
-      </section>
-    );
-  }
+    </section>
+  );
+}
 }
 
 export default PoemNew;
