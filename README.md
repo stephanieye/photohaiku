@@ -1,4 +1,4 @@
-![Title Page](http://stephslye.github.io/images/readme/photohaikufront.png)
+![Title Page](src/assets/photohaikufront.png)
 
 ------------------
 #PHOTOHAIKU
@@ -14,11 +14,11 @@ For my first MERN stack app, I knew I wanted to
 
 The result is Photohaiku, an app that produces an original haiku (a three-line poem of five, seven and five syllables) based on a user-submitted photo. Users can create their own photohaiku, as well as browse, view and like (and unlike) other users’ submissions.
 
-![Create](http://stephslye.github.io/images/readme/photohaikucreate.png)
+![Create](src/assets/photohaikucreate.png)
 
 Besides the photo and haiku, the user also sees all the nouns returned by the image content analysis API, displayed as tags.
 
-![Show](http://stephslye.github.io/images/readme/photohaikushow.png)
+![Show](src/assets/photohaikushow.png)
 
 ----------
 ##Approach
@@ -27,23 +27,26 @@ Besides the photo and haiku, the user also sees all the nouns returned by the im
 This project uses the Filestack, Google Cloud Vision and Datamuse APIs:
 * Filestack receives the photos, which can be uploaded from the Internet, from the device, from Facebook and Instagram, or taken with a webcam;
 * Google Cloud Vision analyses the photos and produces an array of nouns associated with the image;
-* Datamuse provides arrays of adjectives associated with the nouns (with syllable counts).
+* Datamuse provides arrays of adjectives associated with the nouns.
+
+To get syllable counts for the nouns, I used a formula involving Regex where the presence of vowels hints at the number of syllables; for the adjectives, the Datamuse API provided its own syllable counts:
+![Photohaiku arrays](src/assets/photohaikuarrays.png)
 
 I then plugged these words into my own haiku templates to produce the photohaiku:
 
-![Photohaiku templates](http://stephslye.github.io/images/readme/photohaikutemplates.png)
+![Photohaiku templates](src/assets/photohaikutemplates.png)
 
 I really enjoyed getting the three APIs to work together in one seamless (to the user) process, with the most challenging being the Google Cloud Vision API, as it had to be integrated into my model on the backend. It was also a real bother to hide the API key for deployment as it was a file rather than a string; in the end, my instructor at General Assembly helped me to extract the required data from the file and present it as strings:
 
-![Poem Model](http://stephslye.github.io/images/readme/photohaikuAPIatbackend.png)
+![Poem Model](src/assets/photohaikuAPIatbackend.png)
 
 However, overall it was surprisingly easy to manipulate the APIs, giving me more time to work on the website's presentation. As I like maps, I decided to create a tag cloud that reflects the frequency of nouns associated with the photohaiku. Users can click on a tag to see all photohaiku associated with that noun.
 
-![Tag Cloud](http://stephslye.github.io/images/readme/photohaikutagcloud.png)
+![Tag Cloud](src/assets/photohaikutagcloud.png)
 
 Otherwise, they can just view all photohaiku, displayed in a grid.
 
-![Photo Grid](http://stephslye.github.io/images/readme/photohaikuindex.png)
+![Photo Grid](src/assets/photohaikuindex.png)
 
 
 
