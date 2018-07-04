@@ -29,7 +29,8 @@ This project uses the Filestack, Google Cloud Vision and Datamuse APIs:
 * Google Cloud Vision analyses the photos and produces an array of nouns associated with the image;
 * Datamuse provides arrays of adjectives associated with the nouns.
 
-To get syllable counts for the nouns, I used a formula involving Regex where the presence of vowels hints at the number of syllables; for the adjectives, the Datamuse API provided its own syllable counts:
+To get syllable counts for the nouns, I used [this amazing formula posted on Stack Overflow](https://stackoverflow.com/questions/5686483/how-to-compute-number-of-syllables-in-a-word-in-javascript/8843915#8843915): it uses Regex to identify the presence of vowels in a word, which then suggests the number of syllables. However, the formula did not work perfectly for one-syllable words, so I tried to refine the process by writing my own function based on my observations about three- and four-letter words.
+As for the adjectives, the Datamuse API helpfully provided its own syllable counts.
 ![Photohaiku arrays](src/assets/photohaikuarrays.png)
 
 I then plugged these words into my own haiku templates to produce the photohaiku:
